@@ -194,6 +194,14 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
     }
 }
 
+/**
+ * Median selection via quickselect. We can asume that this process is constant, as it is being always executed
+ * with 5 elements (by default, you can change this later)
+ * @tparam T
+ * @param lhs
+ * @param rhs
+ * @return
+ */
 template<class T>
 inline size_t BareBoneIIQS<T>::median(size_t lhs, size_t rhs) {
     size_t k = (lhs + rhs) / 2;
