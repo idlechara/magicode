@@ -1,6 +1,9 @@
 {
     "files.associations": {
         "median.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "malloc.h": "c",
+        "math.h": "c",
+        "libc-header-start.h": "c"
     }
 }
