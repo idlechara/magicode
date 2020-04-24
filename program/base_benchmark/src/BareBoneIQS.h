@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef UNTITLED1_BAREBONEIQS_H
-#define UNTITLED1_BAREBONEIQS_H
+#ifndef IQS_TEST_BAREBONEIQS_H
+#define IQS_TEST_BAREBONEIQS_H
 #include "cstdlib"
 #include "../flags.h"
 
