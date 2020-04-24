@@ -29,8 +29,6 @@ public:
     Type next();
     inline Type bfprt(Container &container, size_t lhs, size_t rhs, size_t median_length);
     inline size_t median(Container &container, size_t lhs, size_t rhs);
-private:
-    size_t max_stack_size;
 };
 
 

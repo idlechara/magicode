@@ -22,9 +22,22 @@ BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size){
     this->target_ptr = target_ptr;
     this->target_size = target_size;
 
+    this->stack_max_length = target_size;
     this->stack = (size_t *) malloc(this->target_size * sizeof(size_t)) ;
     this->stack[0] = target_size - 1; // index of the last element
-    for(size_t i=1; i < target_size; i++) this->stack[i] = -1;
+    this->stack_length = 1; //starts with a single element, the top
+
+    this->extracted_count = 0; // this way, after adding +1, we can partition as whole
+}
+
+/* This constructor allows in-place ordering */
+template <class T>
+BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size, size_t stack_size){
+    this->target_ptr = target_ptr;
+    this->target_size = target_size;
+    this->stack_max_length = stack_size;
+    this->stack = (size_t *) malloc(stack_size * sizeof(size_t)) ;
+    this->stack[0] = target_size - 1; // index of the last element
     this->stack_length = 1; //starts with a single element, the top
 
     this->extracted_count = 0; // this way, after adding +1, we can partition as whole
@@ -52,25 +65,54 @@ inline void BareBoneIQS<T>::swap(size_t idx_1, size_t idx_2){
  * Cormen's "Introduction to algorithms - 2nd edition" p146
  *
  * @param pivot_value
- * @param left_idx
- * @param right_idx
+ * @param lhs
+ * @param rhs
  * @return size_t
  */
 template <class T>
-inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t left_idx, size_t right_idx){
-    left_idx--;
-    right_idx++;
+inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
+    if(lhs == rhs) return lhs;
+    lhs--;
+    rhs++;
 
     while(1){
         do{
-            left_idx++;
-        } while(this->target_ptr[left_idx] < pivot_value);
+            lhs++;
+        } while(this->target_ptr[lhs] < pivot_value);
         do{
-            right_idx--;
-        } while(pivot_value < this->target_ptr[right_idx]);
-        if (left_idx >= right_idx) return right_idx;
-        this->swap(left_idx, right_idx);
+            rhs--;
+        } while(pivot_value < this->target_ptr[rhs]);
+        if (lhs >= rhs) return rhs;
+        this->swap(lhs, rhs);
     }
+}
+
+/**
+ * Original IQS partition algorithm implementation
+ * @param pivot_idx pivot index to select
+ * @param lhs left bound inclusive
+ * @param rhs right bound inclusive
+ * @return correct index of the pivot
+ */
+template<class T>
+inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, size_t rhs) {
+    size_t i = lhs;
+    size_t k = rhs;
+    i--;                        // Hoare partition
+    k++;
+    while (1) {
+        while (this->target_ptr[++i] < pivot_value);
+        while (this->target_ptr[--k] > pivot_value);
+        if (i >= k)
+            break;
+        this->swap(i, k);
+    }
+    i = k++;
+    while(i > lhs && this->target_ptr[i] == pivot_value)
+        i--;
+    while(k < rhs && this->target_ptr[k] == pivot_value)
+        k++;
+    return k-1;
 }
 
 /**
@@ -118,9 +160,9 @@ T BareBoneIQS<T>::next() {
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resise the search window
-        if (extracted_count == this->stack_peek()){
-            extracted_count++;
-            return target_ptr[this->stack_pop()];
+        if (this->extracted_count == this->stack_peek()){
+            this->extracted_count++;
+            return this->target_ptr[this->stack_pop()];
         }
 
         // Selects a random pivot from the remaining array
@@ -134,7 +176,7 @@ T BareBoneIQS<T>::next() {
         T pivot_value = this->target_ptr[pivot_idx];
 
         // pivot partition and indexing
-        pivot_idx = this->partition(pivot_value, this->extracted_count, this->stack_peek());
+        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, this->stack_peek());
 
         // Push and recurse the loop
         this->stack_push(pivot_idx);

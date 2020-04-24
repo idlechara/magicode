@@ -14,7 +14,6 @@
 // 
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
-
 #include "IIQS.h"
 #include <algorithm>
 #include <cmath>
@@ -27,6 +26,7 @@
  */
 template<class Container, class Type>
 Type IIQS<Container, Type>::next() {
+    bool already_partitioned = false;
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
@@ -36,11 +36,19 @@ Type IIQS<Container, Type>::next() {
         /*size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition*/
         size_t p70_idx = range * 0.7;
 
-        if (this->extracted_count == this->stack.top() ){
+        if (this->extracted_count == top_element){
             this->extracted_count++;
             this->stack.pop();
             return this->container[top_element];
         }
+//
+//        //to improve performance on redundant arrays WIP
+//        if (this->stack.size() > 1 && this->container[top_element] == this->container[this->extracted_count]){
+//            Type result = this->container[this->extracted_count];
+//            this->extracted_count ++;
+//            return result;
+//        }
+
 
         #ifdef FIXED_PIVOT_SELECTION
             size_t pivot_idx = this->extracted_count;
@@ -51,23 +59,24 @@ Type IIQS<Container, Type>::next() {
         Type pivot_value = this->container[pivot_idx];
 
         // pivot partition and indexing
-        pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
         size_t pivot_p_idx = pivot_idx - this->extracted_count;
-        if (/*p30_idx > pivot_idx ||*/ range > this->max_stack_size && pivot_idx > p70_idx){
+        if (/*p30_idx > pivot_idx ||*/ pivot_idx > p70_idx){
             // if we enter here, then it's because the index needs to be recomputed.
             // So, we ditch the index and get a nice approximate median median and reuse previous computation
             size_t previous_pivot_idx = pivot_idx;
             pivot_idx = this->bfprt(this->container, this->extracted_count, pivot_idx, 5);
             pivot_value = this->container[pivot_idx];
             // then we re-partition, assuming that this median is better
-            pivot_idx = this->partition(pivot_value, this->extracted_count, previous_pivot_idx);
+            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
         }
 
         // Push and recurse the loop
         this->stack.push(pivot_idx);
+        already_partitioned = true;
     }
 }
 
@@ -125,5 +134,4 @@ IIQS<Container, Type>::IIQS(Container &container): IQS<Container, Type>(containe
     this->extracted_count = 0;
     this->stack = std::stack<size_t>();
     this->stack.push(container.size()-1);
-    this->max_stack_size = std::sqrt(container.size()) + 1;
 }
