@@ -89,7 +89,7 @@ inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t
     #elif FORCE_PIVOT_SELECTION_RIGHT
         return k; // return left pivot
     #else
-            return (i + k) / 2; // if there is a group, then return the middle element to guarantee a postition
+            return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
     #endif
 }
 
@@ -114,11 +114,10 @@ inline void IQS<Container, Type>::swap(Container &container, size_t idx_1, size_
  */
 template<class Container, class Type>
 Type IQS<Container, Type>::next() {
-    bool first_iteration = true;
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
-        // resise the search window
+        // resize the search window
         size_t top_element = this->stack.top();
         if (this->extracted_count == this->stack.top() ){
             this->extracted_count++;
@@ -155,5 +154,4 @@ IQS<Container, Type>::IQS(Container &container): container(container) {
     this->extracted_count = 0;
     this->stack = std::stack<size_t>();
     this->stack.push(container.size()-1);
-    this->max_stack_size = container.size();
 }

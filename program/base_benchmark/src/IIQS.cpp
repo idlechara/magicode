@@ -16,26 +16,25 @@
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 #include "IIQS.h"
 #include <algorithm>
-#include <cmath>
 #include <cstdio>
+#include <cmath>
 
- /**
-  * Returns the next sorted element
-  * @tparam Container container type to handle on the class
-  * @tparam Type type used for comparison
-  * @return the next sorted element
-  */
+/**
+ * Returns the next sorted element
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @return the next sorted element
+ */
 template<class Container, class Type>
 Type IIQS<Container, Type>::next() {
-    bool already_partitioned = false;
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
-        // resise the search window
+        // resize the search window
         size_t top_element = this->stack.top();
         size_t range = top_element - this->extracted_count;
         /*size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition*/
-        size_t p70_idx = range * 0.7;
+        size_t p70_idx = (size_t)ceil(range * 0.7);
 
         if (this->extracted_count == top_element){
             this->extracted_count++;
@@ -91,14 +90,13 @@ Type IIQS<Container, Type>::next() {
 
         // Push and recurse the loop
         this->stack.push(pivot_idx);
-        already_partitioned = true;
     }
 }
 
 /**
  * In-place implementation of bfprt. Instead of the classical implementation when auxiliary structures are used
- * this implementation forces two phenomena on the array which both are benefitial to IQS. First, given that we force
- * the selection of the first index, elements near the beggining have a high chance of being good pivots. Second, we
+ * this implementation forces two phenomena on the array which both are beneficial to IQS. First, given that we force
+ * the selection of the first index, elements near the beginning have a high chance of being good pivots. Second, we
  * don't use extra memory to allocate those median results.
  * @tparam Container container type to handle on the class
  * @tparam Type type used for comparison

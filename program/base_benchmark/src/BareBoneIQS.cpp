@@ -22,7 +22,6 @@ BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size){
     this->target_ptr = target_ptr;
     this->target_size = target_size;
 
-    this->stack_max_length = target_size;
     this->stack = (size_t *) malloc(this->target_size * sizeof(size_t)) ;
     this->stack[0] = target_size - 1; // index of the last element
     this->stack_length = 1; //starts with a single element, the top
@@ -30,18 +29,6 @@ BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size){
     this->extracted_count = 0; // this way, after adding +1, we can partition as whole
 }
 
-/* This constructor allows in-place ordering */
-template <class T>
-BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size, size_t stack_size){
-    this->target_ptr = target_ptr;
-    this->target_size = target_size;
-    this->stack_max_length = stack_size;
-    this->stack = (size_t *) malloc(stack_size * sizeof(size_t)) ;
-    this->stack[0] = target_size - 1; // index of the last element
-    this->stack_length = 1; //starts with a single element, the top
-
-    this->extracted_count = 0; // this way, after adding +1, we can partition as whole
-}
 template <class T>
 BareBoneIQS<T>::~BareBoneIQS() {
     free(this->stack);
@@ -89,7 +76,7 @@ inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
 }
 
 /**
- * Modified version of hoare's algorithm intented to be resistant to redundant elements along the
+ * Modified version of hoare's algorithm intended to be resistant to redundant elements along the
  * partition. This scheme is also known as three-way partitioning. Make sure to select the forcing pivot
  * scheme that matches your problem accordingly
  * @param pivot_value the pivot value to use
@@ -116,7 +103,7 @@ inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, siz
     #elif FORCE_PIVOT_SELECTION_RIGHT
         return k; // return left pivot
     #else
-        return (i + k) / 2; // if there is a group, then return the middle element to guarantee a postition
+        return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
     #endif
 }
 
@@ -151,7 +138,7 @@ inline void BareBoneIQS<T>::stack_push(size_t value){
 /**
  * @brief Retrieves the next sorted element. The basic idea is to
  * use quick select to find the smallest element, but store the pivots along the
- * way in order to shortent future calculations.
+ * way in order to shorten future calculations.
  *
  * @return T the next sorted element
  */
@@ -161,7 +148,7 @@ T BareBoneIQS<T>::next() {
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
-        // resise the search window
+        // resize the search window
         if (this->extracted_count == this->stack_peek()){
             this->extracted_count++;
             return this->target_ptr[this->stack_pop()];

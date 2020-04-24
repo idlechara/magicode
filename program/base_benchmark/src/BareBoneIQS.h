@@ -23,7 +23,6 @@
 template<class T>
 class BareBoneIQS {
 public:
-    BareBoneIQS(T *target_ptr, size_t target_size, size_t stack_size);
     BareBoneIQS(T *target_ptr, size_t target_size);
     ~BareBoneIQS();
     inline void swap(size_t lhs, size_t rhs);
@@ -32,11 +31,11 @@ public:
     inline size_t stack_pop();
     inline size_t stack_peek();
     inline void stack_push(size_t value);
-    T next();
+    virtual T next();
 
 protected:
     /**
-     * In this example we used a stack which is the same lenght of the array. This is only for
+     * In this example we used a stack which is the same length of the array. This is only for
      * testing purposes and can be changed into a proper stack later on if desired
      *
      */
@@ -45,7 +44,6 @@ protected:
 
     size_t target_size;
     size_t extracted_count;
-    size_t stack_max_length;
     T *target_ptr;
 
 };
