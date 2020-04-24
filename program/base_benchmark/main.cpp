@@ -595,25 +595,28 @@ int main(int argc, char const *argv[])
 {
 
     srand(time(0));
-    printf("----EXPERIMENT 1 - Random with std::array----\n");
-    experiment_1();
 
-    printf("\n\n----EXPERIMENT 2 - Random with std::vector ----\n");
+    #ifdef INCLUDE_TESTING_WITH_FIXED_ARRAY
+        printf("----EXPERIMENT - Random with std::array----\n");
+        experiment_1();
+    #endif
+
+    printf("\n\n----EXPERIMENT - Random with std::vector ----\n");
     experiment_2();
 
-    printf("\n\n----EXPERIMENT 3 - Ordered asc with std::vector ----\n");
+    printf("\n\n----EXPERIMENT - Ordered asc with std::vector ----\n");
     experiment_3();
 
-    printf("\n\n----EXPERIMENT 4 - Ordered desc with std::vector----\n");
+    printf("\n\n----EXPERIMENT - Ordered desc with std::vector----\n");
     experiment_4();
 
-    printf("\n\n----EXPERIMENT 5 - The cursed long run of zeroes and some random numbers ----\n");
+    printf("\n\n----EXPERIMENT - The cursed long run of zeroes and some random numbers ----\n");
     experiment_5();
 
-    printf("\n\n----EXPERIMENT 5^-1 ----\n");
+    printf("\n\n----EXPERIMENT - 5^-1 ----\n");
     experiment_6();
 
-    printf("\n\n----EXPERIMENT Only zeroes ----\n");
+    printf("\n\n----EXPERIMENT - Only zeroes ----\n");
     experiment_7();
 
 }

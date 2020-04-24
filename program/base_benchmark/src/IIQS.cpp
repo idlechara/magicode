@@ -68,8 +68,11 @@ Type IIQS<Container, Type>::next() {
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
-        size_t pivot_p_idx = pivot_idx - this->extracted_count;
-        if (/*p30_idx > pivot_idx ||*/ pivot_idx > p70_idx){
+        #ifdef USE_ALPHA_LESS_THAN_P30
+            if (p30_idx > pivot_idx || pivot_idx > p70_idx){
+        #else
+            if (pivot_idx > p70_idx){
+        #endif
             // if we enter here, then it's because the index needs to be recomputed.
             // So, we ditch the index and get a nice approximate median median and reuse previous computation
             size_t previous_pivot_idx = pivot_idx;
