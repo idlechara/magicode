@@ -95,7 +95,7 @@ void experiment_1()
     TRACK_TIME_START
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) {
             std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-        };
+        }
     TRACK_TIME_END("std::partial_sort incremental")
 
     TRACK_TIME_START
@@ -106,16 +106,16 @@ void experiment_1()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 
 }
@@ -184,17 +184,17 @@ void experiment_2()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 }
 
@@ -264,17 +264,17 @@ void experiment_3()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 }
 
@@ -343,16 +343,16 @@ void experiment_4()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 }
 
@@ -422,16 +422,16 @@ void experiment_5()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 }
 
@@ -504,12 +504,12 @@ void experiment_6()
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 }
 
@@ -577,16 +577,16 @@ void experiment_7()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
     std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a);
-    CHECK_AGAINST_BASELINE(result_temp, b);
-    CHECK_AGAINST_BASELINE(result_temp, c);
-    CHECK_AGAINST_BASELINE(result_temp, d);
-    CHECK_AGAINST_BASELINE(result_temp, f);
-    CHECK_AGAINST_BASELINE(result_temp, g);
+    CHECK_AGAINST_BASELINE(result_temp, a)
+    CHECK_AGAINST_BASELINE(result_temp, b)
+    CHECK_AGAINST_BASELINE(result_temp, c)
+    CHECK_AGAINST_BASELINE(result_temp, d)
+    CHECK_AGAINST_BASELINE(result_temp, f)
+    CHECK_AGAINST_BASELINE(result_temp, g)
 
 }
 
@@ -594,7 +594,7 @@ void experiment_7()
 int main(int argc, char const *argv[])
 {
 
-    srand(time(0));
+    srand(static_cast<unsigned int>(time(0)));
 
     #ifdef INCLUDE_TESTING_WITH_FIXED_ARRAY
         printf("----EXPERIMENT - Random with std::array----\n");

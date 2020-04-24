@@ -15,9 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <cmath>
 #include <cstdio>
 #include <algorithm>
+#include <cmath>
 #include "BareBoneIIQS.h"
 /* This constructor allows in-place ordering */
 template <class T>
@@ -41,11 +41,11 @@ T BareBoneIIQS<T>::next() {
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
-        // resise the search window
+        // resize the search window
         size_t top_element = this->stack_peek();
         size_t range = top_element - this->extracted_count;
         /*size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition*/
-        size_t p70_idx = range * 0.7;
+        size_t p70_idx = (size_t)ceil(range * 0.7);
 
 
         if (this->extracted_count == top_element ){
@@ -97,8 +97,8 @@ T BareBoneIIQS<T>::next() {
 
 /**
  * In-place implementation of bfprt. Instead of the classical implementation when auxiliary structures are used
- * this implementation forces two phenomena on the array which both are benefitial to IQS. First, given that we force
- * the selection of the first index, elements near the beggining have a high chance of being good pivots. Second, we
+ * this implementation forces two phenomena on the array which both are beneficial to IQS. First, given that we force
+ * the selection of the first index, elements near the beginning have a high chance of being good pivots. Second, we
  * don't use extra memory to allocate those median results.
  * @tparam T The template class/type to use
  * @param lhs the left index to sort (inclusive)
@@ -135,7 +135,7 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
 }
 
 /**
- * Median selection via quickselect. We can asume that this process is constant, as it is being always executed
+ * Median selection via quickselect. We can assume that this process is constant, as it is being always executed
  * with 5 elements (by default, you can change this later)
  *
  * @tparam T  T The template class/type to use
