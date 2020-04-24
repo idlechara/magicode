@@ -19,11 +19,12 @@
 #include <cmath>
 #include <cstdio>
 
-/**
- * Returns the next sorted element
- * @tparam Container
- * @return the next sorted element
- */
+ /**
+  * Returns the next sorted element
+  * @tparam Container container type to handle on the class
+  * @tparam Type type used for comparison
+  * @return the next sorted element
+  */
 template<class Container, class Type>
 Type IIQS<Container, Type>::next() {
     bool already_partitioned = false;
@@ -96,12 +97,12 @@ Type IIQS<Container, Type>::next() {
  * this implementation forces two phenomena on the array which both are benefitial to IQS. First, given that we force
  * the selection of the first index, elements near the beggining have a high chance of being good pivots. Second, we
  * don't use extra memory to allocate those median results.
- * @tparam Container
- * @tparam Type
- * @param container
- * @param lhs
- * @param rhs
- * @param median_length
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @param container reference to the container element to calculate it's median
+ * @param lhs the left index to sort (inclusive)
+ * @param rhs the right index to sort (inclusive)
+ * @param median_length size of the median to use on bfprt, 5 is commonly used
  * @return
  */
 template<class Container, class Type>
@@ -133,6 +134,15 @@ inline Type IIQS<Container, Type>::bfprt(Container &container, size_t lhs, size_
     }
 }
 
+/**
+ *
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @param container reference to the container element to calculate it's median
+ * @param lhs the left boundary for median algorithm (inclusive)
+ * @param rhs the right boundary for median algorithm (inclusive)
+ * @return
+ */
 template<class Container, class Type>
 inline size_t IIQS<Container, Type>::median(Container &container, size_t lhs, size_t rhs) {
     // in practice, this invokes heapsort each time
@@ -140,6 +150,11 @@ inline size_t IIQS<Container, Type>::median(Container &container, size_t lhs, si
     return (lhs + rhs) / 2;
 }
 
+/**
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @param container reference to the container element to apply IQS on
+ */
 template<class Container, class Type>
 IIQS<Container, Type>::IIQS(Container &container): IQS<Container, Type>(container) {
     this->extracted_count = 0;

@@ -50,24 +50,25 @@ BareBoneIQS<T>::~BareBoneIQS() {
 /**
  * @brief Swaps two elements in the referenced array
  *
- * @param idx_1 index to be swapped
- * @param idx_2 index to be swapped
+ * @param lhs left index to be swapped
+ * @param rhs right index to be swapped
  */
 template <class T>
-inline void BareBoneIQS<T>::swap(size_t idx_1, size_t idx_2){
-    T _temp_val = this->target_ptr[idx_1];
-    this->target_ptr[idx_1] = this->target_ptr[idx_2];
-    this->target_ptr[idx_2] = _temp_val;
+inline void BareBoneIQS<T>::swap(size_t lhs, size_t rhs){
+    T _temp_val = this->target_ptr[lhs];
+    this->target_ptr[lhs] = this->target_ptr[rhs];
+    this->target_ptr[rhs] = _temp_val;
 }
 
 /**
  * @brief Implementation of Hoare's partition algorithm. Can be found on
  * Cormen's "Introduction to algorithms - 2nd edition" p146
+ * This implementation is not resistant to the case on which the elements are repeated.
  *
- * @param pivot_value
- * @param lhs
- * @param rhs
- * @return size_t
+ * @param pivot_value the pivot value to use
+ * @param lhs the left boundary for partition algorithm (inclusive)
+ * @param rhs the right boundary for partition algorithm (inclusive)
+ * @return size_t the index on which the partition value belongs
  */
 template <class T>
 inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
@@ -88,11 +89,13 @@ inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
 }
 
 /**
- * Original IQS partition algorithm implementation
- * @param pivot_idx pivot index to select
- * @param lhs left bound inclusive
- * @param rhs right bound inclusive
- * @return correct index of the pivot
+ * Modified version of hoare's algorithm intented to be resistant to redundant elements along the
+ * partition. This scheme is also known as three-way partitioning. Make sure to select the forcing pivot
+ * scheme that matches your problem accordingly
+ * @param pivot_value the pivot value to use
+ * @param lhs the left boundary for partition algorithm (inclusive)
+ * @param rhs the right boundary for partition algorithm (inclusive)
+ * @return size_t the index on which the partition value belongs
  */
 template<class T>
 inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, size_t rhs) {
@@ -119,7 +122,6 @@ inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, siz
 
 /**
  * @brief Pops the last element on the stack
- *
  * @return size_t element at the top of the stack
  */
 template<class T>
@@ -129,7 +131,6 @@ inline size_t BareBoneIQS<T>::stack_pop(){
 
 /**
  * @brief Peeks the last element on the stack
- *
  * @return size_t element at the top of the stack
  */
 template<class T>
@@ -139,7 +140,6 @@ inline size_t BareBoneIQS<T>::stack_peek(){
 
 /**
  * @brief Inserts an element on the top of the stack
- *
  * @param value the element to insert
  */
 template<class T>

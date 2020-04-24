@@ -26,7 +26,7 @@ public:
     BareBoneIQS(T *target_ptr, size_t target_size, size_t stack_size);
     BareBoneIQS(T *target_ptr, size_t target_size);
     ~BareBoneIQS();
-    inline void swap(size_t idx_1, size_t idx_2);
+    inline void swap(size_t lhs, size_t rhs);
     inline size_t partition(T pivot_value, size_t lhs, size_t rhs);
     size_t partition_redundant(T pivot_value, size_t lhs, size_t rhs);
     inline size_t stack_pop();
