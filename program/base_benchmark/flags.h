@@ -18,9 +18,14 @@
 #ifndef IQS_TEST_FLAGS_H
 #define IQS_TEST_FLAGS_H
 
-#define FIXED_PIVOT_SELECTION 1
-#define TEST_SIZE 50000
-#define ELEMENTS_TO_EXTRACT 10 // use
-#define TYPE_TO_USE long
+#define FIXED_PIVOT_SELECTION 1 // remove to allow random initial pivot selection
+#define TEST_SIZE 2000         // Size of the array to test
+#define ELEMENTS_TO_EXTRACT 10  // how many sorted elements you want
+#define TYPE_TO_USE long        // what you're comparing?
+#define USE_FAT_PARTITION 1    // use three-way-partitioning
+
+/* use those to test where you want to bias the pivot selection. If none selected, then chooses the middle of the group */
+//#define FORCE_PIVOT_SELECTION_LEFT 1
+//#define FORCE_PIVOT_SELECTION_RIGHT 1
 
 #endif //IQS_TEST_FLAGS_H

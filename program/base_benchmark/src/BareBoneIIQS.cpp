@@ -15,10 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
-//
-// Created by kuky_nekoi on 21-04-20.
-//
-
 #include <cmath>
 #include <cstdio>
 #include <algorithm>
@@ -65,7 +61,11 @@ T BareBoneIIQS<T>::next() {
         T pivot_value = this->target_ptr[pivot_idx];
 
         // pivot partition and indexing
-        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
+        #ifdef USE_FAT_PARTITION
+            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
+        #else
+            pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+        #endif
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
@@ -77,7 +77,11 @@ T BareBoneIIQS<T>::next() {
             pivot_idx = this->bfprt(this->extracted_count, pivot_idx, 5);
             pivot_value = this->target_ptr[pivot_idx];
             // then we re-partition, assuming that this median is better
-            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
+            #ifdef USE_FAT_PARTITION
+                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
+            #else
+                pivot_idx = this->partition(pivot_value, this->extracted_count, previous_pivot_idx);
+            #endif
         }
 
         // Push and recurse the loop
@@ -109,7 +113,7 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
         lhs = base_lhs;
 
         // check base case
-        if( rhs < base_lhs + median_length) {
+        if( rhs <= base_lhs + median_length) {
             return this->median(base_lhs, rhs);
         }
 

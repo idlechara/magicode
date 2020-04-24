@@ -59,7 +59,11 @@ Type IIQS<Container, Type>::next() {
         Type pivot_value = this->container[pivot_idx];
 
         // pivot partition and indexing
-        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
+        #ifdef USE_FAT_PARTITION
+                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
+        #else
+                pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+        #endif
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
@@ -71,7 +75,14 @@ Type IIQS<Container, Type>::next() {
             pivot_idx = this->bfprt(this->container, this->extracted_count, pivot_idx, 5);
             pivot_value = this->container[pivot_idx];
             // then we re-partition, assuming that this median is better
-            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
+
+
+            #ifdef USE_FAT_PARTITION
+                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
+            #else
+                pivot_idx = this->partition(pivot_value, this->extracted_count, previous_pivot_idx);
+            #endif
+
         }
 
         // Push and recurse the loop

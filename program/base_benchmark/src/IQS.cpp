@@ -67,23 +67,24 @@ inline size_t IQS<Container, Type>::partition(Type pivot_value, size_t lhs, size
  */
 template<class Container, class Type>
 inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t lhs, size_t rhs) {
-    size_t i = lhs;
-    size_t k = rhs;
-    i--;                        // Hoare partition
-    k++;
+    size_t i = lhs - 1;
+    size_t k = rhs + 1;
     while (1) {
         while (this->container[++i] < pivot_value);
         while (this->container[--k] > pivot_value);
-        if (i >= k)
-            break;
+        if (i >= k) break;
         this->swap(this->container, i, k);
     }
-//    i = k++;
-//    while(i > lhs && this->container[i] == pivot_value)
-//        i--;
-//      do{k++;} while(k < rhs && this->container[k] == pivot_value);
-
-    return k++;
+    i = k++;
+    while(i > lhs && this->container[i] == pivot_value) i--;
+    while(k < rhs && this->container[k] == pivot_value) k++;
+    #ifdef FORCE_PIVOT_SELECTION_LEFT
+        return i; // return left pivot
+    #elif FORCE_PIVOT_SELECTION_RIGHT
+        return k; // return left pivot
+    #else
+            return (i + k) / 2; // if there is a group, then return the middle element to guarantee a postition
+    #endif
 }
 
 /**
@@ -127,7 +128,13 @@ Type IQS<Container, Type>::next() {
 //        pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
         // We displace the selection for the top element in order to prevent hanging
         // you can't just use top_element -1 at the first iteration, as you still need to sort the last element. duh!
-        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
+        // pivot partition and indexing
+        #ifdef USE_FAT_PARTITION
+            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
+        #else
+            pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+        #endif
+
 
         // Push and recurse the loop
         this->stack.push(pivot_idx);

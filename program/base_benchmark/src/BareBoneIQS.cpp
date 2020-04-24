@@ -96,23 +96,25 @@ inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
  */
 template<class T>
 inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, size_t rhs) {
-    size_t i = lhs;
-    size_t k = rhs;
-    i--;                        // Hoare partition
-    k++;
+    size_t i = lhs - 1;
+    size_t k = rhs + 1;
     while (1) {
         while (this->target_ptr[++i] < pivot_value);
         while (this->target_ptr[--k] > pivot_value);
-        if (i >= k)
-            break;
+        if (i >= k) break;
         this->swap(i, k);
     }
     i = k++;
-    while(i > lhs && this->target_ptr[i] == pivot_value)
-        i--;
-    while(k < rhs && this->target_ptr[k] == pivot_value)
-        k++;
-    return k-1;
+    while(i > lhs && this->target_ptr[i] == pivot_value) i--;
+    while(k < rhs && this->target_ptr[k] == pivot_value) k++;
+
+    #ifdef FORCE_PIVOT_SELECTION_LEFT
+        return i; // return left pivot
+    #elif FORCE_PIVOT_SELECTION_RIGHT
+        return k; // return left pivot
+    #else
+        return (i + k) / 2; // if there is a group, then return the middle element to guarantee a postition
+    #endif
 }
 
 /**
@@ -176,7 +178,11 @@ T BareBoneIQS<T>::next() {
         T pivot_value = this->target_ptr[pivot_idx];
 
         // pivot partition and indexing
-        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, this->stack_peek());
+        #ifdef USE_FAT_PARTITION
+                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, this->stack_peek());
+        #else
+                pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+        #endif
 
         // Push and recurse the loop
         this->stack_push(pivot_idx);
