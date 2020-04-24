@@ -18,9 +18,6 @@
 #include "IQS.h"
 #include <cstdlib>
 
-//heaps work well when you know how many elements you're trying to sort
-// but it pitfalls when ordering the whole array is also a posibility
-
 /**
  *  Function to play with IQS implementation of random
  * @param lhs left index, inclusive
@@ -62,6 +59,34 @@ inline size_t IQS<Container, Type>::partition(Type pivot_value, size_t lhs, size
 }
 
 /**
+ * Original IQS partition algorithm implementation
+ * @param pivot_idx pivot index to select
+ * @param lhs left bound inclusive
+ * @param rhs right bound inclusive
+ * @return correct index of the pivot
+ */
+template<class Container, class Type>
+inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t lhs, size_t rhs) {
+    size_t i = lhs;
+    size_t k = rhs;
+    i--;                        // Hoare partition
+    k++;
+    while (1) {
+        while (this->container[++i] < pivot_value);
+        while (this->container[--k] > pivot_value);
+        if (i >= k)
+            break;
+        this->swap(this->container, i, k);
+    }
+//    i = k++;
+//    while(i > lhs && this->container[i] == pivot_value)
+//        i--;
+//      do{k++;} while(k < rhs && this->container[k] == pivot_value);
+
+    return k++;
+}
+
+/**
  * Swap implementation. Inheritable and inline in order to play with it
  * @param lhs left bound inclusive
  * @param rhs right bound inclusive
@@ -79,6 +104,7 @@ inline void IQS<Container, Type>::swap(Container &container, size_t idx_1, size_
  */
 template<class Container, class Type>
 Type IQS<Container, Type>::next() {
+    bool first_iteration = true;
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
@@ -98,7 +124,10 @@ Type IQS<Container, Type>::next() {
         Type pivot_value = this->container[pivot_idx];
 
         // pivot partition and indexing
-        pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+//        pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+        // We displace the selection for the top element in order to prevent hanging
+        // you can't just use top_element -1 at the first iteration, as you still need to sort the last element. duh!
+        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
 
         // Push and recurse the loop
         this->stack.push(pivot_idx);
@@ -110,4 +139,5 @@ IQS<Container, Type>::IQS(Container &container): container(container) {
     this->extracted_count = 0;
     this->stack = std::stack<size_t>();
     this->stack.push(container.size()-1);
+    this->max_stack_size = container.size();
 }

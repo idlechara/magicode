@@ -30,11 +30,13 @@ public:
     inline size_t partition(Type pivot_value, size_t lhs, size_t rhs);
     Type next();
     inline size_t random_between(size_t lhs, size_t rhs);
+    size_t partition_redundant(Type pivot_value, size_t lhs, size_t rhs);
 
 protected:
     Container &container;
     std::stack<size_t> stack;
     size_t extracted_count;
+    size_t max_stack_size;
 };
 
 #endif //UNTITLED1_IQS_H
