@@ -20,9 +20,11 @@
 
 /**
  *  Function to play with IQS implementation of random
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
  * @param lhs left index, inclusive
  * @param rhs left index, inclusive
- * @return a number [lhs, rhs]
+ * @return a random number [lhs, rhs]
  */
 template<class Container, class Type>
 inline size_t IQS<Container, Type>::random_between(size_t lhs, size_t rhs) {
@@ -32,10 +34,12 @@ inline size_t IQS<Container, Type>::random_between(size_t lhs, size_t rhs) {
 /**
  * Hoare's partition implementation. Guarantees that all element at the left of the pivot
  * are lower or equal to the pivot value and all elements to the right of it are greater
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
  * @param pivot_value pivot value to move
- * @param lhs left bound inclusive
- * @param rhs right bound inclusive
- * @return correct index of the pivot
+ * @param lhs the left boundary for partition algorithm (inclusive)
+ * @param rhs the right boundary for partition algorithm (inclusive)
+ * @return size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
 inline size_t IQS<Container, Type>::partition(Type pivot_value, size_t lhs, size_t rhs) {
@@ -60,10 +64,12 @@ inline size_t IQS<Container, Type>::partition(Type pivot_value, size_t lhs, size
 
 /**
  * Original IQS partition algorithm implementation
- * @param pivot_idx pivot index to select
- * @param lhs left bound inclusive
- * @param rhs right bound inclusive
- * @return correct index of the pivot
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @param pivot_value the pivot value to use
+ * @param lhs the left boundary for partition algorithm (inclusive)
+ * @param rhs the right boundary for partition algorithm (inclusive)
+ * @return size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
 inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t lhs, size_t rhs) {
@@ -89,8 +95,10 @@ inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t
 
 /**
  * Swap implementation. Inheritable and inline in order to play with it
- * @param lhs left bound inclusive
- * @param rhs right bound inclusive
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @param lhs left index to be swapped
+ * @param rhs right index to be swapped
  * @param container the container to apply the function
  */
 template<class Container, class Type>
@@ -100,7 +108,8 @@ inline void IQS<Container, Type>::swap(Container &container, size_t idx_1, size_
 
 /**
  * Returns the next sorted element
- * @tparam Container
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
  * @return the next sorted element
  */
 template<class Container, class Type>

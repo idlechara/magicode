@@ -28,10 +28,12 @@ BareBoneIIQS<T>::~BareBoneIIQS() {
 }
 
 /**
+ *
  * @brief Retrieves the next sorted element. The basic idea is to
  * use quick select to find the smallest element, but store the pivots along the
  * way in order to shortent future calculations.
  *
+ * @tparam T The template class/type to use
  * @return T the next sorted element
  */
 template<class T>
@@ -95,12 +97,10 @@ T BareBoneIIQS<T>::next() {
  * this implementation forces two phenomena on the array which both are benefitial to IQS. First, given that we force
  * the selection of the first index, elements near the beggining have a high chance of being good pivots. Second, we
  * don't use extra memory to allocate those median results.
- * @tparam Container
- * @tparam Type
- * @param container
- * @param lhs
- * @param rhs
- * @param median_length
+ * @tparam T The template class/type to use
+ * @param lhs the left index to sort (inclusive)
+ * @param rhs the right index to sort (inclusive)
+ * @param median_length size of the median to use on bfprt, 5 is commonly used
  * @return
  */
 template<class T>
@@ -134,9 +134,10 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
 /**
  * Median selection via quickselect. We can asume that this process is constant, as it is being always executed
  * with 5 elements (by default, you can change this later)
- * @tparam T
- * @param lhs
- * @param rhs
+ *
+ * @tparam T  T The template class/type to use
+ * @param lhs the left boundary for median algorithm (inclusive)
+ * @param rhs the right boundary for median algorithm (inclusive)
  * @return
  */
 template<class T>
@@ -144,4 +145,12 @@ inline size_t BareBoneIIQS<T>::median(size_t lhs, size_t rhs) {
     std::sort(this->target_ptr, this->target_ptr + (rhs-lhs));
     return (lhs + rhs) / 2;
     /* implement heapsort later as it is more cache-friendly for small arrays, I'm too drunk now */
+    /* explanation: due to how heapsort is implemented, it scatters in-memory operations, that's
+     * on how the tree is represented on the array (the 2k +1 thing), so if you "recurse" long
+     * enough (namely, you're searching for an element on which you need to trash the cache or even
+     * worse, you lose the dram-bursting) then it gets its performance degraded.
+     *
+     * But since on median finding of a fixed set of elements it's small enough to fit on the cache
+     * and to get dram-bursting benefits, it works better than other sorting algorithms in practice.
+     */
 }
