@@ -93,9 +93,7 @@ void experiment_1()
     TRACK_TIME_END("std::partial_sort complete")
 
     TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) {
-            std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-        }
+        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
     TRACK_TIME_END("std::partial_sort incremental")
 
     TRACK_TIME_START
@@ -601,8 +599,8 @@ int main(int argc, char const *argv[])
         experiment_1();
     #endif
 
-    printf("\n\n----EXPERIMENT - Random with std::vector ----\n");
-    experiment_2();
+     printf("\n\n----EXPERIMENT - Random with std::vector ----\n");
+     experiment_2();
 
     printf("\n\n----EXPERIMENT - Ordered asc with std::vector ----\n");
     experiment_3();
@@ -610,13 +608,13 @@ int main(int argc, char const *argv[])
     printf("\n\n----EXPERIMENT - Ordered desc with std::vector----\n");
     experiment_4();
 
-    printf("\n\n----EXPERIMENT - The cursed long run of zeroes and some random numbers ----\n");
-    experiment_5();
+     printf("\n\n----EXPERIMENT - The cursed long run of zeroes and some random numbers ----\n");
+     experiment_5();
 
-    printf("\n\n----EXPERIMENT - 5^-1 ----\n");
-    experiment_6();
+     printf("\n\n----EXPERIMENT - 5^-1 ----\n");
+     experiment_6();
 
-    printf("\n\n----EXPERIMENT - Only zeroes ----\n");
-    experiment_7();
+     printf("\n\n----EXPERIMENT - Only zeroes ----\n");
+     experiment_7();
 
 }

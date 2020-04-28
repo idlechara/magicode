@@ -168,7 +168,7 @@ T BareBoneIQS<T>::next() {
         #ifdef USE_FAT_PARTITION
                 pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, this->stack_peek());
         #else
-                pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
+                pivot_idx = this->partition(pivot_value, this->extracted_count, this->stack_peek());
         #endif
 
         // Push and recurse the loop

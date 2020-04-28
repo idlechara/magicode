@@ -44,7 +44,6 @@ T BareBoneIIQS<T>::next() {
         // resize the search window
         size_t top_element = this->stack_peek();
         size_t range = top_element - this->extracted_count;
-        /*size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition*/
         size_t p70_idx = (size_t)ceil(range * 0.7);
 
 
@@ -69,26 +68,41 @@ T BareBoneIIQS<T>::next() {
             pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
         #endif
 
+        size_t previous_pivot_idx = pivot_idx;
+
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
         #ifdef USE_ALPHA_LESS_THAN_P30
-                if (p30_idx > pivot_idx || pivot_idx > p70_idx){
+            size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition
+            if (p30_idx > pivot_idx || pivot_idx > p70_idx){
         #else
-                if (pivot_idx > p70_idx){
+            if (pivot_idx > p70_idx){
         #endif
             // if we enter here, then it's because the index needs to be recomputed.
             // So, we ditch the index and get a nice approximate median median and reuse previous computation
-            size_t previous_pivot_idx = pivot_idx;
-            pivot_idx = this->bfprt(this->extracted_count, pivot_idx, 5);
+            pivot_idx = this->bfprt(this->extracted_count, top_element, 5);
             pivot_value = this->target_ptr[pivot_idx];
             // then we re-partition, assuming that this median is better
             #ifdef USE_FAT_PARTITION
-                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
+                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
             #else
-                pivot_idx = this->partition(pivot_value, this->extracted_count, previous_pivot_idx);
+                pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
             #endif
         }
 
+        // I need to see later how it does affect the stack this segment.
+        #ifdef REUSE_PIVOTS
+            if(previous_pivot_idx < pivot_idx){
+                this->stack_push(pivot_idx);
+                this->stack_push(previous_pivot_idx);
+                continue;
+            }
+            else if(previous_pivot_idx > pivot_idx){
+                this->stack_push(previous_pivot_idx);
+                this->stack_push(pivot_idx);
+                continue;
+            }
+        #endif
         // Push and recurse the loop
         this->stack_push(pivot_idx);
     }
@@ -145,7 +159,7 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
  */
 template<class T>
 inline size_t BareBoneIIQS<T>::median(size_t lhs, size_t rhs) {
-    std::sort(this->target_ptr, this->target_ptr + (rhs-lhs));
+    std::sort(this->target_ptr + lhs, this->target_ptr + rhs);
     return (lhs + rhs) / 2;
     /* implement heapsort later as it is more cache-friendly for small arrays, I'm too drunk now */
     /* explanation: due to how heapsort is implemented, it scatters in-memory operations, that's

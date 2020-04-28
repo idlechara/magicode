@@ -33,7 +33,6 @@ Type IIQS<Container, Type>::next() {
         // resize the search window
         size_t top_element = this->stack.top();
         size_t range = top_element - this->extracted_count;
-        /*size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition*/
         size_t p70_idx = (size_t)ceil(range * 0.7);
 
         if (this->extracted_count == top_element){
@@ -41,13 +40,6 @@ Type IIQS<Container, Type>::next() {
             this->stack.pop();
             return this->container[top_element];
         }
-//
-//        //to improve performance on redundant arrays WIP
-//        if (this->stack.size() > 1 && this->container[top_element] == this->container[this->extracted_count]){
-//            Type result = this->container[this->extracted_count];
-//            this->extracted_count ++;
-//            return result;
-//        }
 
 
         #ifdef FIXED_PIVOT_SELECTION
@@ -64,30 +56,46 @@ Type IIQS<Container, Type>::next() {
         #else
                 pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
         #endif
+        
+        size_t previous_pivot_idx = pivot_idx;
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
         #ifdef USE_ALPHA_LESS_THAN_P30
+            size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition
             if (p30_idx > pivot_idx || pivot_idx > p70_idx){
         #else
             if (pivot_idx > p70_idx){
         #endif
             // if we enter here, then it's because the index needs to be recomputed.
             // So, we ditch the index and get a nice approximate median median and reuse previous computation
-            size_t previous_pivot_idx = pivot_idx;
-            pivot_idx = this->bfprt(this->container, this->extracted_count, pivot_idx, 5);
+            pivot_idx = this->bfprt(this->container, this->extracted_count, top_element, 5);
             pivot_value = this->container[pivot_idx];
             // then we re-partition, assuming that this median is better
 
 
             #ifdef USE_FAT_PARTITION
-                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, previous_pivot_idx);
+                pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
             #else
-                pivot_idx = this->partition(pivot_value, this->extracted_count, previous_pivot_idx);
+                pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
             #endif
+
 
         }
 
+        // I need to see later how it does affect the stack this segment.
+        #ifdef REUSE_PIVOTS
+            if(previous_pivot_idx < pivot_idx){
+                this->stack.push(pivot_idx);
+                this->stack.push(previous_pivot_idx);
+                continue;
+            }
+            else if(previous_pivot_idx > pivot_idx){
+                this->stack.push(previous_pivot_idx);
+                this->stack.push(pivot_idx);
+                continue;
+            }
+        #endif
         // Push and recurse the loop
         this->stack.push(pivot_idx);
     }
