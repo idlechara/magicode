@@ -123,7 +123,7 @@ T BareBoneIIQS<T>::next() {
  * @return the median value
  */
 template<class T>
-inline T BareBoneIIQS<T>::bfprt(std::size_t lhs, std::size_t rhs, std::size_t median_length) {
+inline std::size_t BareBoneIIQS<T>::bfprt(std::size_t lhs, std::size_t rhs, std::size_t median_length) {
     std::size_t base_lhs = lhs;
     std::size_t medians_extracted = 0;
 
