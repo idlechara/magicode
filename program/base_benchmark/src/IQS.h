@@ -25,17 +25,17 @@
 template<class Container, class Type>
 class IQS {
 public:
-    IQS(Container &container);
-    inline void swap(Container &container, size_t idx_1, size_t idx_2);
-    inline size_t partition(Type pivot_value, size_t lhs, size_t rhs);
+    explicit IQS(Container &container);
+    inline void swap(Container &container, std::size_t lhs, std::size_t rhs);
+    inline std::size_t partition(Type pivot_value, std::size_t lhs, std::size_t rhs);
     virtual Type next();
-    inline size_t random_between(size_t lhs, size_t rhs);
-    size_t partition_redundant(Type pivot_value, size_t lhs, size_t rhs);
+    inline std::size_t random_between(std::size_t lhs, std::size_t rhs);
+    std::size_t partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs);
 
 protected:
     Container &container;
-    std::stack<size_t> stack;
-    size_t extracted_count;
+    std::stack<std::size_t> stack;
+    std::size_t extracted_count;
 };
 
 #endif //UNTITLED1_IQS_H

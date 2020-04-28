@@ -25,10 +25,10 @@
 template<class Container, class Type>
 class IIQS : public IQS<Container, Type>{
 public:
-    IIQS(Container &container);
+    explicit IIQS(Container &container);
     Type next();
-    inline Type bfprt(Container &container, size_t lhs, size_t rhs, size_t median_length);
-    inline size_t median(Container &container, size_t lhs, size_t rhs);
+    inline Type bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length);
+    inline std::size_t median(Container &container, std::size_t lhs, std::size_t rhs);
 };
 
 

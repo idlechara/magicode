@@ -17,6 +17,7 @@
 
 #include "IQS.h"
 #include <cstdlib>
+#include <random>
 
 /**
  *  Function to play with IQS implementation of random
@@ -27,8 +28,8 @@
  * @return a random number [lhs, rhs]
  */
 template<class Container, class Type>
-inline size_t IQS<Container, Type>::random_between(size_t lhs, size_t rhs) {
-    return lhs + (rand() % (rhs - lhs));
+inline std::size_t IQS<Container, Type>::random_between(std::size_t lhs, std::size_t rhs) {
+    return lhs + std::rand() % (rhs - lhs);
 }
 
 /**
@@ -39,10 +40,10 @@ inline size_t IQS<Container, Type>::random_between(size_t lhs, size_t rhs) {
  * @param pivot_value pivot value to move
  * @param lhs the left boundary for partition algorithm (inclusive)
  * @param rhs the right boundary for partition algorithm (inclusive)
- * @return size_t the index on which the partition value belongs
+ * @return std::size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
-inline size_t IQS<Container, Type>::partition(Type pivot_value, size_t lhs, size_t rhs) {
+inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t lhs, std::size_t rhs) {
     lhs--;
     rhs++;
     while(1){
@@ -69,12 +70,12 @@ inline size_t IQS<Container, Type>::partition(Type pivot_value, size_t lhs, size
  * @param pivot_value the pivot value to use
  * @param lhs the left boundary for partition algorithm (inclusive)
  * @param rhs the right boundary for partition algorithm (inclusive)
- * @return size_t the index on which the partition value belongs
+ * @return std::size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
-inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t lhs, size_t rhs) {
-    size_t i = lhs - 1;
-    size_t k = rhs + 1;
+inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs) {
+    std::size_t i = lhs - 1;
+    std::size_t k = rhs + 1;
     while (1) {
         while (this->container[++i] < pivot_value);
         while (this->container[--k] > pivot_value);
@@ -102,8 +103,8 @@ inline size_t IQS<Container, Type>::partition_redundant(Type pivot_value, size_t
  * @param container the container to apply the function
  */
 template<class Container, class Type>
-inline void IQS<Container, Type>::swap(Container &container, size_t idx_1, size_t idx_2) {
-    std::swap(container[idx_1], container[idx_2]);
+inline void IQS<Container, Type>::swap(Container &container, std::size_t lhs, std::size_t rhs) {
+    std::swap(container[lhs], container[rhs]);
 }
 
 /**
@@ -118,16 +119,16 @@ Type IQS<Container, Type>::next() {
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resize the search window
-        size_t top_element = this->stack.top();
+        std::size_t top_element = this->stack.top();
         if (this->extracted_count == this->stack.top() ){
             this->extracted_count++;
             this->stack.pop();
             return this->container[top_element];
         }
         #ifdef FIXED_PIVOT_SELECTION
-            size_t pivot_idx = this->extracted_count;
+            std::size_t pivot_idx = this->extracted_count;
         #else
-            size_t pivot_idx = this->random_between(this->extracted_count, top_element);
+            std::size_t pivot_idx = this->random_between(this->extracted_count, top_element);
         #endif
 
         Type pivot_value = this->container[pivot_idx];
@@ -152,6 +153,6 @@ Type IQS<Container, Type>::next() {
 template<class Container, class Type>
 IQS<Container, Type>::IQS(Container &container): container(container) {
     this->extracted_count = 0;
-    this->stack = std::stack<size_t>();
+    this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
 }
