@@ -16,7 +16,6 @@
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "BareBoneIQS.h"
-#include <cstdlib>
 /* This constructor allows in-place ordering */
 template <class T>
 BareBoneIQS<T>::BareBoneIQS(T *target_ptr, std::size_t target_size){
