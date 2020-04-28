@@ -16,13 +16,14 @@
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "BareBoneIQS.h"
+#include <cstdlib>
 /* This constructor allows in-place ordering */
 template <class T>
-BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size){
+BareBoneIQS<T>::BareBoneIQS(T *target_ptr, std::size_t target_size){
     this->target_ptr = target_ptr;
     this->target_size = target_size;
 
-    this->stack = (size_t *) malloc(this->target_size * sizeof(size_t)) ;
+    this->stack = (std::size_t *) std::malloc(this->target_size * sizeof(std::size_t)) ;
     this->stack[0] = target_size - 1; // index of the last element
     this->stack_length = 1; //starts with a single element, the top
 
@@ -31,7 +32,7 @@ BareBoneIQS<T>::BareBoneIQS(T *target_ptr, size_t target_size){
 
 template <class T>
 BareBoneIQS<T>::~BareBoneIQS() {
-    free(this->stack);
+    std::free(this->stack);
 }
 
 /**
@@ -41,7 +42,7 @@ BareBoneIQS<T>::~BareBoneIQS() {
  * @param rhs right index to be swapped
  */
 template <class T>
-inline void BareBoneIQS<T>::swap(size_t lhs, size_t rhs){
+inline void BareBoneIQS<T>::swap(std::size_t lhs, std::size_t rhs){
     T _temp_val = this->target_ptr[lhs];
     this->target_ptr[lhs] = this->target_ptr[rhs];
     this->target_ptr[rhs] = _temp_val;
@@ -55,10 +56,10 @@ inline void BareBoneIQS<T>::swap(size_t lhs, size_t rhs){
  * @param pivot_value the pivot value to use
  * @param lhs the left boundary for partition algorithm (inclusive)
  * @param rhs the right boundary for partition algorithm (inclusive)
- * @return size_t the index on which the partition value belongs
+ * @return std::size_t the index on which the partition value belongs
  */
 template <class T>
-inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
+inline std::size_t BareBoneIQS<T>::partition(T pivot_value, std::size_t lhs, std::size_t rhs){
     if(lhs == rhs) return lhs;
     lhs--;
     rhs++;
@@ -82,12 +83,12 @@ inline size_t BareBoneIQS<T>::partition(T pivot_value, size_t lhs, size_t rhs){
  * @param pivot_value the pivot value to use
  * @param lhs the left boundary for partition algorithm (inclusive)
  * @param rhs the right boundary for partition algorithm (inclusive)
- * @return size_t the index on which the partition value belongs
+ * @return std::size_t the index on which the partition value belongs
  */
 template<class T>
-inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, size_t rhs) {
-    size_t i = lhs - 1;
-    size_t k = rhs + 1;
+inline std::size_t BareBoneIQS<T>::partition_redundant(T pivot_value, std::size_t lhs, std::size_t rhs) {
+    std::size_t i = lhs - 1;
+    std::size_t k = rhs + 1;
     while (1) {
         while (this->target_ptr[++i] < pivot_value);
         while (this->target_ptr[--k] > pivot_value);
@@ -109,19 +110,19 @@ inline size_t BareBoneIQS<T>::partition_redundant(T pivot_value, size_t lhs, siz
 
 /**
  * @brief Pops the last element on the stack
- * @return size_t element at the top of the stack
+ * @return std::size_t element at the top of the stack
  */
 template<class T>
-inline size_t BareBoneIQS<T>::stack_pop(){
+inline std::size_t BareBoneIQS<T>::stack_pop(){
     return this->stack[--this->stack_length];
 }
 
 /**
  * @brief Peeks the last element on the stack
- * @return size_t element at the top of the stack
+ * @return std::size_t element at the top of the stack
  */
 template<class T>
-inline size_t BareBoneIQS<T>::stack_peek(){
+inline std::size_t BareBoneIQS<T>::stack_peek(){
     return this->stack[this->stack_length-1];
 }
 
@@ -130,7 +131,7 @@ inline size_t BareBoneIQS<T>::stack_peek(){
  * @param value the element to insert
  */
 template<class T>
-inline void BareBoneIQS<T>::stack_push(size_t value){
+inline void BareBoneIQS<T>::stack_push(std::size_t value){
     this->stack[this->stack_length] = value;
     this->stack_length++;
 }
@@ -157,10 +158,10 @@ T BareBoneIQS<T>::next() {
         // Selects a random pivot from the remaining array
 
         #ifdef FIXED_PIVOT_SELECTION
-            size_t pivot_idx = this->extracted_count;
+            std::size_t pivot_idx = this->extracted_count;
         #else
-            size_t rand_range = this->stack_peek() - this->extracted_count;
-            size_t pivot_idx = this->extracted_count + (rand() % rand_range);
+            std::size_t rand_range = this->stack_peek() - this->extracted_count;
+            std::size_t pivot_idx = this->extracted_count + (rand() % rand_range);
         #endif
         T pivot_value = this->target_ptr[pivot_idx];
 

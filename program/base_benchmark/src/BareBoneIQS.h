@@ -23,14 +23,14 @@
 template<class T>
 class BareBoneIQS {
 public:
-    BareBoneIQS(T *target_ptr, size_t target_size);
+    BareBoneIQS(T *target_ptr, std::size_t target_size);
     ~BareBoneIQS();
-    inline void swap(size_t lhs, size_t rhs);
-    inline size_t partition(T pivot_value, size_t lhs, size_t rhs);
-    size_t partition_redundant(T pivot_value, size_t lhs, size_t rhs);
-    inline size_t stack_pop();
-    inline size_t stack_peek();
-    inline void stack_push(size_t value);
+    inline void swap(std::size_t lhs, std::size_t rhs);
+    inline std::size_t partition(T pivot_value, std::size_t lhs, std::size_t rhs);
+    std::size_t partition_redundant(T pivot_value, std::size_t lhs, std::size_t rhs);
+    inline std::size_t stack_pop();
+    inline std::size_t stack_peek();
+    inline void stack_push(std::size_t value);
     virtual T next();
 
 protected:
@@ -39,11 +39,11 @@ protected:
      * testing purposes and can be changed into a proper stack later on if desired
      *
      */
-    size_t *stack;
-    size_t stack_length;
+    std::size_t *stack;
+    std::size_t stack_length;
 
-    size_t target_size;
-    size_t extracted_count;
+    std::size_t target_size;
+    std::size_t extracted_count;
     T *target_ptr;
 
 };

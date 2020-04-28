@@ -24,11 +24,11 @@
 template <class T>
 class BareBoneIIQS : public BareBoneIQS<T> {
 public:
-    BareBoneIIQS(T *target_ptr, size_t target_size);
+    BareBoneIIQS(T *target_ptr, std::size_t target_size);
     ~BareBoneIIQS();
     T next();
-    T bfprt(size_t lhs, size_t rhs, size_t median_length);
-    size_t median(size_t lhs, size_t rhs);
+    T bfprt(std::size_t lhs, std::size_t rhs, std::size_t median_length);
+    std::size_t median(std::size_t lhs, std::size_t rhs);
 };
 
 

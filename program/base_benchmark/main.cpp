@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <cstdlib>
 #include <cstdio>
 #include <ctime>
 #include <cstring>
@@ -45,7 +46,7 @@
 }
 
 #define CHECK_AGAINST_BASELINE(BASELINE_VARIABLE, VARIABLE_TO_CHECK)                                                \
-    for(size_t i=0; i<ELEMENTS_TO_EXTRACT; i++) {                                                                   \
+    for(std::size_t i=0; i<ELEMENTS_TO_EXTRACT; i++) {                                                                   \
         if(BASELINE_VARIABLE[i] != VARIABLE_TO_CHECK[i]){                                                           \
             printf("ERROR ON %s, index %ld \n", #VARIABLE_TO_CHECK, i);                                             \
             std::cout << "Expected: " << BASELINE_VARIABLE[i] << ", but got: " << VARIABLE_TO_CHECK[i] << std::endl;\
@@ -55,7 +56,7 @@
 
 void experiment_1()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     std::array<TYPE_TO_USE, test_size> b;
@@ -66,8 +67,8 @@ void experiment_1()
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
 
 
-    for(size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = rand() % (test_size/2);
+    for(std::size_t i=0; i<test_size; i++) {
+        TYPE_TO_USE val = std::rand() % (test_size/2);
         a[i] = val;
         b[i] = val;
         c[i] = val;
@@ -121,7 +122,7 @@ void experiment_1()
 
 void experiment_2()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
@@ -133,8 +134,8 @@ void experiment_2()
     std::vector<TYPE_TO_USE> f;
     std::vector<TYPE_TO_USE> result_temp;
 
-    for(size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = rand() % (test_size + 1);
+    for(std::size_t i=0; i<test_size; i++) {
+        TYPE_TO_USE val = std::rand() % (test_size + 1);
         a[i] = val;
         b.push_back(val);
         c.push_back(val);
@@ -199,7 +200,7 @@ void experiment_2()
 // ditched vector as vector takes too much resources
 void experiment_3()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
@@ -211,7 +212,7 @@ void experiment_3()
     std::vector<TYPE_TO_USE> f;
     std::vector<TYPE_TO_USE> result_temp;
 
-    for(size_t i=0; i<test_size; i++) {
+    for(std::size_t i=0; i<test_size; i++) {
         TYPE_TO_USE val = i;
         a[i] = val;
         b.push_back(val);
@@ -247,7 +248,6 @@ void experiment_3()
     TRACK_TIME_START
         std::make_heap(e.begin(), e.end());
         for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            TYPE_TO_USE temp = e.front();
             std::pop_heap(e.begin(), e.end());
             e.pop_back();
         }
@@ -279,7 +279,7 @@ void experiment_3()
 
 void experiment_4()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
@@ -291,7 +291,7 @@ void experiment_4()
     std::vector<TYPE_TO_USE> f;
     std::vector<TYPE_TO_USE> result_temp;
 
-    for(size_t i=0; i<test_size; i++) {
+    for(std::size_t i=0; i<test_size; i++) {
         TYPE_TO_USE val = TEST_SIZE - i;
         a[i] = val;
         b.push_back(val);
@@ -326,7 +326,6 @@ void experiment_4()
     TRACK_TIME_START
         std::make_heap(e.begin(), e.end());
         for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            TYPE_TO_USE temp = e.front();
             std::pop_heap(e.begin(), e.end());
             e.pop_back();
         }
@@ -358,7 +357,7 @@ void experiment_4()
 
 void experiment_5()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
@@ -370,8 +369,8 @@ void experiment_5()
     std::vector<TYPE_TO_USE> f;
     std::vector<TYPE_TO_USE> result_temp;
 
-    for(size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = (rand() % (test_size + 1) < 100) ? rand() % (test_size + 1) : 0;
+    for(std::size_t i=0; i<test_size; i++) {
+        TYPE_TO_USE val = (std::rand() % (test_size + 1) < 100) ? std::rand() % (test_size + 1) : 0;
         a[i] = val;
         b.push_back(val);
         c.push_back(val);
@@ -436,7 +435,7 @@ void experiment_5()
 
 void experiment_6()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
@@ -448,8 +447,8 @@ void experiment_6()
     std::vector<TYPE_TO_USE> f;
     std::vector<TYPE_TO_USE> result_temp;
 
-    for(size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = (rand() % (test_size + 1) > 100) ? rand() % (test_size + 1) : 0;
+    for(std::size_t i=0; i<test_size; i++) {
+        TYPE_TO_USE val = (std::rand() % (test_size + 1) > 100) ? std::rand() % (test_size + 1) : 0;
         a[i] = val;
         b.push_back(val);
         c.push_back(val);
@@ -498,7 +497,7 @@ void experiment_6()
     TRACK_TIME_START
         BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
         for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS");
+    TRACK_TIME_END("Bare-bones C IIQS")
 
 
     std::sort(result_temp.begin(), result_temp.end());
@@ -513,7 +512,7 @@ void experiment_6()
 
 void experiment_7()
 {
-    const size_t test_size = TEST_SIZE;
+    const std::size_t test_size = TEST_SIZE;
 
     TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
     TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
@@ -525,7 +524,7 @@ void experiment_7()
     std::vector<TYPE_TO_USE> f;
     std::vector<TYPE_TO_USE> result_temp;
 
-    for(size_t i=0; i<test_size; i++) {
+    for(std::size_t i=0; i<test_size; i++) {
         TYPE_TO_USE val = 0;
         a[i] = val;
         b.push_back(val);
@@ -560,7 +559,6 @@ void experiment_7()
     TRACK_TIME_START
         std::make_heap(e.begin(), e.end());
         for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            TYPE_TO_USE temp = e.front();
             std::pop_heap(e.begin(), e.end());
             e.pop_back();
         }

@@ -31,9 +31,9 @@ Type IIQS<Container, Type>::next() {
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resize the search window
-        size_t top_element = this->stack.top();
-        size_t range = top_element - this->extracted_count;
-        size_t p70_idx = (size_t)ceil(range * 0.7);
+        std::size_t top_element = this->stack.top();
+        std::size_t range = top_element - this->extracted_count;
+        std::size_t p70_idx = (std::size_t)ceil(range * 0.7);
 
         if (this->extracted_count == top_element){
             this->extracted_count++;
@@ -43,9 +43,9 @@ Type IIQS<Container, Type>::next() {
 
 
         #ifdef FIXED_PIVOT_SELECTION
-            size_t pivot_idx = this->extracted_count;
+            std::size_t pivot_idx = this->extracted_count;
         #else
-            size_t pivot_idx = this->random_between(this->extracted_count, top_element);
+            std::size_t pivot_idx = this->random_between(this->extracted_count, top_element);
         #endif
 
         Type pivot_value = this->container[pivot_idx];
@@ -56,13 +56,15 @@ Type IIQS<Container, Type>::next() {
         #else
                 pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
         #endif
-        
-        size_t previous_pivot_idx = pivot_idx;
+
+        #ifdef REUSE_PIVOTS
+            std::size_t previous_pivot_idx = pivot_idx;
+        #endif
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
         #ifdef USE_ALPHA_LESS_THAN_P30
-            size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition
+            std::size_t p30_idx = (std::size_t)ceil(range * 0.3); // actually, if we don't care about balancing the stack, you can ignore the p30 condition
             if (p30_idx > pivot_idx || pivot_idx > p70_idx){
         #else
             if (pivot_idx > p70_idx){
@@ -112,12 +114,12 @@ Type IIQS<Container, Type>::next() {
  * @param lhs the left index to sort (inclusive)
  * @param rhs the right index to sort (inclusive)
  * @param median_length size of the median to use on bfprt, 5 is commonly used
- * @return
+ * @return the median value
  */
 template<class Container, class Type>
-inline Type IIQS<Container, Type>::bfprt(Container &container, size_t lhs, size_t rhs, size_t median_length) {
-    size_t base_lhs = lhs;
-    size_t medians_extracted = 0;
+inline Type IIQS<Container, Type>::bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length) {
+    std::size_t base_lhs = lhs;
+    std::size_t medians_extracted = 0;
 
     while(1){
         // reset base conditions
@@ -131,7 +133,7 @@ inline Type IIQS<Container, Type>::bfprt(Container &container, size_t lhs, size_
         // tail recursion step for bfprt
         // we ignore median tails as they provide little or no value
         while(lhs + median_length <= rhs){
-            size_t median_index = this->median(container, lhs, lhs + median_length);
+            std::size_t median_index = this->median(container, lhs, lhs + median_length);
             //move median to the start of the array
             this->swap(container, median_index, base_lhs + medians_extracted);
             // search for next stride
@@ -150,10 +152,10 @@ inline Type IIQS<Container, Type>::bfprt(Container &container, size_t lhs, size_
  * @param container reference to the container element to calculate it's median
  * @param lhs the left boundary for median algorithm (inclusive)
  * @param rhs the right boundary for median algorithm (inclusive)
- * @return
+ * @return the median index
  */
 template<class Container, class Type>
-inline size_t IIQS<Container, Type>::median(Container &container, size_t lhs, size_t rhs) {
+inline std::size_t IIQS<Container, Type>::median(Container &container, std::size_t lhs, std::size_t rhs) {
     // in practice, this invokes heapsort each time
     std::sort(container.begin() + lhs, container.begin() + rhs);
     return (lhs + rhs) / 2;
@@ -167,6 +169,6 @@ inline size_t IIQS<Container, Type>::median(Container &container, size_t lhs, si
 template<class Container, class Type>
 IIQS<Container, Type>::IIQS(Container &container): IQS<Container, Type>(container) {
     this->extracted_count = 0;
-    this->stack = std::stack<size_t>();
+    this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
 }

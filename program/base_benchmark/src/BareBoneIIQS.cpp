@@ -21,7 +21,7 @@
 #include "BareBoneIIQS.h"
 /* This constructor allows in-place ordering */
 template <class T>
-BareBoneIIQS<T>::BareBoneIIQS(T *target_ptr, size_t target_size): BareBoneIQS<T>(target_ptr, target_size){
+BareBoneIIQS<T>::BareBoneIIQS(T *target_ptr, std::size_t target_size): BareBoneIQS<T>(target_ptr, target_size){
 }
 template <class T>
 BareBoneIIQS<T>::~BareBoneIIQS() {
@@ -42,9 +42,9 @@ T BareBoneIIQS<T>::next() {
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resize the search window
-        size_t top_element = this->stack_peek();
-        size_t range = top_element - this->extracted_count;
-        size_t p70_idx = (size_t)ceil(range * 0.7);
+        std::size_t top_element = this->stack_peek();
+        std::size_t range = top_element - this->extracted_count;
+        std::size_t p70_idx = (std::size_t)ceil(range * 0.7);
 
 
         if (this->extracted_count == top_element ){
@@ -53,10 +53,10 @@ T BareBoneIIQS<T>::next() {
         }
 
         #ifdef FIXED_PIVOT_SELECTION
-            size_t pivot_idx = this->extracted_count;
+            std::size_t pivot_idx = this->extracted_count;
         #else
-            size_t rand_range = this->stack_peek() - this->extracted_count;
-            size_t pivot_idx = this->extracted_count + (rand() % rand_range);
+            std::size_t rand_range = this->stack_peek() - this->extracted_count;
+            std::size_t pivot_idx = this->extracted_count + (rand() % rand_range);
         #endif
 
         T pivot_value = this->target_ptr[pivot_idx];
@@ -68,12 +68,14 @@ T BareBoneIIQS<T>::next() {
             pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
         #endif
 
-        size_t previous_pivot_idx = pivot_idx;
+        #ifdef REUSE_PIVOTS
+            std::size_t previous_pivot_idx = pivot_idx;
+        #endif
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
         #ifdef USE_ALPHA_LESS_THAN_P30
-            size_t p30_idx = range * 0.3; // actually, if we don't care about balancing the stack, you can ignore the p30 condition
+            std::size_t p30_idx = (std::size_t)ceil(range * 0.3); // actually, if we don't care about balancing the stack, you can ignore the p30 condition
             if (p30_idx > pivot_idx || pivot_idx > p70_idx){
         #else
             if (pivot_idx > p70_idx){
@@ -118,12 +120,12 @@ T BareBoneIIQS<T>::next() {
  * @param lhs the left index to sort (inclusive)
  * @param rhs the right index to sort (inclusive)
  * @param median_length size of the median to use on bfprt, 5 is commonly used
- * @return
+ * @return the median value
  */
 template<class T>
-inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
-    size_t base_lhs = lhs;
-    size_t medians_extracted = 0;
+inline T BareBoneIIQS<T>::bfprt(std::size_t lhs, std::size_t rhs, std::size_t median_length) {
+    std::size_t base_lhs = lhs;
+    std::size_t medians_extracted = 0;
 
     while(1){
         // reset base conditions
@@ -136,7 +138,7 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
 
         // tail recursion step for bfprt
         while(lhs + median_length <= rhs){
-            size_t median_index = this->median(lhs, lhs + median_length);
+            std::size_t median_index = this->median(lhs, lhs + median_length);
             //move median to the start of the array
             this->swap(median_index, base_lhs + medians_extracted);
             // search for next stride
@@ -155,10 +157,10 @@ inline T BareBoneIIQS<T>::bfprt(size_t lhs, size_t rhs, size_t median_length) {
  * @tparam T  T The template class/type to use
  * @param lhs the left boundary for median algorithm (inclusive)
  * @param rhs the right boundary for median algorithm (inclusive)
- * @return
+ * @return the median index
  */
 template<class T>
-inline size_t BareBoneIIQS<T>::median(size_t lhs, size_t rhs) {
+inline std::size_t BareBoneIIQS<T>::median(std::size_t lhs, std::size_t rhs) {
     std::sort(this->target_ptr + lhs, this->target_ptr + rhs);
     return (lhs + rhs) / 2;
     /* implement heapsort later as it is more cache-friendly for small arrays, I'm too drunk now */
