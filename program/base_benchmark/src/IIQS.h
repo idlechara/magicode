@@ -27,7 +27,7 @@ class IIQS : public IQS<Container, Type>{
 public:
     explicit IIQS(Container &container);
     Type next();
-    inline Type bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length);
+    inline std::size_t bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length);
     inline std::size_t median(Container &container, std::size_t lhs, std::size_t rhs);
 };
 
