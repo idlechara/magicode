@@ -1,5 +1,17 @@
 \begin{thebibliography}{1}
 
+\bibitem{Blum_Floyd_Pratt_Rivest_Tarjan_1973}
+Manuel Blum, Robert~W. Floyd, Vaughan Pratt, Ronald~L. Rivest, and Robert~E.
+  Tarjan.
+\newblock Time bounds for selection.
+\newblock {\em Journal of Computer and System Sciences}, 7(4):448–461, Aug
+  1973.
+
+\bibitem{10.5555/1614191}
+Thomas~H. Cormen, Charles~E. Leiserson, Ronald~L. Rivest, and Clifford Stein.
+\newblock {\em Introduction to Algorithms, Third Edition}.
+\newblock The MIT Press, 3rd edition, 2009.
+
 \bibitem{estivil92}
 Vladmir Estivill-Castro and Derick Wood.
 \newblock A survey of adaptive sorting algorithms.
@@ -9,5 +21,16 @@ Vladmir Estivill-Castro and Derick Wood.
 Kurt Mehlhorn.
 \newblock {\em Data Structures and Algorithms 1}.
 \newblock Springer Berlin Heidelberg, 1984.
+
+\bibitem{Navarro_Paredes_2010}
+Gonzalo Navarro and Rodrigo Paredes.
+\newblock On sorting, heaps, and minimum spanning trees.
+\newblock {\em Algorithmica}, 57(4):585–620, Mar 2010.
+
+\bibitem{7416566}
+E.~{Regla} and R.~{Paredes}.
+\newblock Worst-case optimal incremental sorting.
+\newblock In {\em 2015 34th International Conference of the Chilean Computer
+  Science Society (SCCC)}, pages 1--6, 2015.
 
 \end{thebibliography}

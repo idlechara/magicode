@@ -20,52 +20,45 @@
 \contentsline {subsection}{\numberline {2.1.1}Types of sorting algorithms}{10}%
 \contentsline {subsection}{\numberline {2.1.2}Measuring disorder}{10}%
 \contentsline {subsubsection}{Expected case and Worst-case adaptive internal sorting}{11}%
-\contentsline {section}{\numberline {2.2}IQS and IIQS}{13}%
+\contentsline {section}{\numberline {2.2}Incremental Sorting}{12}%
 \contentsline {subsection}{\numberline {2.2.1}IQS}{13}%
 \contentsline {subsubsection}{Algorithm overview}{13}%
 \contentsline {subsubsection}{Worst case}{13}%
-\contentsline {subsection}{\numberline {2.2.2}IIQS}{13}%
-\contentsline {subsubsection}{Algorithm overview}{13}%
-\contentsline {subsubsection}{Use cases}{13}%
-\contentsline {section}{\numberline {2.3}Experimental algorithms methodology overview}{13}%
-\contentsline {subsection}{\numberline {2.3.1}Design of experiments}{13}%
-\contentsline {subsubsection}{Pilot experiments}{13}%
-\contentsline {subsubsection}{Workhorse experiments}{13}%
-\contentsline {subsection}{\numberline {2.3.2}Data management and analysis}{13}%
-\contentsline {subsubsection}{Random systematic data}{13}%
-\contentsline {subsubsection}{Variance}{13}%
-\contentsline {chapter}{\numberline {3}Methodology}{14}%
-\contentsline {section}{\numberline {3.1}Experimental design and goals}{15}%
-\contentsline {subsection}{\numberline {3.1.1}Instances of test cases}{15}%
-\contentsline {subsubsection}{Ordered unique}{15}%
-\contentsline {subsubsection}{Random unique}{15}%
-\contentsline {subsubsection}{Distributed repeated}{15}%
-\contentsline {subsubsection}{Distributed repeated with random unique portion}{15}%
-\contentsline {subsection}{\numberline {3.1.2}Pilot experiments}{15}%
-\contentsline {subsubsection}{Incremental version of BFPRT}{15}%
-\contentsline {subsubsection}{Introspective step rule changes}{15}%
-\contentsline {subsubsection}{Three-way partition pivot location bias}{15}%
-\contentsline {subsubsection}{Three-way partition pivot store}{15}%
-\contentsline {subsubsection}{Change rules to store pivots}{15}%
-\contentsline {section}{\numberline {3.2}Metrics}{15}%
-\contentsline {subsubsection}{Number of inversions}{15}%
-\contentsline {subsubsection}{Local entropy decay}{15}%
-\contentsline {subsubsection}{Execution time (rsu)}{15}%
-\contentsline {subsubsection}{BFPRT executions}{15}%
-\contentsline {subsubsection}{Partitioner executions}{15}%
-\contentsline {section}{\numberline {3.3}Tunning}{15}%
-\contentsline {subsection}{\numberline {3.3.1}Data generation and execution control}{15}%
-\contentsline {chapter}{\numberline {4}Experiment stage}{16}%
-\contentsline {section}{\numberline {4.1}Experimental setup}{16}%
-\contentsline {section}{\numberline {4.2}Experimental results}{16}%
-\contentsline {section}{\numberline {4.3}Metrics and indicators}{16}%
-\contentsline {chapter}{\numberline {5}Segundo Capítulo}{17}%
-\contentsline {chapter}{Glossary}{18}%
-\contentsline {chapter}{Bibliography}{19}%
+\contentsline {subsection}{\numberline {2.2.2}IIQS}{14}%
+\contentsline {subsubsection}{Algorithm overview}{14}%
+\contentsline {section}{\numberline {2.3}Design of experiments}{15}%
+\contentsline {chapter}{\numberline {3}Methodology}{16}%
+\contentsline {section}{\numberline {3.1}Experimental design and goals}{17}%
+\contentsline {subsection}{\numberline {3.1.1}Instances of test cases}{17}%
+\contentsline {subsubsection}{Ordered unique}{17}%
+\contentsline {subsubsection}{Random unique}{17}%
+\contentsline {subsubsection}{Distributed repeated}{17}%
+\contentsline {subsubsection}{Distributed repeated with random unique portion}{17}%
+\contentsline {subsection}{\numberline {3.1.2}Pilot experiments}{17}%
+\contentsline {subsubsection}{Incremental version of BFPRT}{17}%
+\contentsline {subsubsection}{Introspective step rule changes}{17}%
+\contentsline {subsubsection}{Three-way partition pivot location bias}{17}%
+\contentsline {subsubsection}{Three-way partition pivot store}{17}%
+\contentsline {subsubsection}{Change rules to store pivots}{17}%
+\contentsline {section}{\numberline {3.2}Metrics}{17}%
+\contentsline {subsubsection}{Number of inversions}{17}%
+\contentsline {subsubsection}{Local entropy decay}{17}%
+\contentsline {subsubsection}{Execution time (rsu)}{17}%
+\contentsline {subsubsection}{BFPRT executions}{17}%
+\contentsline {subsubsection}{Partitioner executions}{17}%
+\contentsline {section}{\numberline {3.3}Tunning}{17}%
+\contentsline {subsection}{\numberline {3.3.1}Data generation and execution control}{17}%
+\contentsline {chapter}{\numberline {4}Experiment stage}{18}%
+\contentsline {section}{\numberline {4.1}Experimental setup}{18}%
+\contentsline {section}{\numberline {4.2}Experimental results}{18}%
+\contentsline {section}{\numberline {4.3}Metrics and indicators}{18}%
+\contentsline {chapter}{\numberline {5}Segundo Capítulo}{19}%
+\contentsline {chapter}{Glossary}{20}%
+\contentsline {chapter}{Bibliography}{21}%
 \contentsline {chapter}{Annex}{}
-\contentsline {chapter}{A:\hspace {1em}El Primer Anexo}{21}%
-\contentsline {section}{\numberline {A.1}La primera sección del primer anexo}{21}%
-\contentsline {section}{\numberline {A.2}La segunda sección del primer anexo}{21}%
-\contentsline {subsection}{\numberline {A.2.1}La primera subsección de la segunda sección del primer anexo}{21}%
-\contentsline {chapter}{B:\hspace {1em}El segundo Anexo}{22}%
-\contentsline {section}{\numberline {B.1}La primera sección del segundo anexo}{22}%
+\contentsline {chapter}{A:\hspace {1em}El Primer Anexo}{23}%
+\contentsline {section}{\numberline {A.1}La primera sección del primer anexo}{23}%
+\contentsline {section}{\numberline {A.2}La segunda sección del primer anexo}{23}%
+\contentsline {subsection}{\numberline {A.2.1}La primera subsección de la segunda sección del primer anexo}{23}%
+\contentsline {chapter}{B:\hspace {1em}El segundo Anexo}{24}%
+\contentsline {section}{\numberline {B.1}La primera sección del segundo anexo}{24}%
