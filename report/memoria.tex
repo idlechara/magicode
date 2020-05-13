@@ -1,0 +1,246 @@
+%% inicio, la clase del documento es iccmemoria.cls
+\documentclass{iccmemoria}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+%% datos generales y para la tapa
+\titulo{Experimental analysis of (I)IQS to fine-tune support for arrays with repeated elements}
+\author{Erik Andrés Regla Torres}
+\supervisor{Rodrigo Paredes}
+\informantes
+	{Hueón 1}
+	{Hueón 2}
+%\adicional{(sólo por si se necesita agregar algún otro profesor)}
+\director{Profesor del ramo Memoria de Título}
+\date{mes, año}
+
+%% inicio de documento
+\begin{document}
+
+%% crea la tapa
+\maketitle
+
+%% dedicatoria
+\begin{dedicatory}
+  Dedicated to... someone ?
+\end{dedicatory}
+
+%% agradecimientos
+\begin{acknowledgment}
+  Agradecimientos a ... (how the fuck do I choose whom to acknowledge?)
+\end{acknowledgment}
+
+%% indices
+\tableofcontents
+\listoffigures
+\listoftables
+
+%% resumen
+\begin{resumen}
+  I'm gonna write the summary as the last part.
+\end{resumen}
+
+%% abstract
+
+%% contenido del primer capítulo
+\chapter{Introduction}
+Aquí va el texto del capítulo 1...
+
+\section{Context}
+Aquí va el texto de la primera sección del capítulo 1...
+
+\section{Application areas}
+Aquí va el texto de la primera subsección de la primera sección del capítulo 1...
+
+\section{Problem description}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+\section{Goals}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+\subsection{General goals}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+\subsection{Specific goals}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+\section{Document Structure}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+\section{Problem description}
+Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+
+
+\chapter{Background}
+
+\section{Sorting algorithms}
+One of the basic problems on algorithm design is the \textit{sorting problem}, defined as for a given input sequence $A$ of $n$ numbers $\langle a_1, a_2,...,a_n \rangle$ to find a permutation $A' = \langle a'_1, a'_2,...,a'_n \rangle$ that yields $\forall a'_i \in A', a'_1 \leq a'_2 \leq ... \leq a'_n $.
+
+Sorting algorithms are commonly used as intermediate steps for other processes, making them one of the most fundamental procedures to execute on computing problems, and strategies for solving this problem can vary depending on the input case constraints. For example, the number of repeated elements, their distribution, if there is some known info beforehand to accelerate the process, etc.
+
+\subsection{Types of sorting algorithms}
+The best reference on how to classify and understand which algorithm is best suitable for a given case is \textit{A survey of adaptive sorting algorithms} by Vladimir Estivil\cite{estivil92} which gathers all the information at that time regarding \textit{adaptive sorting algorithms} \cite{Mehlhorn_1984}, \textit{disorder measures} and \textit{expected-case and worst-case} sorting.
+
+A sorting algorithm is said to be adaptive if the time taken to solve the problem is a smooth growing function of the size and the measure of disorder of a given sequence. Note that the term array is not used on this definition as it extrapolates any generic sequence that is not bound to be contigous.
+
+\subsection{Measuring disorder}
+The concept of disorder measure is highly relative to the problem to be solved and as expected, not all measures work for all cases. One of the most common metrics used on partition-based algorithms is the \textit{number of inversions} required to sort a given array. While this holds true for algorithms like \textit{insertsort} which have their running time affected by how the elements are arranged in the sequence, it's not the case of \textit{mergesort}, which is not an adaptive algorithm given that has a stable running time regardless on how the elements are distributed. Whilst the running time is a function of the size, it's not in function of the sequence. Estivil \cite{estivil92} on his survey describes ten functions that can be used to measure disorder on an array when used on adaptive sorting algorithms.
+
+\subsubsection{Expected case and Worst-case adaptive internal sorting}
+One of the classification of adaptive sorting algorithms is the \textit{Expected-case adaptive (internal) sorting}, on which their design is driven by that worst cases are unlikely to happen in practice so, there is no harm on using it, in contrast of the definition of \textit{Worst-case adaptive (internal) sorting}, which assumes a pessimistic view hence the design is driven to ensure a deterministic worst case running time and asymtotic complexity.
+
+The approach taken by such algorithms can be classified as \textit{distributional}-in which a ``natural distribution'' of the sequence is expected to be solved- or \textit{randomized} -on which their behaivour is not related on how the sequence is distributed at all-. There is a huge problem when dealing with distributional approaches as they tend to be very sensible to changes on the sequence distribution, making them suitable to highly constrained problems on specific-purpose algorithm.
+
+On the other hand, randomized approaches have the benefit of generality and being rather simple to port to other implementations due to their nature.
+
+By example, let's take as example the QuickSelect algorithm -which is the basis of IQS which will be explained in detail later- used to find the element that belongs to the $k-th$ position or a given sequence $A$. This searching algorithm can be classified as \textit{partition-based}, given that the process in charge of preserving the invariant is the partition stage.
+
+
+\begin{algorithm}
+  \caption{QuickSelect definition}\label{ALG:QuickSelect}
+  \begin{algorithmic}[1]
+    \Procedure{$quickselect$}{$A,i,j,k$}
+    \State $pIdx \gets select(i,j)$
+    \State $pIdx \gets partition(A,i,j)$
+    \If {$pIdx = k$} \Return $A_k$
+    \EndIf
+    \If{$pIdx < k$} \Return $quickselect(A, k, j)$
+    \EndIf
+    \If{$pIdx > k$} \Return $quickselect(A, i, k)$
+    \EndIf
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+As it can be seen, the behaivour of $quickselect$ depends on how the element is selected in the $select$ procedure. Then, we can implement two versions of $select$, namely $select_fixed$ and $select_random$ which yields different values in order to introduce randomization into $quickselect$.
+
+\begin{algorithm}
+  \caption{Fixed Selection}\label{ALG:Select_fixed}
+  \begin{algorithmic}[1]
+    \Procedure{$select\_fixed$}{$i,j$}
+    \State \Return $\frac{(i+j)}{2}$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+  \caption{Random selection}\label{ALG:Select_random}
+  \begin{algorithmic}[1]
+    \Procedure{$select\_random$}{$i,j$}
+    \State \Return $random\_between(i,j)$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+In such cases, whilst the randomized version of QuickSelect will take average time of $nlog_2n$ to complete the task, we can see that for the fixed pivot version, it depends on the distribution of data, which can bias the pivot result. Now we have two versions of QuickSelect algorithm, with both distributional and randomized strategies.
+
+\section{IQS and IIQS}
+
+\subsection{IQS}
+\subsubsection{Algorithm overview}
+\subsubsection{Worst case}
+\subsection{IIQS}
+\subsubsection{Algorithm overview}
+\subsubsection{Use cases}
+\section{Experimental algorithms methodology overview}
+\subsection{Design of experiments}
+\subsubsection{Pilot experiments}
+\subsubsection{Workhorse experiments}
+\subsection{Data management and analysis}
+\subsubsection{Random systematic data}
+\subsubsection{Variance}
+
+\chapter{Methodology}
+\section{Experimental design and goals}
+\subsection{Instances of test cases}
+\subsubsection{Ordered unique}
+\subsubsection{Random unique}
+\subsubsection{Distributed repeated}
+\subsubsection{Distributed repeated with random unique portion}
+\subsection{Pilot experiments}
+\subsubsection{Incremental version of BFPRT}
+\subsubsection{Introspective step rule changes}
+\subsubsection{Three-way partition pivot location bias}
+\subsubsection{Three-way partition pivot store}
+\subsubsection{Change rules to store pivots}
+\section{Metrics}
+\subsubsection{Number of inversions}
+\subsubsection{Local entropy decay}
+\subsubsection{Execution time (rsu)}
+\subsubsection{BFPRT executions}
+\subsubsection{Partitioner executions}
+\section{Tunning}
+\subsection{Data generation and execution control}
+
+
+\chapter{Experiment stage}
+\section{Experimental setup}
+\section{Experimental results}
+\section{Metrics and indicators}
+
+
+%% contenido del segundo capítulo
+\chapter{Segundo Capítulo}
+% Sólo para probar algunas cosas como las referencias.
+% La primera cita es a Lamport~\cite{lamport79}.
+% La segunda cita es para Lamport nuevamente~\cite{lamport78}.
+% La última cita es para Keleher \emph{et al.}~\cite{keleher92}.
+
+
+% %% contenido del tercer capítulo
+% \chapter{Tercer Capítulo}
+% Sólo para incluir figuras y tablas.
+% \begin{figure}[h]
+%   \vspace*{1cm}
+%   \includegraphics[bb=0 0 640 480, width=.5\linewidth]{latexlogo.png}
+%   \vspace*{1cm}
+%   \caption{La primera figura de la memoria}
+% \end{figure}
+% \begin{table}[h]
+%   \vspace*{1cm}
+%   (aqui debiera ir la tabla)
+%   \vspace*{1cm}
+%   \caption{La primera tabla de la memoria}
+% \end{table}
+
+
+%% ambiente glosario
+\begin{glosario}
+  \item[El primer término:] Este es el significado del primer término, realmente no se bien lo que significa pero podría haberlo averiguado si hubiese tenido un poco mas de tiempo.
+  \item[El segundo término:] Este si se lo que significa pero me da lata escribirlo...
+\end{glosario}
+
+
+%% genera las referencias
+\bibliography{refs}
+
+
+%% comienzo de la parte de anexos
+\appendixpart
+
+%% contenido del primer anexo
+\appendix{El Primer Anexo}
+Aquí va el texto del primer anexo...
+
+\section{La primera sección del primer anexo}
+Aquí va el texto de la primera sección del primer anexo...
+
+\section{La segunda sección del primer anexo}
+Aquí va el texto de la segunda sección del primer anexo...
+
+\subsection{La primera subsección de la segunda sección del primer anexo}
+
+
+%% contenido del segundo anexo
+\appendix{El segundo Anexo}
+Aquí va el texto del segundo anexo...
+
+\section{La primera sección del segundo anexo}
+Aquí va el texto de la primera sección del segundo anexo...
+
+%% fin
+\end{document}
+
+
+
