@@ -30,73 +30,79 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Types of sorting algorithms}{10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Measuring disorder}{10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Expected case and Worst-case adaptive internal sorting}{11}\protected@file@percent }
+\citation{10.5555/1614191}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces QuickSelect definition}}{12}\protected@file@percent }
 \newlabel{ALG:QuickSelect}{{1}{12}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Fixed Selection}}{12}\protected@file@percent }
 \newlabel{ALG:Select_fixed}{{2}{12}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Incremental Sorting}{12}\protected@file@percent }
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Random selection}}{12}\protected@file@percent }
 \newlabel{ALG:Select_random}{{3}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}IQS and IIQS}{13}\protected@file@percent }
+\citation{Navarro_Paredes_2010}
+\citation{7416566}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}IQS}{13}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{Algorithm overview}{13}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces IncrementalQuickSort}}{13}\protected@file@percent }
+\newlabel{ALG:IQS}{{4}{13}}
 \@writefile{toc}{\contentsline {subsubsection}{Worst case}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}IIQS}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Algorithm overview}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Use cases}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Experimental algorithms methodology overview}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Design of experiments}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Pilot experiments}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Workhorse experiments}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Data management and analysis}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Random systematic data}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Variance}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Methodology}{14}\protected@file@percent }
+\citation{Blum_Floyd_Pratt_Rivest_Tarjan_1973}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}IIQS}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Algorithm overview}{14}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces Introspective IncrementalQuickSort}}{14}\protected@file@percent }
+\newlabel{ALG:IIQS}{{5}{14}}
+\newlabel{IIQS_main_cycle}{{5}{14}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Design of experiments}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Methodology}{16}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Experimental design and goals}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Instances of test cases}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Ordered unique}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Random unique}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Distributed repeated}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Distributed repeated with random unique portion}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Pilot experiments}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Incremental version of BFPRT}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Introspective step rule changes}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Three-way partition pivot location bias}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Three-way partition pivot store}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Change rules to store pivots}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Metrics}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Number of inversions}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Local entropy decay}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Execution time (rsu)}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{BFPRT executions}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Partitioner executions}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Tunning}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Data generation and execution control}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Experiment stage}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Experimental design and goals}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Instances of test cases}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Ordered unique}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Random unique}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Distributed repeated}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Distributed repeated with random unique portion}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Pilot experiments}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Incremental version of BFPRT}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Introspective step rule changes}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Three-way partition pivot location bias}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Three-way partition pivot store}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Change rules to store pivots}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Metrics}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Number of inversions}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Local entropy decay}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Execution time (rsu)}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{BFPRT executions}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Partitioner executions}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Tunning}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Data generation and execution control}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Experiment stage}{18}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experimental setup}{16}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Experimental results}{16}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Metrics and indicators}{16}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Segundo Capítulo}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Experimental setup}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Experimental results}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Metrics and indicators}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Segundo Capítulo}{19}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{refs}
-\@writefile{toc}{\contentsline {chapter}{Glossary}{18}\protected@file@percent }
-\bibcite{estivil92}{1}
-\bibcite{Mehlhorn_1984}{2}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Glossary}{20}\protected@file@percent }
+\bibcite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}{1}
+\bibcite{10.5555/1614191}{2}
+\bibcite{estivil92}{3}
+\bibcite{Mehlhorn_1984}{4}
+\bibcite{Navarro_Paredes_2010}{5}
+\bibcite{7416566}{6}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{21}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{Annex}{}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {chapter}{A:\hspace  {1em}El Primer Anexo}{21}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{A:\hspace  {1em}El Primer Anexo}{23}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}La primera sección del primer anexo}{21}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}La segunda sección del primer anexo}{21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.2.1}La primera subsección de la segunda sección del primer anexo}{21}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{B:\hspace  {1em}El segundo Anexo}{22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}La primera sección del primer anexo}{23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}La segunda sección del primer anexo}{23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2.1}La primera subsección de la segunda sección del primer anexo}{23}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{B:\hspace  {1em}El segundo Anexo}{24}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}La primera sección del segundo anexo}{22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}La primera sección del segundo anexo}{24}\protected@file@percent }
