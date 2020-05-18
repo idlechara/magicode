@@ -1,0 +1,37 @@
+\section{Experimental algorithmics}
+Experimental algorithmics can be seen as a spin-off of \textit{Design of experiments} which is a statistic technique applied to understand how a process is affected by the relationships between its variables and external factors, by sistematically studying and explaining the variation of information provided by altering the environment of the same process\cite{Wagner_Mount_Giles_2014}.
+
+Mostly in algorithm design, pure mathematical and theoretical approaches are taken in order to devise how to create, develop and optimize new algorithms, but the gap between theoretical analysis and the actual implementation is still huge with rise of new platforms and compute architectures nowadays.
+
+In the case of computer science, computational experiments are by any means are not to replace theoretical analysis but rather to complement and speed up the discovery process by guiding via results their research, tuning and implementation.
+
+The most complete recopilation of techniques and recommendations on how to apply design of experiments to algorithm design is currently made by Catherine McGeoch on her book \textit{A guide to experimental Algorithmics}\cite{10.5555/2159557}, con which she introduces a comphrensive guide on how to apply this method by introducing a fair amount of guidelines for computer scientists.
+
+\subsection{Methodology overview}
+
+On experimental algorithmics the first step is to plan the involved experiments by following the following steps in a cyclic way:
+
+\subsubsection{Planning}
+\begin{itemize}
+    \item Formulate a question.
+    \item Assemble or build the test environment.
+    \item Experiment design to address the question.
+\end{itemize}
+
+At this stage we don't analyse any data yet as we only design the process to study at a later stage. Given that the experimental setup can alter the question at hand, this process tends to repeat until the experiment is fully assembled.
+
+In order to determine if a given experiment is viable -namely the \textit{workhorse experiment}, the practitioner must perform a series of pilot experiments beforehand, in order to understand the environment, implementation challenges and the problem itself. Pilot experiments are expected to be small experiments which answer a highly contrained and specific question that drives towards the contruction of the workhorse experiment, as workhorse experiments are expected to be complex in both setup, execution and analysis.
+
+At this step it is expected that the practitioner develops metrics, indicators and setups which leads to a deeper understanding of the original question proposed.
+
+\subsubsection{Execution}
+Whilst this step is taken locally as a sequential process, execution step is required during the planning stage for the pilot experiments as well as the execution state of the workhorse experiment by executing the experiment and gathering data by running tests and then analysing the data in order to glean information and insight. If the question at hand is answered then the process is finished, otherwise the process starts again from the planning stage taking the results from this stage as input.
+
+\subsection{Result driven development}
+As results from experiment execution and analysis yield data from all the levels of algorithm design, those results are used to tune up existing algorithms in order to optimize their execution for certain cases, specific architectures or given contraints.
+
+One of the key benefits of this strategy is that whilst a pure theoretical approach can be difficult or unfeasible in some cases, a systematic experimental approach can help to both guide theoretical analysis by giving insight and validating theoretical results.
+
+This approach is widely used on metaheuristics tunning, as experiments are used to fill the gap by simplyfing asumptions necessary to theory and the realistic use case, caracterize and profile best, average and worst cases, suggest new theorems and proof strategies and to exten theroretical analyses to realistic inputs.
+
+A example of it is the building of \textit{LZ-index} \cite{Navarro_2009}, a compressed data structure designed to support indexing and fast lookup. Navarro used experiments to guide the choices of during the implementation process and compare the finished product against current competing strategies.

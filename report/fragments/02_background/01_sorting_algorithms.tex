@@ -1,0 +1,99 @@
+\section{Sorting algorithms}
+One of the basic problems on algorithm design is the \textit{sorting problem}, defined as for a given input sequence $A$ of $n$ numbers $\langle a_1, a_2,...,a_n \rangle$ to find a permutation $A' = \langle a'_1, a'_2,...,a'_n \rangle$ that yields $\forall a'_i \in A', a'_1 \leq a'_2 \leq ... \leq a'_n $.
+
+Sorting algorithms are commonly used as intermediate steps for other processes, making them one of the most fundamental procedures to execute on computing problems, and strategies for solving this problem can vary depending on the input case constraints. For example, the number of repeated elements, their distribution, if there is some known info beforehand to accelerate the process, etc.
+
+\subsection{Types of sorting algorithms}
+The best reference on how to classify and understand which algorithm is best suitable for a given case is \textit{A survey of adaptive sorting algorithms} by Vladimir Estivil\cite{estivil92} which gathers all the information at that time regarding \textit{adaptive sorting algorithms} \cite{Mehlhorn_1984}, \textit{disorder measures} and \textit{expected-case and worst-case} sorting.
+
+A sorting algorithm is said to be adaptive if the time taken to solve the problem is a smooth growing function of the size and the measure of disorder of a given sequence. Note that the term array is not used on this definition as it extrapolates any generic sequence that is not bound to be contigous.
+
+\subsection{Measuring disorder}
+The concept of disorder measure is highly relative to the problem to be solved and as expected, not all measures work for all cases. One of the most common metrics used on partition-based algorithms is the \textit{number of inversions} required to sort a given array. While this holds true for algorithms like \textit{insertsort} which have their running time affected by how the elements are arranged in the sequence, it's not the case of \textit{mergesort}, which is not an adaptive algorithm given that has a stable running time regardless on how the elements are distributed. Whilst the running time is a function of the size, it's not in function of the sequence. Estivil \cite{estivil92} on his survey describes ten functions that can be used to measure disorder on an array when used on adaptive sorting algorithms.
+
+\subsubsection{Expected case and Worst-case adaptive internal sorting}
+One of the classification of adaptive sorting algorithms is the \textit{Expected-case adaptive (internal) sorting}, on which their design is driven by that worst cases are unlikely to happen in practice so, there is no harm on using it, in contrast of the definition of \textit{Worst-case adaptive (internal) sorting}, which assumes a pessimistic view hence the design is driven to ensure a deterministic worst case running time and asymtotic complexity.
+
+The approach taken by such algorithms can be classified as \textit{distributional}-in which a ``natural distribution'' of the sequence is expected to be solved- or \textit{randomized} -on which their behaivour is not related on how the sequence is distributed at all-. There is a huge problem when dealing with distributional approaches as they tend to be very sensible to changes on the sequence distribution, making them suitable to highly constrained problems on specific-purpose algorithm.
+
+On the other hand, randomized approaches have the benefit of generality and being rather simple to port to other implementations due to their nature.
+
+By example, let's take as example the QuickSelect algorithm -which is the basis of IQS which will be explained in detail later- used to find the element that belongs to the $k-th$ position or a given sequence $A$. This searching algorithm can be classified as \textit{partition-based}, given that the process in charge of preserving the invariant is the partition stage.
+
+
+\begin{algorithm}
+  \caption{QuickSelect definition}\label{ALG:QuickSelect}
+  \begin{algorithmic}[1]
+    \Procedure{$quickselect$}{$A,i,j,k$}
+    \State $pIdx \gets select(i,j)$
+    \State $pIdx \gets partition(A,pIdx,i,j)$
+    \If {$pIdx = k$} \Return $A_k$
+    \EndIf
+    \If{$pIdx < k$} \Return $quickselect(A, k, j)$
+    \EndIf
+    \If{$pIdx > k$} \Return $quickselect(A, i, k)$
+    \EndIf
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+As it can be seen, the behaivour of $quickselect$ depends on how the element is selected in the $select$ procedure. Then, we can implement two versions of $select$, namely $select_fixed$ and $select_random$ which yields different values in order to introduce randomization into $quickselect$.
+
+\begin{algorithm}
+  \caption{Fixed Selection}\label{ALG:Select_fixed}
+  \begin{algorithmic}[1]
+    \Procedure{$select\_fixed$}{$i,j$}
+    \State \Return $\frac{(i+j)}{2}$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+  \caption{Random selection}\label{ALG:Select_random}
+  \begin{algorithmic}[1]
+    \Procedure{$select\_random$}{$i,j$}
+    \State \Return $random\_between(i,j)$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+In such cases, whilst the randomized version of QuickSelect will take average time of $n*log_2(n)$ to complete the task, we can see that for the fixed pivot version, it depends on the distribution of data, which can bias the pivot result. Now we have two versions of QuickSelect algorithm, with both distributional and randomized strategies.
+
+Estivil \cite{estivil92} on his survey lists 10 different \textit{metrics of disorder} to be used when studing adaptive sorting algorithms. For the sake understanding, we will asume that $S$ is any sequence of numbers in any order and $W_1,W_2$ are instances of $S$ yielded as: 
+
+$$W_1 = {6,2,4,7,3,1,9,5,10,8}$$
+$$W_2 = {6,5,8,7,10,9,12,11,4,3,2}$$
+
+The definitions are as folows:
+
+\subsubsection{Maximum inversion distance (Dis)}
+Defined as the largest distance determined by an inversion of a pair of elements in a given sequence\cite{Estivill-Castro_Wood_1989}.  By example, in $W_1$,  $5$ and $6$ are the elements which require an inversion in order to be locally sorted whom are the most furthest apart in the sequence, hence $Dis(W_1) = 7$.
+
+\subsubsection{Maximum sorting distance (Max)}
+This metric considers that local disorder is not as important as global disorder, under the premise that when indexing objects if they are grouped in some way, then it is easy to find similar elements, on the other hand if there is an element belonging to a group and it is on another place far away in the sequence then it is hard to find such element. Then $Max$ is defined as the largest distance that a an element of the sequence needs to travel in order to be in its sorted position\cite{Estivill-Castro_Wood_1989}. By example, $Max(W_1) = 5$ given that $1$ requires to move 5 positions to the left in order to be sorted.
+
+\subsubsection{Minimum number of exchanges (Exc)}
+Based on the premise that the number of performed operations is important to evaluate a sorting algorithm, a simple operation to measure is the minimum number of swaps between indices involved on a given sorting operation, then $Exc$ is defined as the minimum number of exchanges required to sort the entire sequence\cite{Mannila_1985}. By example, as it is impossible to sort $W_1$ in fewer than $7$ exchange operations, then $Exc(W_1)=7$.
+
+\subsubsection{Minimum elements to be removed (Rem)}
+Another definition of disorder is as a phenomena produced by the incorrect insertion of elements in a sequence\cite{10.5555/270146}. In this fashion, we can define the minimum amount of elements to be removed in order to the the longest sorted sequence. By example, by removing $5$ elements from $W_1$ we can obtain a sorted sequence, then $Rem(W_1) = 5$.
+
+\subsubsection{Minimum number of ascending portions (Runs)}
+Driven by the definition of partial sorting\cite{10.5555/1614191}, any sorted subsequence of $S$ implies that locally has a minimum amount of ascending runs as $1$ to be sorted, then another measure is the minimum number of ascending runs that can be found on any sequence, given that the elements that compose the sequence must be in the same order as found in the original sequence. In this case, $W_1$ has $5$ ascending runs, hence $Runs(W_1) =5$. Knuth defined this phenomena as \textit{step-downs}\cite{10.5555/270146}.
+
+\subsubsection{Minimum number of shuffled subsequences (SUS)}
+A generalization of \textit{Runs} but ignoring the fact that the elements but be in the same sequential order as found in the original sequence by removing elements from it. Then $SUS$ is defined as the minimum number of ascending subsequences in which we can partition a sequence\cite{Carlsson_Levcopoulos_Petersson_1993}. In this case $W_2$ has $7$ ascending runs, then, $SUS(W_2) = 5$.
+
+
+\subsubsection{Minimum number of shuffled monotone subsequences (SMS.SUS)}
+A generalization of \textit{SUS} now the elements can be grouped as a subsequence as long as they are sorted in any way generating a monotone subsequence. For $W_2$ we can get $2$ ascending shuffled sequences\cite{Carlsson_Levcopoulos_Petersson_1993} and $1$ descending shuffled sequence, hence $SMS(W_2) = 3$.
+
+
+\subsubsection{Sorted lists constructed by Melsort (Enc)}
+Skiena's Melsort \cite{Skiena_1988} takes another approach at presortnedness by treating sequences as a set of enroached lists, which is similar to mergesort but chunks are generated not by the recursive call itself but rather by a series of deque operations\cite{Baeza-Yates_Manber_1992}. Then the number of enroached lists generated by Melsort are a measure of disorder which Skiena denoted as $Enc$. For $W_1$ the number of enroached lists generated is $2$, hence $Enc(W1)=2$.
+
+\subsubsection{Oscilation of elements in a sequence (Osc)}
+Defined by Levcopoulos as a metric of presortnedness for heapsort, Osc is defined for each element as the number of intersections for a given element over the cartesian tree of a sequence\cite{Levcopoulos_Petersson_1993}, motivated by the geometric interpretation of the sequence itself. In the case of $W_1$ as the cartesian tree manifests $5$ crosses between its  elements, $Osc(W_1) = 5$.
+
+\subsubsection{Regional insertion sort (Reg)}
+Based on the internal workings of \textit{regional insertion sort}\cite{Cantoni_Creutzburg_Levialdi_Wolf_1989} which is a historcial sorting algorithm. Then $Reg$ is the value of the time dimension required to sort a certain sequence. %I can't get a grasp of this metric but it's claimed to be the best
