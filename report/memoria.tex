@@ -68,153 +68,7 @@ Aquí va el texto de la segunda subsección de la primera sección del capítulo
 \section{Document Structure}
 Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
 
-\section{Problem description}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
-
-
-\chapter{Background}
-
-\section{Sorting algorithms}
-One of the basic problems on algorithm design is the \textit{sorting problem}, defined as for a given input sequence $A$ of $n$ numbers $\langle a_1, a_2,...,a_n \rangle$ to find a permutation $A' = \langle a'_1, a'_2,...,a'_n \rangle$ that yields $\forall a'_i \in A', a'_1 \leq a'_2 \leq ... \leq a'_n $.
-
-Sorting algorithms are commonly used as intermediate steps for other processes, making them one of the most fundamental procedures to execute on computing problems, and strategies for solving this problem can vary depending on the input case constraints. For example, the number of repeated elements, their distribution, if there is some known info beforehand to accelerate the process, etc.
-
-\subsection{Types of sorting algorithms}
-The best reference on how to classify and understand which algorithm is best suitable for a given case is \textit{A survey of adaptive sorting algorithms} by Vladimir Estivil\cite{estivil92} which gathers all the information at that time regarding \textit{adaptive sorting algorithms} \cite{Mehlhorn_1984}, \textit{disorder measures} and \textit{expected-case and worst-case} sorting.
-
-A sorting algorithm is said to be adaptive if the time taken to solve the problem is a smooth growing function of the size and the measure of disorder of a given sequence. Note that the term array is not used on this definition as it extrapolates any generic sequence that is not bound to be contigous.
-
-\subsection{Measuring disorder}
-The concept of disorder measure is highly relative to the problem to be solved and as expected, not all measures work for all cases. One of the most common metrics used on partition-based algorithms is the \textit{number of inversions} required to sort a given array. While this holds true for algorithms like \textit{insertsort} which have their running time affected by how the elements are arranged in the sequence, it's not the case of \textit{mergesort}, which is not an adaptive algorithm given that has a stable running time regardless on how the elements are distributed. Whilst the running time is a function of the size, it's not in function of the sequence. Estivil \cite{estivil92} on his survey describes ten functions that can be used to measure disorder on an array when used on adaptive sorting algorithms.
-
-\subsubsection{Expected case and Worst-case adaptive internal sorting}
-One of the classification of adaptive sorting algorithms is the \textit{Expected-case adaptive (internal) sorting}, on which their design is driven by that worst cases are unlikely to happen in practice so, there is no harm on using it, in contrast of the definition of \textit{Worst-case adaptive (internal) sorting}, which assumes a pessimistic view hence the design is driven to ensure a deterministic worst case running time and asymtotic complexity.
-
-The approach taken by such algorithms can be classified as \textit{distributional}-in which a ``natural distribution'' of the sequence is expected to be solved- or \textit{randomized} -on which their behaivour is not related on how the sequence is distributed at all-. There is a huge problem when dealing with distributional approaches as they tend to be very sensible to changes on the sequence distribution, making them suitable to highly constrained problems on specific-purpose algorithm.
-
-On the other hand, randomized approaches have the benefit of generality and being rather simple to port to other implementations due to their nature.
-
-By example, let's take as example the QuickSelect algorithm -which is the basis of IQS which will be explained in detail later- used to find the element that belongs to the $k-th$ position or a given sequence $A$. This searching algorithm can be classified as \textit{partition-based}, given that the process in charge of preserving the invariant is the partition stage.
-
-
-\begin{algorithm}
-  \caption{QuickSelect definition}\label{ALG:QuickSelect}
-  \begin{algorithmic}[1]
-    \Procedure{$quickselect$}{$A,i,j,k$}
-    \State $pIdx \gets select(i,j)$
-    \State $pIdx \gets partition(A,pIdx,i,j)$
-    \If {$pIdx = k$} \Return $A_k$
-    \EndIf
-    \If{$pIdx < k$} \Return $quickselect(A, k, j)$
-    \EndIf
-    \If{$pIdx > k$} \Return $quickselect(A, i, k)$
-    \EndIf
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-
-As it can be seen, the behaivour of $quickselect$ depends on how the element is selected in the $select$ procedure. Then, we can implement two versions of $select$, namely $select_fixed$ and $select_random$ which yields different values in order to introduce randomization into $quickselect$.
-
-\begin{algorithm}
-  \caption{Fixed Selection}\label{ALG:Select_fixed}
-  \begin{algorithmic}[1]
-    \Procedure{$select\_fixed$}{$i,j$}
-    \State \Return $\frac{(i+j)}{2}$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-  \caption{Random selection}\label{ALG:Select_random}
-  \begin{algorithmic}[1]
-    \Procedure{$select\_random$}{$i,j$}
-    \State \Return $random\_between(i,j)$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-
-In such cases, whilst the randomized version of QuickSelect will take average time of $n*log_2(n)$ to complete the task, we can see that for the fixed pivot version, it depends on the distribution of data, which can bias the pivot result. Now we have two versions of QuickSelect algorithm, with both distributional and randomized strategies.
-
-\section{Incremental Sorting}
-
-While sorting algorithms can be seen as a straightforward process, the definition of sorting can be extended as \textit{partial sorting} and \textit{incremental sorting}, as in practice, while sorting is used as the intermediate step of many procedures, it is not mandatory to always sort the entire array, rather than just sort a fragment of interest.
-
-As partitions of a sequence can be seen as a equivalence relationship between the pivot and the leftmost and rightmost segments\cite{10.5555/1614191}, then for a given sequence $A' \in A$, we can define a \textit{partial order} if the relationship on the elements of $A$ is reflexive, antisymmetric and transitive and then $A'$ is called a \textit{partially ordered sequence}.
-
-Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ -a partially sorted sequence of $A$, if the elements are retrieved in a way that subsecuential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.
-
-A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants, then there is no need to waste time sorting all the elements for a query that can be executed only one time.
-
-\subsection{IQS}
-Incremental QuickSort (IQS) \cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for usage on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
-
-\subsubsection{Algorithm overview}
-
-\begin{algorithm}
-  \caption{IncrementalQuickSort}\label{ALG:IQS}
-  \begin{algorithmic}[1]
-    \Procedure{$iqs$}{$A,i,S$}
-    \If{$i \leq S.top()$}
-    \State $S.pop()$
-    \Return $A[i]$
-    \EndIf
-    \State $pivot \gets select(i, S.top()-1)$
-    \State $pivot' \gets partition(A,pivot,i, S.top()-1)$
-    \State $S.push(pivot')$
-    \State \Return $iqs(A,i,S)$
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-
-As it can be seen, the execution of this algorithm is similar to sorting the array by executing sequentially QuickSelect for $1,2,3,...,n$ in order, as it is yielding each one of those elements in $A$ already ordered. The advantage of using IQS is that since the stack stores all the previous call results, in average all subsecuential calls are cheaper than the first one, hence the $n*log_2(n)$ running time.
-
-\subsubsection{Worst case}
-A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.
-
-\subsection{IIQS}
-
-A slightly more complex version of IQS, intented to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far\cite{7416566}.
-
-The partition algorithm uses the information of the relative position of the given pivot ar the partition stage to determine if the pivot obtained can be refined or not by using another pivot selection technique, in this case the used algorithm is the \textit{median of medians}\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}, which guarantees that the median selected will belong to $P_{70} \cap P_{30}$.
-
-If the median returned by $select$ does not belong to that segment, then median of medians is executed in order to guarantee a decrease of the search space for the next call.
-
-\subsubsection{Algorithm overview}
-\begin{algorithm}
-  \begin{algorithmic}[1]
-    \caption{Introspective IncrementalQuickSort}\label{ALG:IIQS}
-    \Procedure{iiqs}{$A, S, k$}
-    \While{$k < S.top()$}
-    \State $pidx \gets random(k,S.top()-1)$
-    \State $pidx \gets partition(A_{k,S.top()-1}, pidx)$
-    \State $m \gets S.top() - k$
-    \State $\alpha \gets 0.3$
-    \State $r \gets -1$
-    \If{$pidx < k + \alpha m$}
-    \State $r \gets pidx$
-    \State $pidx \gets pick(A_{r+1,S.top()-1})$
-    \State $pidx \gets partition(A_{r+1,S.top()-1},pidx)$
-    \ElsIf{$pidx > S.top() - \alpha m$}
-    \State $r \gets pidx$
-    \State $pidx \gets pick(A_{k,pidx})$
-    \State $pidx \gets partition(A_{k,r}, pidx)$
-    \State $r \gets -1$
-    \EndIf
-    \State S.push($pidx$)
-    \If{$r > -1$}
-    \State S.push($r$)
-    \EndIf
-    \EndWhile
-    \State S.pop()
-    \State \textbf{return} $A_{k}$\label{IIQS_main_cycle}
-    \EndProcedure
-  \end{algorithmic}
-\end{algorithm}
-
-The reason behind why use median of medians is that has $O(n)$ complexity, same as partition, preventing the asymtotic complexity to increase if such algorithm is used.
-
-\section{Design of experiments}
-
+\input{fragments/02_background/index.tex}
 
 \chapter{Methodology}
 \section{Experimental design and goals}
@@ -223,26 +77,26 @@ The reason behind why use median of medians is that has $O(n)$ complexity, same 
 \subsubsection{Random unique}
 \subsubsection{Distributed repeated}
 \subsubsection{Distributed repeated with random unique portion}
+
 \subsection{Pilot experiments}
 \subsubsection{Incremental version of BFPRT}
 \subsubsection{Introspective step rule changes}
 \subsubsection{Three-way partition pivot location bias}
 \subsubsection{Three-way partition pivot store}
 \subsubsection{Change rules to store pivots}
-\section{Metrics}
-\subsubsection{Number of inversions}
-\subsubsection{Local entropy decay}
-\subsubsection{Execution time (rsu)}
-\subsubsection{BFPRT executions}
-\subsubsection{Partitioner executions}
-\section{Tunning}
-\subsection{Data generation and execution control}
 
 
-\chapter{Experiment stage}
+
+\chapter{Experiments}
 \section{Experimental setup}
 \section{Experimental results}
 \section{Metrics and indicators}
+\subsection{Local entropy decay}
+\subsection{BFPRT executions}
+\subsection{Partitioner executions}
+
+\section{Tunning}
+\subsection{Data generation and execution control}
 
 
 %% contenido del segundo capítulo

@@ -1,0 +1,78 @@
+
+\section{Incremental Sorting}
+
+While sorting algorithms can be seen as a straightforward process, the definition of sorting can be extended as \textit{partial sorting} and \textit{incremental sorting}, as in practice, while sorting is used as the intermediate step of many procedures, it is not mandatory to always sort the entire array, rather than just sort a fragment of interest.
+
+As partitions of a sequence can be seen as a equivalence relationship between the pivot and the leftmost and rightmost segments\cite{10.5555/1614191}, then for a given sequence $A' \in A$, we can define a \textit{partial order} if the relationship on the elements of $A$ is reflexive, antisymmetric and transitive and then $A'$ is called a \textit{partially ordered sequence}.
+
+Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ -a partially sorted sequence of $A$, if the elements are retrieved in a way that subsecuential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.
+
+A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants, then there is no need to waste time sorting all the elements for a query that can be executed only one time.
+
+\subsection{IQS}
+Incremental QuickSort (IQS) \cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for usage on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
+
+\subsubsection{Algorithm overview}
+
+\begin{algorithm}
+  \caption{IncrementalQuickSort}\label{ALG:IQS}
+  \begin{algorithmic}[1]
+    \Procedure{$iqs$}{$A,i,S$}
+    \If{$i \leq S.top()$}
+    \State $S.pop()$
+    \Return $A[i]$
+    \EndIf
+    \State $pivot \gets select(i, S.top()-1)$
+    \State $pivot' \gets partition(A,pivot,i, S.top()-1)$
+    \State $S.push(pivot')$
+    \State \Return $iqs(A,i,S)$
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+As it can be seen, the execution of this algorithm is similar to sorting the array by executing sequentially QuickSelect for $1,2,3,...,n$ in order, as it is yielding each one of those elements in $A$ already ordered. The advantage of using IQS is that since the stack stores all the previous call results, in average all subsecuential calls are cheaper than the first one, hence the $n*log_2(n)$ running time.
+
+\subsubsection{Worst case}
+A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.
+
+\subsection{IIQS}
+
+A slightly more complex version of IQS, intented to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far\cite{7416566}.
+
+The partition algorithm uses the information of the relative position of the given pivot ar the partition stage to determine if the pivot obtained can be refined or not by using another pivot selection technique, in this case the used algorithm is the \textit{median of medians}\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}, which guarantees that the median selected will belong to $P_{70} \cap P_{30}$.
+
+If the median returned by $select$ does not belong to that segment, then median of medians is executed in order to guarantee a decrease of the search space for the next call.
+
+\subsubsection{Algorithm overview}
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \caption{Introspective IncrementalQuickSort}\label{ALG:IIQS}
+    \Procedure{iiqs}{$A, S, k$}
+    \While{$k < S.top()$}
+    \State $pidx \gets random(k,S.top()-1)$
+    \State $pidx \gets partition(A_{k,S.top()-1}, pidx)$
+    \State $m \gets S.top() - k$
+    \State $\alpha \gets 0.3$
+    \State $r \gets -1$
+    \If{$pidx < k + \alpha m$}
+    \State $r \gets pidx$
+    \State $pidx \gets pick(A_{r+1,S.top()-1})$
+    \State $pidx \gets partition(A_{r+1,S.top()-1},pidx)$
+    \ElsIf{$pidx > S.top() - \alpha m$}
+    \State $r \gets pidx$
+    \State $pidx \gets pick(A_{k,pidx})$
+    \State $pidx \gets partition(A_{k,r}, pidx)$
+    \State $r \gets -1$
+    \EndIf
+    \State S.push($pidx$)
+    \If{$r > -1$}
+    \State S.push($r$)
+    \EndIf
+    \EndWhile
+    \State S.pop()
+    \State \textbf{return} $A_{k}$\label{IIQS_main_cycle}
+    \EndProcedure
+  \end{algorithmic}
+\end{algorithm}
+
+The reason behind why use median of medians is that has $O(n)$ complexity, same as partition, preventing the asymtotic complexity to increase if such algorithm is used.
