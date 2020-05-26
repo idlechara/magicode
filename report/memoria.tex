@@ -9,8 +9,8 @@
 \author{Erik Andrés Regla Torres}
 \supervisor{Rodrigo Paredes}
 \informantes
-	{Hueón 1}
-	{Hueón 2}
+	{NN 1}
+	{NN 2}
 %\adicional{(sólo por si se necesita agregar algún otro profesor)}
 \director{Profesor del ramo Memoria de Título}
 \date{mes, año}
@@ -44,6 +44,7 @@
 %% abstract
 
 %% contenido del primer capítulo
+%% This should be the last thing to write
 \chapter{Introduction}
 Aquí va el texto del capítulo 1...
 
@@ -72,35 +73,85 @@ Aquí va el texto de la segunda subsección de la primera sección del capítulo
 
 \chapter{Methodology}
 \section{Experimental design and goals}
-\subsection{Instances of test cases}
-\subsubsection{Ordered unique}
-\subsubsection{Random unique}
-\subsubsection{Distributed repeated}
-\subsubsection{Distributed repeated with random unique portion}
+\section{Data generation}
+\subsection{Systematic randomization}
+\subsection{Distributed repeated dataset generation}
+\subsection{Distributed repeated with random unique portion dataset generation}
 
-\subsection{Pilot experiments}
-\subsubsection{Incremental version of BFPRT}
-\subsubsection{Introspective step rule changes}
-\subsubsection{Three-way partition pivot location bias}
-\subsubsection{Three-way partition pivot store}
-\subsubsection{Change rules to store pivots}
+% \subsection{Pilot experiments}
+% \subsubsection{Incremental version of BFPRT}
+% \subsubsection{Introspective step rule changes}
+% \subsubsection{Three-way partition pivot location bias}
+% \subsubsection{Three-way partition pivot store}
+% \subsubsection{Change rules to store pivots}
+
+\section{Pilot experiments}
+
+\subsection{Is IIQS execution for repeated elements an instance of IQS worstcase?}
+\subsubsection{Hypothesis}
+\subsubsection{Test environment assembly and setup}
+\subsubsection{Experiment design}
+\subsubsection{Metrics and indicators}
+\subsubsection{Execution}
+\subsubsection{Results}
+
+\subsection{Does presortedness affect (I)IQS running time?}
+\subsubsection{Hypothesis}
+\subsubsection{Test environment assembly and setup}
+\subsubsection{Experiment design}
+\subsubsection{Metrics and indicators}
+\subsubsection{Execution}
+\subsubsection{Results}
+
+\subsection{Does the size of the elements stored in the stack affect its performance?}
+\subsubsection{Hypothesis}
+\subsubsection{Test environment assembly and setup}
+\subsubsection{Experiment design}
+\subsubsection{Metrics and indicators}
+\subsubsection{Execution}
+\subsubsection{Results}
+
+\subsection{It is worth to use iterative versions of BFPRT as approximate median selection?}
+\subsubsection{Hypothesis}
+\subsubsection{Test environment assembly and setup}
+\subsubsection{Experiment design}
+\subsubsection{Metrics and indicators}
+\subsubsection{Execution}
+\subsubsection{Results}
+
+\subsection{Are the average cases for repeated and non repeated classes the same?} %rewrite
+\subsubsection{Hypothesis}
+\subsubsection{Test environment assembly and setup}
+\subsubsection{Experiment design}
+\subsubsection{Metrics and indicators}
+\subsubsection{Execution}
+\subsubsection{Results}
+
+\section{Workhorse experiment}
+
+\subsection{Can we tune (I)IQS to support repeated cases without affecting its average running time?}
+\subsubsection{Hypothesis}
+\subsubsection{Test environment assembly and setup}
+\subsubsection{Experiment design}
+\subsubsection{Metrics and indicators}
+\subsubsection{Execution}
+\subsubsection{Results}
+
+\chapter{Summary}
+% \chapter{Experiments}
+% \section{Experimental setup}
+% \section{Experimental results}
+% \section{Metrics and indicators}
+% \subsection{Local entropy decay}
+% \subsection{BFPRT executions}
+% \subsection{Partitioner executions}
+
+% \section{Tunning}
+% \subsection{Data generation and execution control}
 
 
-
-\chapter{Experiments}
-\section{Experimental setup}
-\section{Experimental results}
-\section{Metrics and indicators}
-\subsection{Local entropy decay}
-\subsection{BFPRT executions}
-\subsection{Partitioner executions}
-
-\section{Tunning}
-\subsection{Data generation and execution control}
-
-
-%% contenido del segundo capítulo
-\chapter{Segundo Capítulo}
+% %% contenido del segundo capítulo
+% \chapter{Segundo Capítulo}
 % Sólo para probar algunas cosas como las referencias.
 % La primera cita es a Lamport~\cite{lamport79}.
 % La segunda cita es para Lamport nuevamente~\cite{lamport78}.

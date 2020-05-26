@@ -117,7 +117,7 @@ Type IIQS<Container, Type>::next() {
  * @return the median value
  */
 template<class Container, class Type>
-inline Type IIQS<Container, Type>::bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length) {
+inline std::size_t IIQS<Container, Type>::bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length) {
     std::size_t base_lhs = lhs;
     std::size_t medians_extracted = 0;
 
