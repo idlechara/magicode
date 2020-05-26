@@ -27,7 +27,7 @@ public:
     BareBoneIIQS(T *target_ptr, std::size_t target_size);
     ~BareBoneIIQS();
     T next();
-    T bfprt(std::size_t lhs, std::size_t rhs, std::size_t median_length);
+    std::size_t bfprt(std::size_t lhs, std::size_t rhs, std::size_t median_length);
     std::size_t median(std::size_t lhs, std::size_t rhs);
 };
 

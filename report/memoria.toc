@@ -41,28 +41,56 @@
 \contentsline {subsubsection}{Execution}{19}%
 \contentsline {subsection}{\numberline {2.3.2}Result driven development}{19}%
 \contentsline {chapter}{\numberline {3}Methodology}{21}%
-\contentsline {section}{\numberline {3.1}Experimental design and goals}{21}%
-\contentsline {subsection}{\numberline {3.1.1}Instances of test cases}{21}%
-\contentsline {subsubsection}{Ordered unique}{21}%
-\contentsline {subsubsection}{Random unique}{21}%
-\contentsline {subsubsection}{Distributed repeated}{21}%
-\contentsline {subsubsection}{Distributed repeated with random unique portion}{21}%
-\contentsline {subsection}{\numberline {3.1.2}Pilot experiments}{21}%
-\contentsline {subsubsection}{Incremental version of BFPRT}{21}%
-\contentsline {subsubsection}{Introspective step rule changes}{21}%
-\contentsline {subsubsection}{Three-way partition pivot location bias}{21}%
-\contentsline {subsubsection}{Three-way partition pivot store}{21}%
-\contentsline {subsubsection}{Change rules to store pivots}{21}%
-\contentsline {chapter}{\numberline {4}Experiments}{22}%
-\contentsline {section}{\numberline {4.1}Experimental setup}{22}%
-\contentsline {section}{\numberline {4.2}Experimental results}{22}%
-\contentsline {section}{\numberline {4.3}Metrics and indicators}{22}%
-\contentsline {subsection}{\numberline {4.3.1}Local entropy decay}{22}%
-\contentsline {subsection}{\numberline {4.3.2}BFPRT executions}{22}%
-\contentsline {subsection}{\numberline {4.3.3}Partitioner executions}{22}%
-\contentsline {section}{\numberline {4.4}Tunning}{22}%
-\contentsline {subsection}{\numberline {4.4.1}Data generation and execution control}{22}%
-\contentsline {chapter}{\numberline {5}Segundo Capítulo}{23}%
+\contentsline {section}{\numberline {3.1}Experimental design and goals}{22}%
+\contentsline {section}{\numberline {3.2}Data generation}{22}%
+\contentsline {subsection}{\numberline {3.2.1}Systematic randomization}{22}%
+\contentsline {subsection}{\numberline {3.2.2}Distributed repeated dataset generation}{22}%
+\contentsline {subsection}{\numberline {3.2.3}Distributed repeated with random unique portion dataset generation}{22}%
+\contentsline {section}{\numberline {3.3}Pilot experiments}{22}%
+\contentsline {subsection}{\numberline {3.3.1}Is IIQS execution for repeated elements an instance of IQS worstcase?}{22}%
+\contentsline {subsubsection}{Hypothesis}{22}%
+\contentsline {subsubsection}{Test environment assembly and setup}{22}%
+\contentsline {subsubsection}{Experiment design}{22}%
+\contentsline {subsubsection}{Metrics and indicators}{22}%
+\contentsline {subsubsection}{Execution}{22}%
+\contentsline {subsubsection}{Results}{22}%
+\contentsline {subsection}{\numberline {3.3.2}Does presortedness affect (I)IQS running time?}{22}%
+\contentsline {subsubsection}{Hypothesis}{22}%
+\contentsline {subsubsection}{Test environment assembly and setup}{22}%
+\contentsline {subsubsection}{Experiment design}{22}%
+\contentsline {subsubsection}{Metrics and indicators}{22}%
+\contentsline {subsubsection}{Execution}{22}%
+\contentsline {subsubsection}{Results}{22}%
+\contentsline {subsection}{\numberline {3.3.3}Does the size of the elements stored in the stack affect its performance?}{22}%
+\contentsline {subsubsection}{Hypothesis}{22}%
+\contentsline {subsubsection}{Test environment assembly and setup}{22}%
+\contentsline {subsubsection}{Experiment design}{22}%
+\contentsline {subsubsection}{Metrics and indicators}{22}%
+\contentsline {subsubsection}{Execution}{22}%
+\contentsline {subsubsection}{Results}{22}%
+\contentsline {subsection}{\numberline {3.3.4}It is worth to use iterative versions of BFPRT as approximate median selection?}{22}%
+\contentsline {subsubsection}{Hypothesis}{22}%
+\contentsline {subsubsection}{Test environment assembly and setup}{22}%
+\contentsline {subsubsection}{Experiment design}{22}%
+\contentsline {subsubsection}{Metrics and indicators}{22}%
+\contentsline {subsubsection}{Execution}{22}%
+\contentsline {subsubsection}{Results}{22}%
+\contentsline {subsection}{\numberline {3.3.5}Are the average cases for repeated and non repeated classes the same?}{22}%
+\contentsline {subsubsection}{Hypothesis}{22}%
+\contentsline {subsubsection}{Test environment assembly and setup}{22}%
+\contentsline {subsubsection}{Experiment design}{22}%
+\contentsline {subsubsection}{Metrics and indicators}{22}%
+\contentsline {subsubsection}{Execution}{22}%
+\contentsline {subsubsection}{Results}{22}%
+\contentsline {section}{\numberline {3.4}Workhorse experiment}{22}%
+\contentsline {subsection}{\numberline {3.4.1}Can we tune (I)IQS to support repeated cases without affecting its average running time?}{22}%
+\contentsline {subsubsection}{Hypothesis}{22}%
+\contentsline {subsubsection}{Test environment assembly and setup}{22}%
+\contentsline {subsubsection}{Experiment design}{22}%
+\contentsline {subsubsection}{Metrics and indicators}{22}%
+\contentsline {subsubsection}{Execution}{22}%
+\contentsline {subsubsection}{Results}{22}%
+\contentsline {chapter}{\numberline {4}Summary}{23}%
 \contentsline {chapter}{Glossary}{24}%
 \contentsline {chapter}{Bibliography}{25}%
 \contentsline {chapter}{Annex}{}

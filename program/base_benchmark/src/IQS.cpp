@@ -64,7 +64,7 @@ inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t
 }
 
 /**
- * Original IQS partition algorithm implementation
+ * Ducth-flag problem algorithm.
  * @tparam Container container type to handle on the class
  * @tparam Type type used for comparison
  * @param pivot_value the pivot value to use
@@ -74,17 +74,21 @@ inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t
  */
 template<class Container, class Type>
 inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs) {
-    std::size_t i = lhs - 1;
-    std::size_t k = rhs + 1;
-    while (1) {
-        while (this->container[++i] < pivot_value);
-        while (this->container[--k] > pivot_value);
-        if (i >= k) break;
-        this->swap(this->container, i, k);
+    std::size_t i = lhs;
+    std::size_t j = lhs;
+    std::size_t k = rhs;
+
+    while (j < k) {
+        if(this->container[j] < pivot_value){
+            this->swap(i++,j++);
+        }
+        else if (this->container[j] > pivot_value){
+            this->swap(j,--k);
+        }
+        else {
+            j++;
+        }
     }
-    i = k++;
-    while(i > lhs && this->container[i] == pivot_value) i--;
-    while(k < rhs && this->container[k] == pivot_value) k++;
     #ifdef FORCE_PIVOT_SELECTION_LEFT
         return i; // return left pivot
     #elif FORCE_PIVOT_SELECTION_RIGHT
@@ -93,6 +97,7 @@ inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, s
             return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
     #endif
 }
+
 
 /**
  * Swap implementation. Inheritable and inline in order to play with it

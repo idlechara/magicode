@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.3)  18 MAY 2020 04:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.3)  19 MAY 2020 14:03
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -297,7 +297,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--22
  [6] [7]
 Chapter 1.
 
-Underfull \hbox (badness 10000) detected at line 47
+Underfull \hbox (badness 10000) detected at line 48
 \OT1/cmr/bx/n/24.88 1.
  []
 
@@ -315,26 +315,25 @@ Underfull \hbox (badness 10000) detected at line 2
 ] [11] [12] [13]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/02_incremental_sorting.tex [14] [15]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/03_experimental_algorithmics.tex [16] [17] [18])) [19] [20]
 Chapter 3.
 
-Underfull \hbox (badness 10000) detected at line 73
+Underfull \hbox (badness 10000) detected at line 74
 \OT1/cmr/bx/n/24.88 3.
+ []
+
+
+Overfull \hbox (13.5477pt too wide) in paragraph at lines 90--90
+[]\OT1/cmr/bx/n/12 Is IIQS ex-e-cu-tion for re-peated el-e-ments an in-stance of IQS worstcase? 
  []
 
 [21
 
 ]
+Overfull \vbox (764.99321pt too high) has occurred while \output is active []
+
+ [22]
 Chapter 4.
 
-Underfull \hbox (badness 10000) detected at line 90
+Underfull \hbox (badness 10000) detected at line 140
 \OT1/cmr/bx/n/24.88 4.
- []
-
-[22
-
-]
-Chapter 5.
-
-Underfull \hbox (badness 10000) detected at line 103
-\OT1/cmr/bx/n/24.88 5.
  []
 
 [23
@@ -347,14 +346,14 @@ Underfull \hbox (badness 1019) in paragraph at lines 81--84
 ) [26] [27
 
 ]
-Overfull \hbox (0.45876pt too wide) detected at line 142
+Overfull \hbox (0.45876pt too wide) detected at line 193
 \OT1/cmr/bx/n/24.88 A.
  []
 
 [28
 
 ]
-Underfull \hbox (badness 10000) detected at line 155
+Underfull \hbox (badness 10000) detected at line 206
 \OT1/cmr/bx/n/24.88 B.
  []
 
@@ -362,15 +361,15 @@ Underfull \hbox (badness 10000) detected at line 155
 
 ] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux) ) 
 Here is how much of TeX's memory you used:
- 3706 strings out of 481239
- 54851 string characters out of 5920378
- 310099 words of memory out of 5000000
- 18883 multiletter control sequences out of 15000+600000
+ 3705 strings out of 481239
+ 54843 string characters out of 5920378
+ 310091 words of memory out of 5000000
+ 18882 multiletter control sequences out of 15000+600000
  539811 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,6n,33p,1014b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (31 pages, 188611 bytes).
+Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (31 pages, 190404 bytes).
 PDF statistics:
  158 PDF objects out of 1000 (max. 8388607)
  109 compressed objects within 2 object streams
