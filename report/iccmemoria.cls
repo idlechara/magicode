@@ -107,7 +107,7 @@
 \parbox{180pt}{
 %\MakeUppercase{
 %Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
-Thesis to apply for a Civil Computer Engineer degree\\}
+Report to apply for a Civil Computer Engineer degree\\}
 }
 
 \def\calificacion
