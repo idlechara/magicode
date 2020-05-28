@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.3)  19 MAY 2020 14:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.5.3)  27 MAY 2020 22:10
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.tex
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.tex
+**/home/kuky_nekoi/magicode/report/memoria.tex
+(/home/kuky_nekoi/magicode/report/memoria.tex
 LaTeX2e <2020-02-02> patch level 2
-L3 programming layer <2020-02-14> (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/iccmemoria.cls
+L3 programming layer <2020-02-14> (/home/kuky_nekoi/magicode/report/iccmemoria.cls
 Document Class: iccmemoria 2017/08/20 v2 Degree project documentation, English version - ICC - UTalca (fmeza, jperez, eregla)
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2019/12/20 v1.4l Standard LaTeX document class
@@ -174,7 +174,7 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count199
 \l__pdf_internal_box=\box49
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux)
+) (/home/kuky_nekoi/magicode/report/memoria.aux)
 \openout1 = `memoria.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
@@ -235,10 +235,10 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package epstopdf Info: Source file: <utalca1.eps>
-(epstopdf)                    date: 2014-10-08 18:39:01
+(epstopdf)                    date: 2020-05-27 21:51:18
 (epstopdf)                    size: 23461 bytes
 (epstopdf)             Output file: <utalca1-eps-converted-to.pdf>
-(epstopdf)                    date: 2020-05-11 23:25:43
+(epstopdf)                    date: 2020-05-27 21:51:18
 (epstopdf)                    size: 9470 bytes
 (epstopdf)             Command: <epstopdf --outfile=utalca1-eps-converted-to.pdf utalca1.eps>
 (epstopdf)             \includegraphics on input line 22.
@@ -258,12 +258,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--22
 
 Non-PDF special ignored!
 <special> papersize=8.5in,11in
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/utalca1-eps-converted-to.pdf>]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/kuky_nekoi/magicode/report/utalca1-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <utalca1.eps>
-(epstopdf)                    date: 2014-10-08 18:39:01
+(epstopdf)                    date: 2020-05-27 21:51:18
 (epstopdf)                    size: 23461 bytes
 (epstopdf)             Output file: <utalca1-eps-converted-to.pdf>
-(epstopdf)                    date: 2020-05-11 23:25:43
+(epstopdf)                    date: 2020-05-27 21:51:18
 (epstopdf)                    size: 9470 bytes
 (epstopdf)             Command: <epstopdf --outfile=utalca1-eps-converted-to.pdf utalca1.eps>
 (epstopdf)             \includegraphics on input line 22.
@@ -282,15 +282,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--22
 
  []
 
-[0] [1] [2] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc [3])
+[0] [1] [2] (/home/kuky_nekoi/magicode/report/memoria.toc [3])
 \tf@toc=\write3
 \openout3 = `memoria.toc'.
 
- [4] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lof)
+ [4] (/home/kuky_nekoi/magicode/report/memoria.lof)
 \tf@lof=\write4
 \openout4 = `memoria.lof'.
 
- [5] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot)
+ [5] (/home/kuky_nekoi/magicode/report/memoria.lot)
 \tf@lot=\write5
 \openout5 = `memoria.lot'.
 
@@ -301,18 +301,18 @@ Underfull \hbox (badness 10000) detected at line 48
 \OT1/cmr/bx/n/24.88 1.
  []
 
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/index.tex [8
+(/home/kuky_nekoi/magicode/report/fragments/02_background/index.tex [8
 
 ] [9]
 Chapter 2.
 
-Underfull \hbox (badness 10000) detected at line 2
+Underfull \hbox (badness 10000) detected at line 1
 \OT1/cmr/bx/n/24.88 2.
  []
 
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/01_sorting_algorithms.tex [10
+(/home/kuky_nekoi/magicode/report/fragments/02_background/01_sorting_algorithms.tex [10
 
-] [11] [12] [13]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/02_incremental_sorting.tex [14] [15]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/03_experimental_algorithmics.tex [16] [17] [18])) [19] [20]
+] [11] [12] [13]) (/home/kuky_nekoi/magicode/report/fragments/02_background/02_incremental_sorting.tex [14] [15]) (/home/kuky_nekoi/magicode/report/fragments/02_background/03_experimental_algorithmics.tex [16] [17] [18])) [19] [20]
 Chapter 3.
 
 Underfull \hbox (badness 10000) detected at line 74
@@ -338,7 +338,7 @@ Underfull \hbox (badness 10000) detected at line 140
 
 [23
 
-] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl [24] [25]
+] (/home/kuky_nekoi/magicode/report/memoria.bbl [24] [25]
 Underfull \hbox (badness 1019) in paragraph at lines 81--84
 []\OT1/cmr/m/n/12 Steven S. Skiena.  En-croach-ing lists as a mea-sure of pre-sort-ed-ness.  \OT1/cmr/m/it/12 BIT\OT1/cmr/m/n/12 ,
  []
@@ -359,17 +359,17 @@ Underfull \hbox (badness 10000) detected at line 206
 
 [29
 
-] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux) ) 
+] (/home/kuky_nekoi/magicode/report/memoria.aux) ) 
 Here is how much of TeX's memory you used:
  3705 strings out of 481239
- 54843 string characters out of 5920378
- 310091 words of memory out of 5000000
+ 54031 string characters out of 5920378
+ 310070 words of memory out of 5000000
  18882 multiletter control sequences out of 15000+600000
  539811 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,6n,33p,1014b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,33p,985b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (31 pages, 190404 bytes).
+Output written on /home/kuky_nekoi/magicode/report/memoria.pdf (31 pages, 190441 bytes).
 PDF statistics:
  158 PDF objects out of 1000 (max. 8388607)
  109 compressed objects within 2 object streams
