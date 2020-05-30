@@ -107,7 +107,7 @@
 \parbox{180pt}{
 %\MakeUppercase{
 %Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
-Thesis to apply for a Civil Computer Engineer degree\\}
+Report to apply for a Civil Computer Engineer degree\\}
 }
 
 \def\calificacion
@@ -203,7 +203,7 @@ Thesis to apply for a Civil Computer Engineer degree\\}
 %\begin{minipage}{6cm}
 %  \singlespacing
   %\vspace{1.0cm}\hrule\smallskip
-  {Guide:
+  {Advisor:
   \MakeUppercase{\@supervisor}}
 %\end{minipage}
 \bigskip
@@ -225,10 +225,10 @@ Thesis to apply for a Civil Computer Engineer degree\\}
 %\bigskip
 
 %% TODO: What is?
-{Advisor: \MakeUppercase{\@informantex}}
+{Committee Member: \MakeUppercase{\@informantex}}
 \bigskip
 
-{Advisor: \MakeUppercase{\@informantey}}
+{Committee Member: \MakeUppercase{\@informantey}}
 \bigskip
 
 %{\@adicional}
