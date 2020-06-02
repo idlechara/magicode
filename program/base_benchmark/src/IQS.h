@@ -21,11 +21,12 @@
 #include "../flags.h"
 
 #include <stack>
+#include "snapshot.h"
 
 template<class Container, class Type>
 class IQS {
 public:
-    explicit IQS(Container &container);
+    explicit IQS(Container &container, configuration_t &configuration, snapshot_t &snapshot, std::vector<snapshot_t> &snapshots);
     inline void swap(Container &container, std::size_t lhs, std::size_t rhs);
     inline std::size_t partition(Type pivot_value, std::size_t lhs, std::size_t rhs);
     virtual Type next();

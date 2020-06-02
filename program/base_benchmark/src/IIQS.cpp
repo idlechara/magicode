@@ -167,7 +167,7 @@ inline std::size_t IIQS<Container, Type>::median(Container &container, std::size
  * @param container reference to the container element to apply IQS on
  */
 template<class Container, class Type>
-IIQS<Container, Type>::IIQS(Container &container): IQS<Container, Type>(container) {
+IIQS<Container, Type>::IIQS(Container &container, configuration_t &configuration, snapshot_t &snapshot, std::vector<snapshot_t> &snapshots): IQS<Container, Type>(container) {
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);

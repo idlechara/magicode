@@ -11,6 +11,14 @@
 #define PARTITION_STAGE_BEGIN       5
 #define PARTITION_STAGE_END         6
 
+typedef struct {
+    bool log_pivot_time, log_iteration_time, log_extraction_time, use_bfprt, use_iiqs;
+    double alpha_value, beta_value, pivot_bias;
+    int random_seed_value;
+    std::size_t input_size, extractions;
+    std::string input_file_value, output_file_value;
+} configuration_t;
+
 typedef struct
 {
     std::chrono::TIME_UNIT iteration_time;

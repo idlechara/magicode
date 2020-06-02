@@ -10,10 +10,11 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [
-                "--input-file=${fileDirname}/test_data/input.ascii",
+                // "--input-file=${fileDirname}/test_data/input.ascii",
+                "--input-file=${fileDirname}/test_data/N_6.fold_5.ascii",
                 "--output-file=${fileDirname}/test_data/output.ascii",
-                "--input-size=32",
-                "--extractions=16",
+                "--input-size=1000000",
+                "--extractions=100000",
                 "--log-extraction-time=1"
             ],
             "stopAtEntry": false,

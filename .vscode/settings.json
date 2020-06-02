@@ -61,5 +61,6 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "python.pythonPath": "/home/kuky_nekoi/.anaconda3/envs/magicode/bin/python"
 }

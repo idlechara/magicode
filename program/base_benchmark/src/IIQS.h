@@ -25,7 +25,7 @@
 template<class Container, class Type>
 class IIQS : public IQS<Container, Type>{
 public:
-    explicit IIQS(Container &container);
+    explicit IIQS(Container &container, configuration_t &configuration, snapshot_t &snapshot, std::vector<snapshot_t> &snapshots);
     Type next();
     inline std::size_t bfprt(Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length);
     inline std::size_t median(Container &container, std::size_t lhs, std::size_t rhs);

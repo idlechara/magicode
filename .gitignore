@@ -4,3 +4,10 @@
 /program/base_benchmark/cmake-build-debug/
 /program/base_benchmark/cmake-build-debug-system/
 build
+program/base_benchmark/test_data/bins.ascii
+program/base_benchmark/test_data/N_6.fold_5.ascii
+program/base_benchmark/test_data/N_7_desorted.ascii
+program/base_benchmark/test_data/N_7_sorted.ascii
+program/base_benchmark/test_data/output_2.ascii
+program/base_benchmark/test_data/output_temp.ascii
+program/base_benchmark/test_data/output.ascii

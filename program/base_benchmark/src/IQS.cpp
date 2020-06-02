@@ -156,7 +156,7 @@ Type IQS<Container, Type>::next() {
 }
 
 template<class Container, class Type>
-IQS<Container, Type>::IQS(Container &container): container(container) {
+IQS<Container, Type>::IQS(Container &container, configuration_t &configuration, snapshot_t &snapshot, std::vector<snapshot_t> &snapshots): container(container) {
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
