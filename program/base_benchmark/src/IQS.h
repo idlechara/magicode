@@ -31,10 +31,10 @@ public:
     virtual Type next();
     inline std::size_t random_between(std::size_t lhs, std::size_t rhs);
     std::size_t partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs);
+    std::stack<std::size_t> stack;
 
 protected:
     Container &container;
-    std::stack<std::size_t> stack;
     std::size_t extracted_count;
 };
 

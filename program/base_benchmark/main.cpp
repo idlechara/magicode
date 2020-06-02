@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <chrono>
 #include <cstdlib>
 #include <cstdio>
 #include <ctime>
@@ -24,595 +25,129 @@
 #include <iterator>
 #include <array>
 #include <iostream>
+#include <fstream>
+#include <boost/program_options.hpp>
 
 #include "flags.h"
+#include "src/snapshot.h"
 
 #include "src/IQS.cpp"
-#include "src/BareBoneIQS.cpp"
-#include "src/IIQS.cpp"
-#include "src/BareBoneIIQS.cpp"
+// #include "src/BareBoneIQS.cpp"
+// #include "src/IIQS.cpp"
+// #include "src/BareBoneIIQS.cpp"
 
-
-
-#define TRACK_TIME_START {                                              \
-    clock_t start, end;                                                 \
-    double cpu_time_used;                                               \
-    start = clock();
-
-#define TRACK_TIME_END(EXPERIMENT_NAME)                                 \
-    end = clock();                                                      \
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;          \
-    printf("Time %s: %lf\n", EXPERIMENT_NAME, cpu_time_used);           \
-}
-
-#define CHECK_AGAINST_BASELINE(BASELINE_VARIABLE, VARIABLE_TO_CHECK)                                                \
-    for(std::size_t i=0; i<ELEMENTS_TO_EXTRACT; i++) {                                                                   \
-        if(BASELINE_VARIABLE[i] != VARIABLE_TO_CHECK[i]){                                                           \
-            printf("ERROR ON %s, index %ld \n", #VARIABLE_TO_CHECK, i);                                             \
-            std::cout << "Expected: " << BASELINE_VARIABLE[i] << ", but got: " << VARIABLE_TO_CHECK[i] << std::endl;\
-            break;                                                                                                  \
-        }                                                                                                           \
-    }
-
-void experiment_1()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    std::array<TYPE_TO_USE, test_size> b;
-    std::array<TYPE_TO_USE, test_size> c;
-    std::array<TYPE_TO_USE, test_size> d;
-    std::array<TYPE_TO_USE, test_size> f;
-    std::array<TYPE_TO_USE, test_size> result_temp;
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = std::rand() % (test_size/2);
-        a[i] = val;
-        b[i] = val;
-        c[i] = val;
-        d[i] = val;
-        f[i] = val;
-        g[i] = val;
-        result_temp[i] = val;
-    }
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-
-    TRACK_TIME_START
-        IQS<std::array<TYPE_TO_USE, test_size>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        IIQS<std::array<TYPE_TO_USE, test_size>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-
-}
-
-
-void experiment_2()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-    std::vector<TYPE_TO_USE> b;
-    std::vector<TYPE_TO_USE> c;
-    std::vector<TYPE_TO_USE> d;
-    std::vector<TYPE_TO_USE> e;
-    std::vector<TYPE_TO_USE> f;
-    std::vector<TYPE_TO_USE> result_temp;
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = std::rand() % (test_size + 1);
-        a[i] = val;
-        b.push_back(val);
-        c.push_back(val);
-        d.push_back(val);
-        e.push_back(val);
-        f.push_back(val);
-        result_temp.push_back(val);
-        g[i] = val;
-    }
-
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-    TRACK_TIME_START
-        IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        std::make_heap(e.begin(), e.end());
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            TYPE_TO_USE temp = e.front();
-            std::pop_heap(e.begin(), e.end());
-            e.pop_back();
-        }
-    TRACK_TIME_END("std::heap incremental")
-
-    TRACK_TIME_START
-        IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-}
-
-// ditched vector as vector takes too much resources
-void experiment_3()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-    std::vector<TYPE_TO_USE> b;
-    std::vector<TYPE_TO_USE> c;
-    std::vector<TYPE_TO_USE> d;
-    std::vector<TYPE_TO_USE> e;
-    std::vector<TYPE_TO_USE> f;
-    std::vector<TYPE_TO_USE> result_temp;
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = i;
-        a[i] = val;
-        b.push_back(val);
-        c.push_back(val);
-        d.push_back(val);
-        e.push_back(val);
-        f.push_back(val);
-        result_temp.push_back(val);
-        g[i] = val;
-    }
-
-
-
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-    TRACK_TIME_START
-        IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        std::make_heap(e.begin(), e.end());
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            std::pop_heap(e.begin(), e.end());
-            e.pop_back();
-        }
-    TRACK_TIME_END("std::heap incremental")
-
-    TRACK_TIME_START
-        IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-}
-
-
-void experiment_4()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-    std::vector<TYPE_TO_USE> b;
-    std::vector<TYPE_TO_USE> c;
-    std::vector<TYPE_TO_USE> d;
-    std::vector<TYPE_TO_USE> e;
-    std::vector<TYPE_TO_USE> f;
-    std::vector<TYPE_TO_USE> result_temp;
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = TEST_SIZE - i;
-        a[i] = val;
-        b.push_back(val);
-        c.push_back(val);
-        d.push_back(val);
-        e.push_back(val);
-        f.push_back(val);
-        result_temp.push_back(val);
-        g[i] = val;
-    }
-
-
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-    TRACK_TIME_START
-        IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        std::make_heap(e.begin(), e.end());
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            std::pop_heap(e.begin(), e.end());
-            e.pop_back();
-        }
-    TRACK_TIME_END("std::heap incremental")
-
-    TRACK_TIME_START
-        IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-}
-
-
-
-void experiment_5()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-    std::vector<TYPE_TO_USE> b;
-    std::vector<TYPE_TO_USE> c;
-    std::vector<TYPE_TO_USE> d;
-    std::vector<TYPE_TO_USE> e;
-    std::vector<TYPE_TO_USE> f;
-    std::vector<TYPE_TO_USE> result_temp;
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = (std::rand() % (test_size + 1) < 100) ? std::rand() % (test_size + 1) : 0;
-        a[i] = val;
-        b.push_back(val);
-        c.push_back(val);
-        d.push_back(val);
-        e.push_back(val);
-        f.push_back(val);
-        result_temp.push_back(val);
-        g[i] = val;
-    }
-
-
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-    TRACK_TIME_START
-        IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        std::make_heap(e.begin(), e.end());
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            TYPE_TO_USE temp = e.front();
-            std::pop_heap(e.begin(), e.end());
-            e.pop_back();
-        }
-    TRACK_TIME_END("std::heap incremental")
-
-    TRACK_TIME_START
-        IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-}
-
-
-void experiment_6()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-    std::vector<TYPE_TO_USE> b;
-    std::vector<TYPE_TO_USE> c;
-    std::vector<TYPE_TO_USE> d;
-    std::vector<TYPE_TO_USE> e;
-    std::vector<TYPE_TO_USE> f;
-    std::vector<TYPE_TO_USE> result_temp;
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = (std::rand() % (test_size + 1) > 100) ? std::rand() % (test_size + 1) : 0;
-        a[i] = val;
-        b.push_back(val);
-        c.push_back(val);
-        d.push_back(val);
-        e.push_back(val);
-        f.push_back(val);
-        result_temp.push_back(val);
-        g[i] = val;
-    }
-
-
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-    TRACK_TIME_START
-        IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        std::make_heap(e.begin(), e.end());
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            TYPE_TO_USE temp = e.front();
-            std::pop_heap(e.begin(), e.end());
-            e.pop_back();
-        }
-    TRACK_TIME_END("std::heap incremental")
-
-    TRACK_TIME_START
-        IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-}
-
-void experiment_7()
-{
-    const std::size_t test_size = TEST_SIZE;
-
-    TYPE_TO_USE *a = new TYPE_TO_USE[test_size];
-    TYPE_TO_USE *g = new TYPE_TO_USE[test_size];
-
-    std::vector<TYPE_TO_USE> b;
-    std::vector<TYPE_TO_USE> c;
-    std::vector<TYPE_TO_USE> d;
-    std::vector<TYPE_TO_USE> e;
-    std::vector<TYPE_TO_USE> f;
-    std::vector<TYPE_TO_USE> result_temp;
-
-    for(std::size_t i=0; i<test_size; i++) {
-        TYPE_TO_USE val = 0;
-        a[i] = val;
-        b.push_back(val);
-        c.push_back(val);
-        d.push_back(val);
-        e.push_back(val);
-        f.push_back(val);
-        result_temp.push_back(val);
-        g[i] = val;
-    }
-
-
-
-    TRACK_TIME_START
-        BareBoneIQS<TYPE_TO_USE> biqs(a, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biqs.next();
-    TRACK_TIME_END("Bare-bones C IQS")
-
-    TRACK_TIME_START
-        IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(b);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iqs.next();
-    TRACK_TIME_END("C++ portable IQS")
-
-    TRACK_TIME_START
-        std::partial_sort(c.begin(), c.begin() + ELEMENTS_TO_EXTRACT, c.end());
-    TRACK_TIME_END("std::partial_sort complete")
-
-    TRACK_TIME_START
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++) std::partial_sort(d.begin() + i, d.begin() + i, d.end());
-    TRACK_TIME_END("std::partial_sort incremental")
-
-    TRACK_TIME_START
-        std::make_heap(e.begin(), e.end());
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT - 1; i++) {
-            std::pop_heap(e.begin(), e.end());
-            e.pop_back();
-        }
-    TRACK_TIME_END("std::heap incremental")
-
-    TRACK_TIME_START
-        IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(f);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)iiqs.next();
-    TRACK_TIME_END("C++ portable IIQS")
-
-
-    TRACK_TIME_START
-        BareBoneIIQS<TYPE_TO_USE> biiqs(g, test_size);
-        for(int i = 0; i < ELEMENTS_TO_EXTRACT; i++)biiqs.next();
-    TRACK_TIME_END("Bare-bones C IIQS")
-
-
-    std::sort(result_temp.begin(), result_temp.end());
-    CHECK_AGAINST_BASELINE(result_temp, a)
-    CHECK_AGAINST_BASELINE(result_temp, b)
-    CHECK_AGAINST_BASELINE(result_temp, c)
-    CHECK_AGAINST_BASELINE(result_temp, d)
-    CHECK_AGAINST_BASELINE(result_temp, f)
-    CHECK_AGAINST_BASELINE(result_temp, g)
-
-}
 
 
 int main(int argc, char const *argv[])
 {
 
-    srand(static_cast<unsigned int>(time(0)));
+    bool log_pivot_time, log_iteration_time, log_extraction_time, use_bfprt, use_iiqs;
+    double alpha_value, beta_value;
+    int random_seed_value;
+    std::size_t input_size, extractions;
+    std::string input_file_value, output_file_value;
 
-    #ifdef INCLUDE_TESTING_WITH_FIXED_ARRAY
-        printf("----EXPERIMENT - Random with std::array----\n");
-        experiment_1();
-    #endif
+    boost::program_options::options_description desc("Program arguments");
+    desc.add_options()
+        ("help", "produce help message")
+        ("log-pivot-time",      boost::program_options::value<bool>(&log_pivot_time)->default_value(false),             "record time taken by pivot selection")
+        ("log-iteration-time",  boost::program_options::value<bool>(&log_iteration_time)->default_value(false),         "record time taken by iteration selection")
+        ("log-extraction-time", boost::program_options::value<bool>(&log_extraction_time)->default_value(false),        "record time taken by extraction selection")
+        ("use-bfprt",           boost::program_options::value<bool>(&use_bfprt)->default_value(false),                  "use bfprt as median selection strategy")
+        ("use-bfprt",           boost::program_options::value<bool>(&use_iiqs)->default_value(false),                  "use IIQS as main algorithm")
+        ("set-bfprt-alpha",     boost::program_options::value<double>(&beta_value)->default_value(0.7f),                "set bfprt alpha value")
+        ("set-bfprt-beta",      boost::program_options::value<double>(&alpha_value)->default_value(0.3f),               "set bfprt beta value")
+        ("set-random-seed",     boost::program_options::value<int>(&random_seed_value)->default_value(42),              "set random seed value")
+        ("input-file",          boost::program_options::value<std::string>(&input_file_value)->required(),              "input file containing ascii numbers separated by a space")
+        ("output-file",         boost::program_options::value<std::string>(&output_file_value)->required(),             "file to dump logs after execution is terminated")
+        ("input-size",          boost::program_options::value<std::size_t>(&input_size)->required(),                    "amount of integers to read and load as input")
+        ("extractions",         boost::program_options::value<std::size_t>(&extractions)->required(),                   "extractions to perform")
+    ;
 
-     printf("\n\n----EXPERIMENT - Random with std::vector ----\n");
-     experiment_2();
+    boost::program_options::variables_map vm;
+    boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), vm);
 
-    printf("\n\n----EXPERIMENT - Ordered asc with std::vector ----\n");
-    experiment_3();
+    if(vm.count("help") || argc == 1){
+        std::cout << desc << std::endl;
+        return 1;
+    }
 
-    printf("\n\n----EXPERIMENT - Ordered desc with std::vector----\n");
-    experiment_4();
+    boost::program_options::notify(vm);
 
-     printf("\n\n----EXPERIMENT - The cursed long run of zeroes and some random numbers ----\n");
-     experiment_5();
+    // Begin start procedure
+    // Load input entries
 
-     printf("\n\n----EXPERIMENT - 5^-1 ----\n");
-     experiment_6();
+    std::vector<TYPE_TO_USE> input_array;
+    std::fstream input_file(input_file_value, std::ios_base::in);
 
-     printf("\n\n----EXPERIMENT - Only zeroes ----\n");
-     experiment_7();
+    for(size_t i = 0; i < input_size; i++){
+        TYPE_TO_USE input_element;
+        input_file >> input_element;
+        input_array.push_back(input_element);
+        std::cout << input_array[i] << " ";
+    }
+
+    input_file.close();
+
+
+    std::vector<snapshot_t> snapshots;
+
+    // TODO: add change for IQS
+
+    IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(input_array);
+
+    snapshot_t extraction_snapshot = generate_snapshot(EXTRACTION_STAGE_BEGIN);
+    extraction_snapshot.input_size = input_size;
+
+    for(int i = 0; i < extractions; i++){
+        if (log_extraction_time) {
+            extraction_snapshot.current_extraction = i;
+            std::chrono::high_resolution_clock::time_point extraction_start = std::chrono::high_resolution_clock::now();
+            iqs.next();
+            std::chrono::high_resolution_clock::time_point extraction_end = std::chrono::high_resolution_clock::now();
+            extraction_snapshot.snapshot_point = EXTRACTION_STAGE_END;
+            extraction_snapshot.extraction_time = std::chrono::duration_cast<std::chrono::TIME_UNIT>(extraction_end - extraction_start);
+            extraction_snapshot.total_extraction_time = extraction_snapshot.total_extraction_time + extraction_snapshot.extraction_time;
+            extraction_snapshot.current_stack_size = iqs.stack.size();
+            snapshots.push_back(extraction_snapshot);
+        }
+    }
+
+    std::cout << "Amount of snapshots: " << snapshots.size() << std::endl;
+    // Convert snapshot into string
+    std::fstream output_file(output_file_value, std::ios_base::out);
+    // Print headers
+    output_file << "params.log_pivot_time, params.log_iteration_time, params.log_extraction_time, params.use_bfprt, "
+                << "params.use_iiqs, params.alpha_value, params.beta_value, params.random_seed_value, params.input_size , "
+                << "params.extractions, params.input_file_value, params.output_file_value , "
+                << "snapshot.iteration_time, snapshot.total_iteration_time, snapshot.partition_time, "
+                << "snapshot.bfprt_partition_time, snapshot.total_bfprt_partition_time, "
+                << "snapshot.total_partition_time, snapshot.extraction_time, snapshot.total_extraction_time, "
+                << "snapshot.current_iteration_executed_partitions, snapshot.total_executed_partitions, "
+                << "snapshot.current_iteration_executed_bfprt_partitions, snapshot.total_executed_bfprt_partitions, "
+                << "snapshot.current_extracted_pivot, snapshot.current_stack_size, snapshot.current_extraction, "
+                << "snapshot.input_size, snapshot.snapshot_point)" << std::endl;
+
+
+    for(size_t i=0; i<snapshots.size(); i++){
+        snapshot_t snapshot = snapshots[i];
+        output_file << log_pivot_time << ", " << log_iteration_time << ", " << log_extraction_time << ", " << use_bfprt << ", " 
+                    << use_iiqs << ", " << alpha_value << ", " << beta_value << ", " << random_seed_value << ", " << input_size  << ", " 
+                    << extractions << ", " << input_file_value << ", " << output_file_value  << ", " 
+                    << snapshot.iteration_time.count() << ", " << snapshot.total_iteration_time.count() << ", " << snapshot.partition_time.count() << ", " 
+                    << snapshot.bfprt_partition_time.count() << ", " << snapshot.total_bfprt_partition_time.count() << ", " 
+                    << snapshot.total_partition_time.count() << ", " << snapshot.extraction_time.count() << ", " << snapshot.total_extraction_time.count() << ", " 
+                    << snapshot.current_iteration_executed_partitions << ", " << snapshot.total_executed_partitions << ", " 
+                    << snapshot.current_iteration_executed_bfprt_partitions << ", " << snapshot.total_executed_bfprt_partitions << ", " 
+                    << snapshot.current_extracted_pivot << ", " << snapshot.current_stack_size << ", " << snapshot.current_extraction << ", " 
+                    << snapshot.input_size << ", " << point_to_string(snapshot.snapshot_point) << std::endl;
+    }
+    
+    output_file.close();
+
+
+    std::cout << std::endl;
+
+
 
 }

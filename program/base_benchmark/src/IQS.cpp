@@ -80,10 +80,10 @@ inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, s
 
     while (j < k) {
         if(this->container[j] < pivot_value){
-            this->swap(i++,j++);
+            this->swap(this->container, i++,j++);
         }
         else if (this->container[j] > pivot_value){
-            this->swap(j,--k);
+            this->swap(this->container, j,--k);
         }
         else {
             j++;
