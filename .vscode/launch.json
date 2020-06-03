@@ -15,7 +15,9 @@
                 "--output-file=${fileDirname}/test_data/output.ascii",
                 "--input-size=1000000",
                 "--extractions=100000",
-                "--log-extraction-time=1"
+                "--log-extraction-time=1",
+                "--log-pivot-time=1",
+                "--log-iteration-time=1"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

@@ -120,21 +120,36 @@ inline void IQS<Container, Type>::swap(Container &container, std::size_t lhs, st
  */
 template<class Container, class Type>
 Type IQS<Container, Type>::next() {
+    this->snapshot.current_extraction_executed_partitions = 0;
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resize the search window
+
+        // reset counters
+        this->snapshot.current_iteration_pushed_pivots = 0;
+        this->snapshot.current_iteration_pulled_pivots = 0;
+        LOCAL_CLOCK_START(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_BEGIN)
         std::size_t top_element = this->stack.top();
         if (this->extracted_count == this->stack.top() ){
             this->extracted_count++;
             this->stack.pop();
+
+            LOCAL_CLOCK_END(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_END,
+            this->snapshot, this->snapshots,
+            {
+                this->snapshot.current_iteration_pulled_pivots += 1;
+                this->snapshot.total_pulled_pivots += 1;
+            })
             return this->container[top_element];
         }
-        #ifdef FIXED_PIVOT_SELECTION
-            std::size_t pivot_idx = this->extracted_count;
-        #else
-            std::size_t pivot_idx = this->random_between(this->extracted_count, top_element);
-        #endif
+
+        std::size_t pivot_idx;
+        if (this->configuration.use_random_pivot)
+            pivot_idx = this->random_between(this->extracted_count, top_element);
+        else
+            pivot_idx = this->extracted_count;
+
 
         Type pivot_value = this->container[pivot_idx];
 
@@ -143,21 +158,42 @@ Type IQS<Container, Type>::next() {
         // We displace the selection for the top element in order to prevent hanging
         // you can't just use top_element -1 at the first iteration, as you still need to sort the last element. duh!
         // pivot partition and indexing
-        #ifdef USE_FAT_PARTITION
-            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
-        #else
-            pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
-        #endif
 
+        // As background we'll be using the three-way implementation on those tests in order to level-ground all implementations
 
+        CLOCK_ROUTINE(
+            this->configuration.log_pivot_time,
+            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);},
+            PARTITION_STAGE_END,
+            this->snapshot, this->snapshots,
+            partition_time, total_partition_time,
+            {
+                this->snapshot.current_extracted_pivot = pivot_idx / this->container.size();
+                this->snapshot.total_executed_partitions += 1;
+                this->snapshot.current_extraction_executed_partitions += 1;
+                this->snapshot.current_stack_size += this->stack.size();
+            }
+        )
         // Push and recurse the loop
         this->stack.push(pivot_idx);
+
+        LOCAL_CLOCK_END(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_LOOP,
+        this->snapshot, this->snapshots,
+        {
+            this->snapshot.current_iteration_pushed_pivots += 1;
+            this->snapshot.total_pushed_pivots += 1;
+        })
     }
 }
 
 template<class Container, class Type>
-IQS<Container, Type>::IQS(Container &container, configuration_t &configuration, snapshot_t &snapshot, std::vector<snapshot_t> &snapshots): container(container) {
+IQS<Container, Type>::IQS(Container &container, configuration_t &configuration, std::vector<snapshot_t> &snapshots, snapshot_t &snapshot): 
+container(container), configuration(configuration), snapshot(snapshot), snapshots(snapshots) {
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
+
+    
+    
+    
 }

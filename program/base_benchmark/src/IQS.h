@@ -22,11 +22,12 @@
 
 #include <stack>
 #include "snapshot.h"
+#include <vector>
 
 template<class Container, class Type>
 class IQS {
 public:
-    explicit IQS(Container &container, configuration_t &configuration, snapshot_t &snapshot, std::vector<snapshot_t> &snapshots);
+    explicit IQS(Container &container, configuration_t &configuration, std::vector<snapshot_t> &snapshots, snapshot_t &snapshot);
     inline void swap(Container &container, std::size_t lhs, std::size_t rhs);
     inline std::size_t partition(Type pivot_value, std::size_t lhs, std::size_t rhs);
     virtual Type next();
@@ -37,6 +38,9 @@ public:
 protected:
     Container &container;
     std::size_t extracted_count;
+    configuration_t &configuration;
+    snapshot_t &snapshot;
+    std::vector<snapshot_t> &snapshots;
 };
 
 #endif //UNTITLED1_IQS_H
