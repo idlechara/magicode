@@ -2,10 +2,15 @@
 \documentclass{iccmemoria}
 \usepackage{amsmath}
 \usepackage{algorithm}
+\usepackage{tabularx}
 \usepackage[noend]{algpseudocode}
 
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
+
+
 %% datos generales y para la tapa
-\titulo{Experimental analysis of (I)IQS to fine-tune support for arrays with repeated elements}
+\titulo{Análisis experimental de IIQS para extender el soporte a secuencias de elementos repetidos}
+\tituloEng{Experimental analysis of (I)IQS to fine-tune support for arrays with repeated elements}
 \author{Erik Andrés Regla Torres}
 \supervisor{Rodrigo Andrés Paredes Moraleda}
 \informantes
@@ -28,14 +33,12 @@
 
 %% dedicatoria
 \begin{dedicatory}
-  Dedicated to... someone ? % la dedicatoria puede ser en español o inglés. De hecho si se la dedicas a alguien, mejor que sea en su idioma vernáculo
+  Dedicated to... someone ?
 \end{dedicatory}
 
 %% agradecimientos
 \begin{acknowledgment}
   Agradecimientos a ... (how the fuck do I choose whom to acknowledge?)
-  % oh, yes!, you'll never finish a good acknowledgment
-  % a simple methodology is to make a list of people and reasons :-)
 \end{acknowledgment}
 
 %% indices
@@ -78,12 +81,6 @@ Aquí va el texto de la segunda subsección de la primera sección del capítulo
 
 \input{fragments/02_background/index.tex}
 
-\chapter{Methodology}
-\section{Experimental design and goals}
-\section{Data generation}
-\subsection{Systematic randomization}
-\subsection{Distributed repeated dataset generation}
-\subsection{Distributed repeated with random unique portion dataset generation}
 
 % \subsection{Pilot experiments}
 % \subsubsection{Incremental version of BFPRT}
@@ -92,57 +89,9 @@ Aquí va el texto de la segunda subsección de la primera sección del capítulo
 % \subsubsection{Three-way partition pivot store}
 % \subsubsection{Change rules to store pivots}
 
-\section{Pilot experiments}
-
-\subsection{Is IIQS execution for repeated elements an instance of IQS worstcase?}
-\subsubsection{Hypothesis}
-\subsubsection{Test environment assembly and setup}
-\subsubsection{Experiment design}
-\subsubsection{Metrics and indicators}
-\subsubsection{Execution}
-\subsubsection{Results}
-
-\subsection{Does presortedness affect (I)IQS running time?}
-\subsubsection{Hypothesis}
-\subsubsection{Test environment assembly and setup}
-\subsubsection{Experiment design}
-\subsubsection{Metrics and indicators}
-\subsubsection{Execution}
-\subsubsection{Results}
-
-\subsection{Does the size of the elements stored in the stack affect its performance?}
-\subsubsection{Hypothesis}
-\subsubsection{Test environment assembly and setup}
-\subsubsection{Experiment design}
-\subsubsection{Metrics and indicators}
-\subsubsection{Execution}
-\subsubsection{Results}
-
-\subsection{It is worth to use iterative versions of BFPRT as approximate median selection?}
-\subsubsection{Hypothesis}
-\subsubsection{Test environment assembly and setup}
-\subsubsection{Experiment design}
-\subsubsection{Metrics and indicators}
-\subsubsection{Execution}
-\subsubsection{Results}
-
-\subsection{Are the average cases for repeated and non repeated classes the same?} %rewrite
-\subsubsection{Hypothesis}
-\subsubsection{Test environment assembly and setup}
-\subsubsection{Experiment design}
-\subsubsection{Metrics and indicators}
-\subsubsection{Execution}
-\subsubsection{Results}
-
-\section{Workhorse experiment}
-
-\subsection{Can we tune (I)IQS to support repeated cases without affecting its average running time?}
-\subsubsection{Hypothesis}
-\subsubsection{Test environment assembly and setup}
-\subsubsection{Experiment design}
-\subsubsection{Metrics and indicators}
-\subsubsection{Execution}
-\subsubsection{Results}
+\input{fragments/03_methodology/index.tex}
+\input{fragments/04_experimental_execution/index.tex}
+\input{fragments/05_workhorse_experiment/index.tex}
 
 \chapter{Summary}
 % \chapter{Experiments}

@@ -1,0 +1,112 @@
+\section{Partitioning Schemes}
+
+\subsection{Rationale}
+Before diving into the results for this experiment, we will now explain two partition strategies to take into consideration before designing our first experiment and our second algorithm modification in order to understand the modifications made to IQS.
+
+\subsection{Partition schemes}
+As explained before in~\ref{SEC:INCREMENTAL_SORTING}, partition algorithms play a fundamental role on sorting algorithms like QuickSort. But partition algorithms can use different schemes in order to partition the array into two sections, depending on which properties of the process we want to optimise.
+
+\subsection{Lomuto's partition scheme}
+
+The most identificable feature of this algorithm is that it uses the last element as the pivot for partitioning the array, which makes suitable for shuffled sequences but when the sequence follows some of the first disorder metrics seen in~\ref{SEC:MEASURING_DISORDER} it tends to bias the performance of this partition scheme.
+
+This algorithm is commonly referenced as the easiest way to partition an array, given it is low complexity.
+o
+\begin{algorithm}
+\caption{Lomuto Partition}\label{ALG:LOMUTO_PARTITION}
+\begin{algorithmic}[1]
+    \Procedure{$lomuto$}{$A, p, r$}
+    \State $x \gets A_r$
+    \State $i \gets p-1$
+    \For{$j \in [p, r - 1]$}
+    \If{$A_j \leq x$}
+        \State $i \gets i + i$
+        \State $swap(A_i, A_j)$
+    \EndIf
+    \EndFor
+    \State $swap(A_{i+1}, A_r)$
+    \State \Return $i + 1$
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Hoare's partition scheme}
+Hoare's partition scheme takes another approach at partitioning elements by using two indices which converge into the postition of the pivot chosen at the beggining. When it comes to sort a set of elements it works faster than Lomuto's implementation and it's more stable. and given that the pivot can be chosen randomly, the introduction of randomness helps to ease biased pivot selections.
+
+\begin{algorithm}
+\caption{Hoare's Partition}\label{ALG:HOARE_PARTITION}
+\begin{algorithmic}[1]
+    \Procedure{$hoare$}{$A, p, r$}
+    \State $x \gets A_p$
+    \State $i \gets p-1$
+    \State $j \gets r+1$
+    \While{$true$}
+        \Do 
+            \State $j \gets j - 1$
+        \doWhile{$A_j \leq x$}
+
+        \Do 
+            \State $i \gets i + 1$
+        \doWhile{$A_j \geq x$}
+
+        \If{$i < j$}
+            \State $swap(A_i, A_j)$
+        \Else
+            \State \Return $j$
+        \EndIf
+    \EndWhile
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Dutch flag problem}
+Both of the aforementioned algorithms performs over sets, but when it comes to sequences, to use such partition methods fails dramatically as it treats repeated elements as unique elements. In worst case, the pivot is positioned into its corresponding place but it does not guarantee that there are no repetitions of the same element on any portion of the original sequence.
+
+\subsection{Problem definition and solution}
+Let's take as example the partitioning problem of the following two sequences:
+
+$$ S_1={1,2,3,4,5,6,7,8,9} $$
+and
+$$S_2={1,2,5,5,5,5,5,8,9}$$
+
+It's clear that if we chose $p$ equal to $5$, the element in the fifth position of $S_1$ will be the pivot on its correct place. But it's not the case for $S_2$ as we can get a pivot from the third up to the seventh position on the sequence. In this case, as all the positions are valid pivots, there is no safety guarantee that the resulting pivot will partition the array in half in order to ensure a $log_2$ decay on the problem space. Situation worsens if all the elements are repeated, as it defeats the purpose of partitioning the sequence~\cite{7416566}.
+
+This problem is also known as the Dutch Flag problem~\cite{10.5555/550359}, which for given a sequence it partition inplace the elements lower than the pivot value, the elements equal to the pivot value and the elements greater than the pivot value and it will return the indices of the beggining and the end of the middle portion.
+
+\begin{algorithm}
+\caption{Hoare's Partition}\label{ALG:HOARE_PARTITION}
+\begin{algorithmic}[1]
+    \Procedure{$hoare$}{$A, p, r$}
+    \State $x \gets A_p$
+    \State $i \gets p-1$
+    \State $j \gets r+1$
+    \While{$true$}
+        \Do 
+            \State $j \gets j - 1$
+        \doWhile{$A_j \leq x$}
+
+        \Do 
+            \State $i \gets i + 1$
+        \doWhile{$A_j \geq x$}
+
+        \If{$i < j$}
+            \State $swap(A_i, A_j)$
+        \Else
+            \State \Return $j$
+        \EndIf
+    \EndWhile
+    \EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Integration into IQS as base implementation}
+
+SECTION WITH RESULTS HERE!!!
+
+As it can be seen, there no noticeable difference between experimental complexities of implementations for three-way partitioning and standard partitioning algorithms. As such, from now on we will use \textit{three-waw-partition} as our default implementation for the partitioning stage. This will allow us to contrast results between IQS and IIQS with such modifications using both repeated and non repeated elements as dataset inputs.
+
+
+
+
+
+

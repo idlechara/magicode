@@ -25,6 +25,16 @@ Thomas~H. Cormen, Charles~E. Leiserson, Ronald~L. Rivest, and Clifford Stein.
 \newblock {\em Introduction to Algorithms, Third Edition}.
 \newblock The MIT Press, 3rd edition, 2009.
 
+\bibitem{10.5555/550359}
+Edsger~Wybe Dijkstra.
+\newblock {\em A Discipline of Programming}.
+\newblock Prentice Hall PTR, USA, 1st edition, 1997.
+
+\bibitem{10.5555/150918}
+Vladimir Estivill-Castro.
+\newblock {\em Sorting and Measures of Disorder}.
+\newblock PhD thesis, CAN, 1992.
+
 \bibitem{Estivill-Castro_Wood_1989}
 Vladimir Estivill-Castro and Derick Wood.
 \newblock A new measure of presortedness.

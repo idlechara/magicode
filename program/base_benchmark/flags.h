@@ -24,6 +24,7 @@
 #define TYPE_TO_USE long        // what you're comparing?
 #define USE_FAT_PARTITION 1    // use three-way-partitioning
 #define USE_ALPHA_LESS_THAN_P30 1    // use three-way-partitioning
+#define TIME_UNIT nanoseconds
 //#define INCLUDE_TESTING_WITH_FIXED_ARRAY 1    // use three-way-partitioning
 
 /* use those to test where you want to bias the pivot selection. If none selected, then chooses the middle of the group */

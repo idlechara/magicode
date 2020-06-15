@@ -1,102 +1,123 @@
-\select@language {english}
-\select@language {english}
-\contentsline {chapter}{Dedicatory}{i}
-\contentsline {chapter}{Acknowledgements}{ii}
-\contentsline {chapter}{Content Index}{iii}
-\contentsline {chapter}{Figure Index}{v}
-\contentsline {chapter}{Table Index}{vi}
-\contentsline {chapter}{Summary}{vii}
-\contentsline {chapter}{\numberline {1}Introduction}{8}
-\contentsline {section}{\numberline {1.1}Context}{8}
-\contentsline {section}{\numberline {1.2}Application areas}{8}
-\contentsline {section}{\numberline {1.3}Problem description}{8}
-\contentsline {section}{\numberline {1.4}Goals}{8}
-\contentsline {subsection}{\numberline {1.4.1}General goals}{8}
-\contentsline {subsection}{\numberline {1.4.2}Specific goals}{8}
-\contentsline {section}{\numberline {1.5}Document Structure}{9}
-\contentsline {chapter}{\numberline {2}Background}{10}
-\contentsline {section}{\numberline {2.1}Sorting algorithms}{10}
-\contentsline {subsection}{\numberline {2.1.1}Types of sorting algorithms}{10}
-\contentsline {subsection}{\numberline {2.1.2}Measuring disorder}{10}
-\contentsline {subsubsection}{Expected case and Worst-case adaptive internal sorting}{11}
-\contentsline {subsubsection}{Maximum inversion distance (Dis)}{12}
-\contentsline {subsubsection}{Maximum sorting distance (Max)}{13}
-\contentsline {subsubsection}{Minimum number of exchanges (Exc)}{13}
-\contentsline {subsubsection}{Minimum elements to be removed (Rem)}{13}
-\contentsline {subsubsection}{Minimum number of ascending portions (Runs)}{13}
-\contentsline {subsubsection}{Minimum number of shuffled subsequences (SUS)}{14}
-\contentsline {subsubsection}{Minimum number of shuffled monotone subsequences (SMS.SUS)}{14}
-\contentsline {subsubsection}{Sorted lists constructed by Melsort (Enc)}{14}
-\contentsline {subsubsection}{Oscilation of elements in a sequence (Osc)}{14}
-\contentsline {subsubsection}{Regional insertion sort (Reg)}{14}
-\contentsline {section}{\numberline {2.2}Incremental Sorting}{15}
-\contentsline {subsection}{\numberline {2.2.1}IQS}{15}
-\contentsline {subsubsection}{Algorithm overview}{15}
-\contentsline {subsubsection}{Worst case}{16}
-\contentsline {subsection}{\numberline {2.2.2}IIQS}{16}
-\contentsline {subsubsection}{Algorithm overview}{16}
-\contentsline {section}{\numberline {2.3}Experimental algorithmics}{18}
-\contentsline {subsection}{\numberline {2.3.1}Methodology overview}{18}
-\contentsline {subsubsection}{Planning}{18}
-\contentsline {subsubsection}{Execution}{19}
-\contentsline {subsection}{\numberline {2.3.2}Result driven development}{19}
-\contentsline {chapter}{\numberline {3}Methodology}{21}
-\contentsline {section}{\numberline {3.1}Experimental design and goals}{22}
-\contentsline {section}{\numberline {3.2}Data generation}{22}
-\contentsline {subsection}{\numberline {3.2.1}Systematic randomization}{22}
-\contentsline {subsection}{\numberline {3.2.2}Distributed repeated dataset generation}{22}
-\contentsline {subsection}{\numberline {3.2.3}Distributed repeated with random unique portion dataset generation}{22}
-\contentsline {section}{\numberline {3.3}Pilot experiments}{22}
-\contentsline {subsection}{\numberline {3.3.1}Is IIQS execution for repeated elements an instance of IQS worstcase?}{22}
-\contentsline {subsubsection}{Hypothesis}{22}
-\contentsline {subsubsection}{Test environment assembly and setup}{22}
-\contentsline {subsubsection}{Experiment design}{22}
-\contentsline {subsubsection}{Metrics and indicators}{22}
-\contentsline {subsubsection}{Execution}{22}
-\contentsline {subsubsection}{Results}{22}
-\contentsline {subsection}{\numberline {3.3.2}Does presortedness affect (I)IQS running time?}{22}
-\contentsline {subsubsection}{Hypothesis}{22}
-\contentsline {subsubsection}{Test environment assembly and setup}{22}
-\contentsline {subsubsection}{Experiment design}{22}
-\contentsline {subsubsection}{Metrics and indicators}{22}
-\contentsline {subsubsection}{Execution}{22}
-\contentsline {subsubsection}{Results}{22}
-\contentsline {subsection}{\numberline {3.3.3}Does the size of the elements stored in the stack affect its performance?}{22}
-\contentsline {subsubsection}{Hypothesis}{22}
-\contentsline {subsubsection}{Test environment assembly and setup}{22}
-\contentsline {subsubsection}{Experiment design}{22}
-\contentsline {subsubsection}{Metrics and indicators}{22}
-\contentsline {subsubsection}{Execution}{22}
-\contentsline {subsubsection}{Results}{22}
-\contentsline {subsection}{\numberline {3.3.4}It is worth to use iterative versions of BFPRT as approximate median selection?}{22}
-\contentsline {subsubsection}{Hypothesis}{22}
-\contentsline {subsubsection}{Test environment assembly and setup}{22}
-\contentsline {subsubsection}{Experiment design}{22}
-\contentsline {subsubsection}{Metrics and indicators}{22}
-\contentsline {subsubsection}{Execution}{22}
-\contentsline {subsubsection}{Results}{22}
-\contentsline {subsection}{\numberline {3.3.5}Are the average cases for repeated and non repeated classes the same?}{22}
-\contentsline {subsubsection}{Hypothesis}{22}
-\contentsline {subsubsection}{Test environment assembly and setup}{22}
-\contentsline {subsubsection}{Experiment design}{22}
-\contentsline {subsubsection}{Metrics and indicators}{22}
-\contentsline {subsubsection}{Execution}{22}
-\contentsline {subsubsection}{Results}{22}
-\contentsline {section}{\numberline {3.4}Workhorse experiment}{22}
-\contentsline {subsection}{\numberline {3.4.1}Can we tune (I)IQS to support repeated cases without affecting its average running time?}{22}
-\contentsline {subsubsection}{Hypothesis}{22}
-\contentsline {subsubsection}{Test environment assembly and setup}{22}
-\contentsline {subsubsection}{Experiment design}{22}
-\contentsline {subsubsection}{Metrics and indicators}{22}
-\contentsline {subsubsection}{Execution}{22}
-\contentsline {subsubsection}{Results}{22}
-\contentsline {chapter}{\numberline {4}Summary}{23}
-\contentsline {chapter}{Glossary}{24}
-\contentsline {chapter}{Bibliography}{25}
+\babel@toc {english}{}
+\babel@toc {english}{}
+\contentsline {chapter}{Dedicatory}{i}%
+\contentsline {chapter}{Acknowledgements}{ii}%
+\contentsline {chapter}{Content Index}{iii}%
+\contentsline {chapter}{Figure Index}{vi}%
+\contentsline {chapter}{Table Index}{vii}%
+\contentsline {chapter}{Summary}{viii}%
+\contentsline {chapter}{\numberline {1}Introduction}{9}%
+\contentsline {section}{\numberline {1.1}Context}{9}%
+\contentsline {section}{\numberline {1.2}Application areas}{9}%
+\contentsline {section}{\numberline {1.3}Problem description}{9}%
+\contentsline {section}{\numberline {1.4}Goals}{9}%
+\contentsline {subsection}{\numberline {1.4.1}General goals}{9}%
+\contentsline {subsection}{\numberline {1.4.2}Specific goals}{9}%
+\contentsline {section}{\numberline {1.5}Document Structure}{10}%
+\contentsline {chapter}{\numberline {2}Background}{11}%
+\contentsline {section}{\numberline {2.1}Sorting algorithms}{11}%
+\contentsline {subsection}{\numberline {2.1.1}Types of sorting algorithms}{11}%
+\contentsline {subsection}{\numberline {2.1.2}Measuring disorder}{11}%
+\contentsline {subsubsection}{Expected case and Worst-case adaptive internal sorting}{12}%
+\contentsline {subsubsection}{Maximum inversion distance (Dis)}{13}%
+\contentsline {subsubsection}{Maximum sorting distance (Max)}{14}%
+\contentsline {subsubsection}{Minimum number of exchanges (Exc)}{14}%
+\contentsline {subsubsection}{Minimum elements to be removed (Rem)}{14}%
+\contentsline {subsubsection}{Minimum number of ascending portions (Runs)}{14}%
+\contentsline {subsubsection}{Minimum number of shuffled subsequences (SUS)}{15}%
+\contentsline {subsubsection}{Minimum number of shuffled monotone subsequences (SMS.SUS)}{15}%
+\contentsline {subsubsection}{Sorted lists constructed by Melsort (Enc)}{15}%
+\contentsline {subsubsection}{Oscilation of elements in a sequence (Osc)}{15}%
+\contentsline {subsubsection}{Regional insertion sort (Reg)}{16}%
+\contentsline {section}{\numberline {2.2}Incremental Sorting}{16}%
+\contentsline {subsection}{\numberline {2.2.1}Incremental QuickSort}{17}%
+\contentsline {subsubsection}{Algorithm overview}{17}%
+\contentsline {subsubsection}{Worst case}{17}%
+\contentsline {subsection}{\numberline {2.2.2}Introspective Incremental QuickSort}{18}%
+\contentsline {subsubsection}{Algorithm overview}{18}%
+\contentsline {section}{\numberline {2.3}Experimental algorithmics}{20}%
+\contentsline {subsection}{\numberline {2.3.1}Methodology foundations}{20}%
+\contentsline {subsubsection}{Algorithm instantiation hierarchy}{20}%
+\contentsline {subsubsection}{Algorithm design hierarchy}{21}%
+\contentsline {subsection}{\numberline {2.3.2}Considerations}{22}%
+\contentsline {subsection}{\numberline {2.3.3}Methodology overview}{22}%
+\contentsline {subsubsection}{Planning}{22}%
+\contentsline {subsubsection}{Execution}{23}%
+\contentsline {subsection}{\numberline {2.3.4}Result driven development}{23}%
+\contentsline {section}{\numberline {2.4}Related Software and Tools}{24}%
+\contentsline {subsection}{\numberline {2.4.1}C++ Standard Template Library}{24}%
+\contentsline {subsection}{\numberline {2.4.2}C++ Standard Library}{24}%
+\contentsline {subsection}{\numberline {2.4.3}Boost.org}{25}%
+\contentsline {subsection}{\numberline {2.4.4}SciPy environment}{25}%
+\contentsline {subsection}{\numberline {2.4.5}Valgrind}{25}%
+\contentsline {chapter}{\numberline {3}Methodology}{26}%
+\contentsline {section}{\numberline {3.1}Rationale}{26}%
+\contentsline {section}{\numberline {3.2}Methodology foundationals}{27}%
+\contentsline {subsection}{\numberline {3.2.1}Algorithm instantiation hierarchy}{27}%
+\contentsline {subsubsection}{Metaheuristics and algorithm paradigms}{27}%
+\contentsline {subsubsection}{Algorithms}{27}%
+\contentsline {subsubsection}{Source program}{28}%
+\contentsline {subsubsection}{Object code}{28}%
+\contentsline {subsubsection}{Process}{28}%
+\contentsline {subsection}{\numberline {3.2.2}Algorithm design hierarchy}{28}%
+\contentsline {subsubsection}{System structure}{28}%
+\contentsline {subsubsection}{Main driver}{29}%
+\contentsline {subsubsection}{Snapshot spec}{30}%
+\contentsline {subsubsection}{Algorithm and data structure design}{31}%
+\contentsline {subsubsection}{Implementation and algorithm tuning}{32}%
+\contentsline {subsubsection}{Code tuning}{34}%
+\contentsline {subsubsection}{System software}{34}%
+\contentsline {subsubsection}{Platform and hardware}{34}%
+\contentsline {section}{\numberline {3.3}Experimental process breakdown}{35}%
+\contentsline {subsection}{\numberline {3.3.1}Experimental cycle}{35}%
+\contentsline {subsubsection}{Hypothesis}{35}%
+\contentsline {subsubsection}{Input and execution setup}{36}%
+\contentsline {subsubsection}{Execution}{36}%
+\contentsline {subsubsection}{Analysis}{36}%
+\contentsline {subsection}{\numberline {3.3.2}Metrics and indicators}{36}%
+\contentsline {subsubsection}{Swaps}{36}%
+\contentsline {subsubsection}{Stack operations}{38}%
+\contentsline {subsubsection}{Number of executed subroutines}{38}%
+\contentsline {subsubsection}{Pivot bias}{39}%
+\contentsline {subsubsection}{Clocked routines}{39}%
+\contentsline {chapter}{\numberline {4}Pilot experiments}{41}%
+\contentsline {section}{\numberline {4.1}Experimental Setup}{41}%
+\contentsline {section}{\numberline {4.2}Base benchmarking}{41}%
+\contentsline {subsection}{\numberline {4.2.1}Average and worst case}{41}%
+\contentsline {subsection}{\numberline {4.2.2}Influence of presortedness}{41}%
+\contentsline {subsection}{\numberline {4.2.3}Influence of repeated elements}{41}%
+\contentsline {section}{\numberline {4.3}Partitioning Schemes}{41}%
+\contentsline {subsection}{\numberline {4.3.1}Rationale}{41}%
+\contentsline {subsection}{\numberline {4.3.2}Partition schemes}{42}%
+\contentsline {subsection}{\numberline {4.3.3}Lomuto's partition scheme}{42}%
+\contentsline {subsection}{\numberline {4.3.4}Hoare's partition scheme}{42}%
+\contentsline {subsection}{\numberline {4.3.5}Dutch flag problem}{43}%
+\contentsline {subsection}{\numberline {4.3.6}Problem definition and solution}{43}%
+\contentsline {subsection}{\numberline {4.3.7}Integration into IQS as base implementation}{44}%
+\contentsline {section}{\numberline {4.4}Influence of pivot selection}{45}%
+\contentsline {subsection}{\numberline {4.4.1}Controlling pivot bias}{45}%
+\contentsline {subsection}{\numberline {4.4.2}Effects on the partitioning}{45}%
+\contentsline {subsection}{\numberline {4.4.3}Suggestions}{45}%
+\contentsline {section}{\numberline {4.5}Median selection}{45}%
+\contentsline {subsection}{\numberline {4.5.1}Current median selection approach}{45}%
+\contentsline {subsection}{\numberline {4.5.2}Iterative median of medians}{45}%
+\contentsline {subsection}{\numberline {4.5.3}Effects on future calls}{45}%
+\contentsline {subsection}{\numberline {4.5.4}Suggestions}{45}%
+\contentsline {section}{\numberline {4.6}Stack structure}{45}%
+\contentsline {subsection}{\numberline {4.6.1}Stack performance}{45}%
+\contentsline {subsection}{\numberline {4.6.2}Paired stack performance}{45}%
+\contentsline {subsection}{\numberline {4.6.3}Performance comparison for repeated sequences and unique sequences}{45}%
+\contentsline {subsection}{\numberline {4.6.4}Stack management comparison for repeated sequences and unique sequences}{45}%
+\contentsline {chapter}{\numberline {5}Workhorse experiments}{46}%
+\contentsline {section}{\numberline {5.1}Implementation}{46}%
+\contentsline {section}{\numberline {5.2}Benchmarking}{46}%
+\contentsline {chapter}{\numberline {6}Summary}{47}%
+\contentsline {chapter}{Glossary}{48}%
+\contentsline {chapter}{Bibliography}{49}%
 \contentsline {chapter}{Annex}{}
-\contentsline {chapter}{A:\hspace {1em}El Primer Anexo}{28}
-\contentsline {section}{\numberline {A.1}La primera secci\IeC {\'o}n del primer anexo}{28}
-\contentsline {section}{\numberline {A.2}La segunda secci\IeC {\'o}n del primer anexo}{28}
-\contentsline {subsection}{\numberline {A.2.1}La primera subsecci\IeC {\'o}n de la segunda secci\IeC {\'o}n del primer anexo}{28}
-\contentsline {chapter}{B:\hspace {1em}El segundo Anexo}{29}
-\contentsline {section}{\numberline {B.1}La primera secci\IeC {\'o}n del segundo anexo}{29}
+\contentsline {chapter}{A:\hspace {1em}El Primer Anexo}{52}%
+\contentsline {section}{\numberline {A.1}La primera sección del primer anexo}{52}%
+\contentsline {section}{\numberline {A.2}La segunda sección del primer anexo}{52}%
+\contentsline {subsection}{\numberline {A.2.1}La primera subsección de la segunda sección del primer anexo}{52}%
+\contentsline {chapter}{B:\hspace {1em}El segundo Anexo}{53}%
+\contentsline {section}{\numberline {B.1}La primera sección del segundo anexo}{53}%

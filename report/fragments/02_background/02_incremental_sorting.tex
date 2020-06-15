@@ -1,47 +1,54 @@
 
 \section{Incremental Sorting}
+\label{SEC:INCREMENTAL_SORTING}
 
-While sorting algorithms can be seen as a straightforward process, the definition of sorting can be extended as \textit{partial sorting} and \textit{incremental sorting}, as in practice, while sorting is used as the intermediate step of many procedures, it is not mandatory to always sort the entire array, rather than just sort a fragment of interest.
+While sorting algorithms can be seen as a straightforward process, the definition of sorting can be extended as \textit{partial sorting} and \textit{incremental sorting}, as in practice, even though is used as an intermediate step of many procedures, it is not mandatory to always sort the entire array, sometimes it is needed to sort only a fragment of interest.
 
-As partitions of a sequence can be seen as a equivalence relationship between the pivot and the leftmost and rightmost segments\cite{10.5555/1614191}, then for a given sequence $A' \in A$, we can define a \textit{partial order} if the relationship on the elements of $A$ is reflexive, antisymmetric and transitive and then $A'$ is called a \textit{partially ordered sequence}.
+When partitioning a sequence using a pivot, the relationship between the pivot and the other two sub-sequences generated can be seen as a equivalence relationship~\cite{10.5555/1614191}. Then for any sequence $A' \in A$, we can define a \textit{partial order} if the relationship on the elements of $A$ is reflexive, antisymmetric and transitive and then $A'$ is called a \textit{partially ordered sequence}.
 
-Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ -a partially sorted sequence of $A$, if the elements are retrieved in a way that subsecuential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.
+Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ --- a partially sorted sequence of $A$ --- , if the elements are retrieved in a way that sub-sequential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.
 
 A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants, then there is no need to waste time sorting all the elements for a query that can be executed only one time.
 
-\subsection{IQS}
-Incremental QuickSort (IQS) \cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for usage on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
+\subsection{Incremental QuickSort}
+Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for usage on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
 
 \subsubsection{Algorithm overview}
 
 \begin{algorithm}
   \caption{IncrementalQuickSort}\label{ALG:IQS}
   \begin{algorithmic}[1]
-    \Procedure{$iqs$}{$A,i,S$}
-    \If{$i \leq S.top()$}
+    \Procedure{$iqs$}{$A,S,k$}
+    \If{$k \leq S.top()$}
     \State $S.pop()$
-    \Return $A[i]$
+    \Return $A[k]$
     \EndIf
-    \State $pivot \gets select(i, S.top()-1)$
-    \State $pivot' \gets partition(A,pivot,i, S.top()-1)$
+    \State $pivot \gets select(k, S.top()-1)$
+    \State $pivot' \gets partition(A,pivot,k, S.top()-1)$
     \State $S.push(pivot')$
-    \State \Return $iqs(A,i,S)$
+    \State \Return $iqs(A,S,k)$
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
-As it can be seen, the execution of this algorithm is similar to sorting the array by executing sequentially QuickSelect for $1,2,3,...,n$ in order, as it is yielding each one of those elements in $A$ already ordered. The advantage of using IQS is that since the stack stores all the previous call results, in average all subsecuential calls are cheaper than the first one, hence the $n*log_2(n)$ running time.
+As it can be seen on Algorithm~\ref{ALG:IQS}, the execution of IQS is equivalent to sorting the array by executing QuickSelect searching for the element which belongs to the corresponding position in sequential order. The advantage of using IQS for this task is that the stack stores all the previous pivots generated making next minima extraction calls cheaper than executing QuickSearch from scratch, hence the $n*log_2(n)$ running time.
 
 \subsubsection{Worst case}
+Since this is a partition-based sorting algorithm, the performance of the sorting operation relies on the \textit{quality} of the pivots generated along each iteration. As QuickSort, the \textit{quality} of the a given pivot is the capability to separate the sequence into two sub-sequences of similar length, thus reducing the size of sequences being solved on next calls.
+
+If the pivot is not able to split the sequence into similar sized sub-sequences, one side of the recursion is bound to continue with little to no reduction of the elements. On IQS case, it executes the partition stage which has $O(n)$ complexity $n$ times, yielding $O(n^2)$ running time.
+
 A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.
 
-\subsection{IIQS}
+\subsection{Introspective Incremental QuickSort}
 
-A slightly more complex version of IQS, intented to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far\cite{7416566}.
+A slightly more complex version of Incremental QuickSort were developed to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far~\cite{7416566}.
 
-The partition algorithm uses the information of the relative position of the given pivot ar the partition stage to determine if the pivot obtained can be refined or not by using another pivot selection technique, in this case the used algorithm is the \textit{median of medians}\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}, which guarantees that the median selected will belong to $P_{70} \cap P_{30}$.
+The modification consists on extending the capabilities of the partition stage of IQS in order to determine if the pivot has a minimum expected quality. For such effects, the information of the relative position of the extracted pivot towards the partitioned sequence is calculated to determine if the pivot obtained can be refined or not by using another pivot selection technique.
 
-If the median returned by $select$ does not belong to that segment, then median of medians is executed in order to guarantee a decrease of the search space for the next call.
+In this case the used algorithm is the \textit{median of medians}~\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}. Median of medians algorithm guarantees that the median selected will belong to $P_{70} \cap P_{30}$ of the sequence to be partitioned, which sets the measures of quality for IIQS. 
+
+If the median returned by $select$ does not belong to a position between $P_{70} \cap P_{30}$, then median of medians is executed in order to guarantee a decrease of the search space for the next call of at least 30\%. The details on how this comparison is performed can be seen on Algorithm~\ref{ALG:IIQS}.
 
 \subsubsection{Algorithm overview}
 \begin{algorithm}
@@ -75,4 +82,4 @@ If the median returned by $select$ does not belong to that segment, then median 
   \end{algorithmic}
 \end{algorithm}
 
-The reason behind why use median of medians is that has $O(n)$ complexity, same as partition, preventing the asymtotic complexity to increase if such algorithm is used.
+The reason behind why use median of medians is that it has $O(n)$ complexity, being the same complexity as same as the partition, thus it does not increase the asymptotic complexity of the iteration if it were to be used as a fallback to reduce the problem space.

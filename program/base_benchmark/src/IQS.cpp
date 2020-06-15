@@ -33,6 +33,23 @@ inline std::size_t IQS<Container, Type>::random_between(std::size_t lhs, std::si
 }
 
 /**
+ *  Function to play with IQS implementation of random, gives a biased element
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ * @param lhs left index, inclusive
+ * @param rhs left index, inclusive
+ * @param bias bias to put on the pivot
+ * @return a random number [lhs, rhs]
+ */
+template<class Container, class Type>
+inline std::size_t IQS<Container, Type>::biased_between(std::size_t lhs, std::size_t rhs, double bias) {
+    double range = (double)(rhs - lhs);
+    std::size_t index_bias = round(bias / range);
+    return lhs + index_bias;
+}
+
+
+/**
  * Hoare's partition implementation. Guarantees that all element at the left of the pivot
  * are lower or equal to the pivot value and all elements to the right of it are greater
  * @tparam Container container type to handle on the class
@@ -73,17 +90,18 @@ inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t
  * @return std::size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
-inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs) {
+inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs, bool alternate_implementation) {
     std::size_t i = lhs;
     std::size_t j = lhs;
     std::size_t k = rhs;
 
     while (j < k) {
         if(this->container[j] < pivot_value){
-            this->swap(i++,j++);
+            // Alternate implementation set as false as there are no two alternate implementations available for testing
+            this->swap(this->container, i++,j++, alternate_implementation);
         }
         else if (this->container[j] > pivot_value){
-            this->swap(j,--k);
+            this->swap(this->container, j,--k, alternate_implementation);
         }
         else {
             j++;
@@ -108,8 +126,31 @@ inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, s
  * @param container the container to apply the function
  */
 template<class Container, class Type>
-inline void IQS<Container, Type>::swap(Container &container, std::size_t lhs, std::size_t rhs) {
-    std::swap(container[lhs], container[rhs]);
+inline void IQS<Container, Type>::swap(Container &container, std::size_t lhs, std::size_t rhs, bool alternate_implementation) {
+    OPTIONAL_REGISTRY(
+        this->configuration.log_swaps, 
+        {
+            std::swap(container[lhs], container[rhs]);
+        },
+        {
+            if(alternate_implementation) {
+                this->snapshot.current_iteration_bfprt_partition_swaps += 1;
+                this->snapshot.total_executed_bfprt_partition_swaps += 1;
+                size_t swap_lenght = rhs - lhs;
+                if ( swap_lenght > this->snapshot.current_iteration_longest_bfprt_partition_swap ) {
+                    this->snapshot.current_iteration_longest_bfprt_partition_swap = swap_lenght;
+                }
+            }
+            else {
+                this->snapshot.current_iteration_partition_swaps += 1;
+                this->snapshot.total_executed_partition_swaps += 1;
+                size_t swap_lenght = rhs - lhs;
+                if ( swap_lenght > this->snapshot.current_iteration_longest_partition_swap ) {
+                    this->snapshot.current_iteration_longest_partition_swap = swap_lenght;
+                }
+            }
+        }
+    );
 }
 
 /**
@@ -120,21 +161,38 @@ inline void IQS<Container, Type>::swap(Container &container, std::size_t lhs, st
  */
 template<class Container, class Type>
 Type IQS<Container, Type>::next() {
+    this->snapshot.current_extraction_executed_partitions = 0;
     while(1){
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resize the search window
+
+        // reset counters
+        this->snapshot.current_iteration_pushed_pivots = 0;
+        this->snapshot.current_iteration_pulled_pivots = 0;
+
+        LOCAL_CLOCK_START(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_BEGIN)
+
         std::size_t top_element = this->stack.top();
         if (this->extracted_count == this->stack.top() ){
             this->extracted_count++;
             this->stack.pop();
+
+            LOCAL_CLOCK_END(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_END,
+            this->snapshot, this->snapshots,
+            {
+                this->snapshot.current_iteration_pulled_pivots += 1;
+                this->snapshot.total_pulled_pivots += 1;
+            })
             return this->container[top_element];
         }
-        #ifdef FIXED_PIVOT_SELECTION
-            std::size_t pivot_idx = this->extracted_count;
-        #else
-            std::size_t pivot_idx = this->random_between(this->extracted_count, top_element);
-        #endif
+
+        std::size_t pivot_idx;
+        if (this->configuration.use_random_pivot)
+            pivot_idx = this->random_between(this->extracted_count, top_element);
+        else
+            pivot_idx = this->biased_between(this->extracted_count, top_element, this->configuration.pivot_bias);
+
 
         Type pivot_value = this->container[pivot_idx];
 
@@ -143,20 +201,37 @@ Type IQS<Container, Type>::next() {
         // We displace the selection for the top element in order to prevent hanging
         // you can't just use top_element -1 at the first iteration, as you still need to sort the last element. duh!
         // pivot partition and indexing
-        #ifdef USE_FAT_PARTITION
-            pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element);
-        #else
-            pivot_idx = this->partition(pivot_value, this->extracted_count, top_element);
-        #endif
 
+        // As background we'll be using the three-way implementation on those tests in order to level-ground all implementations
 
+        CLOCK_ROUTINE(
+            this->configuration.log_pivot_time,
+            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element, this->configuration.use_bfprt);},
+            PARTITION_STAGE_END,
+            this->snapshot, this->snapshots,
+            partition_time, total_partition_time,
+            {
+                this->snapshot.current_extracted_pivot = pivot_idx / this->container.size();
+                this->snapshot.total_executed_partitions += 1;
+                this->snapshot.current_extraction_executed_partitions += 1;
+                this->snapshot.current_stack_size += this->stack.size();
+            }
+        )
         // Push and recurse the loop
         this->stack.push(pivot_idx);
+
+        LOCAL_CLOCK_END(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_LOOP,
+        this->snapshot, this->snapshots,
+        {
+            this->snapshot.current_iteration_pushed_pivots += 1;
+            this->snapshot.total_pushed_pivots += 1;
+        })
     }
 }
 
 template<class Container, class Type>
-IQS<Container, Type>::IQS(Container &container): container(container) {
+IQS<Container, Type>::IQS(Container &container, configuration_t &configuration, std::vector<snapshot_t> &snapshots, snapshot_t &snapshot): 
+container(container), configuration(configuration), snapshot(snapshot), snapshots(snapshots) {
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);

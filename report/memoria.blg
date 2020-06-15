@@ -1,5 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: memoria.aux
 The style file: plain.bst
 Database file #1: refs.bib
@@ -7,45 +7,46 @@ Warning--to sort, need author, editor, or key in Baeza-Yates_Manber_1992
 Warning--to sort, need author, editor, or key in Cantoni_Creutzburg_Levialdi_Wolf_1989
 Warning--empty author and editor in Cantoni_Creutzburg_Levialdi_Wolf_1989
 Warning--empty author and editor in Baeza-Yates_Manber_1992
-You've used 17 entries,
+Warning--empty school in 10.5555/150918
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            623 strings with 6576 characters,
-and the built_in function-call counts, 5237 in all, are:
-= -- 495
-> -- 196
+            632 strings with 6751 characters,
+and the built_in function-call counts, 5668 in all, are:
+= -- 538
+> -- 210
 < -- 2
-+ -- 83
-- -- 62
-* -- 372
-:= -- 850
-add.period$ -- 49
-call.type$ -- 17
-change.case$ -- 77
++ -- 90
+- -- 66
+* -- 395
+:= -- 930
+add.period$ -- 55
+call.type$ -- 19
+change.case$ -- 84
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 224
-empty$ -- 461
-format.name$ -- 62
-if$ -- 1113
+cite$ -- 24
+duplicate$ -- 245
+empty$ -- 497
+format.name$ -- 66
+if$ -- 1200
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 22
-newline$ -- 86
-num.names$ -- 30
-pop$ -- 93
+int.to.str$ -- 19
+missing$ -- 24
+newline$ -- 96
+num.names$ -- 34
+pop$ -- 102
 preamble$ -- 1
-purify$ -- 65
+purify$ -- 71
 quote$ -- 0
-skip$ -- 149
+skip$ -- 161
 stack$ -- 0
-substring$ -- 344
-swap$ -- 42
+substring$ -- 355
+swap$ -- 44
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 54
-warning$ -- 4
-while$ -- 42
-width$ -- 19
-write$ -- 183
-(There were 4 warnings)
+type$ -- 60
+warning$ -- 5
+while$ -- 46
+width$ -- 21
+write$ -- 206
+(There were 5 warnings)

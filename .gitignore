@@ -3,3 +3,6 @@
 /program/base_benchmark/build/
 /program/base_benchmark/cmake-build-debug/
 /program/base_benchmark/cmake-build-debug-system/
+**/build
+**/.vscode
+**/test_data

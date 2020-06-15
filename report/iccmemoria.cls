@@ -19,9 +19,14 @@
 \selectlanguage{english}
 \bibliographystyle{plain}
 
-\def\utalca{University of Talca}
-\def\facdeing{Engineering faculty}
-\def\escdeicc{Civil Computer Engineering School}
+\def\utalca{Universidad de Talca}
+\def\facdeing{Facultad de Ingeniería}
+\def\escdeicc{Escuela de Ingeniería Civil en Computación}
+
+\def\utalcaEng{University of Talca}
+\def\facdeingEng{Engineering faculty}
+\def\escdeiccEng{Civil Computer Engineering School}
+
 \def\ciudad{Curic\'{o}}
 \def\pais{Chile}
 
@@ -40,6 +45,7 @@
 \def\adicional#1{\def\@adicional{#1}}
 \def\director#1{\def\@director{#1}}
 \def\titulo#1{\def\@titulo{#1}}
+\def\tituloEng#1{\def\@tituloEng{#1}}
 
 %%%
 % Margin redimension
@@ -94,6 +100,17 @@
 \singlespacing
 }
 
+\def\makeencabezadoEng
+{
+\begin{center}
+\onehalfspacing
+{\large\bf\MakeUppercase{\utalcaEng}} \\
+{\large\MakeUppercase{\facdeingEng}} \\
+{\large\MakeUppercase{\escdeiccEng}}
+\end{center}
+\singlespacing
+}
+
 \def\logo
 {
 \begin{center}
@@ -106,11 +123,28 @@
 \singlespacing
 \parbox{180pt}{
 %\MakeUppercase{
+Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
+
+}
+\def\ingcivilEng
+{
+\singlespacing
+\parbox{180pt}{
+%\MakeUppercase{
 %Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 Report to apply for a Civil Computer Engineer degree\\}
 }
 
 \def\calificacion
+{
+\doublespacing
+\parbox{300pt}{
+  Este documento fue evaluado con una nota de: \line(1,0){50}\\
+  %Firman dicha calificación:\\
+}
+}
+
+\def\calificacionEng
 {
 \doublespacing
 \parbox{300pt}{
@@ -132,6 +166,128 @@ Report to apply for a Civil Computer Engineer degree\\}
 \def\maketitle
 {
 
+  \singlespacing
+  
+  % TAPA 
+  
+  \pagestyle{empty}
+  \setcounter{page}{-1}
+  \vspace*{-25mm}
+  
+  % Logo UTalca
+  \logo
+  
+  % Encabezado
+  \makeencabezado
+  
+  % Título de la memoria
+  \bigskip
+  \begin{center}
+    %\onehalfspacing
+    {\Large \bf \@titulo\\}  
+    %\singlespacing
+  \end{center}
+  
+  % Autor
+  \bigskip
+  \begin{center}
+    {\bf \MakeUppercase{\@author}}
+  \end{center}
+  
+  \vfill
+  
+  \doublespacing
+  {Profesor Guia: \MakeUppercase{\@supervisor}}
+  \bigskip
+  \bigskip
+  \bigskip
+  
+  \ingcivil
+  
+  \footdate
+  
+  \newpage
+  
+  % TAPA con profesores
+  
+  \pagestyle{empty}
+  \vspace*{-25mm}
+  
+  % Logo UTalca
+  \logo
+  
+  % Encabezado
+  \makeencabezado
+  
+  % Título de la memoria
+  \bigskip
+  \begin{center}
+    {\Large \bf \@titulo\\}  
+  \end{center}
+  
+  % Autor
+  \bigskip
+  \begin{center}
+    {\bf \MakeUppercase{\@author}}
+  \end{center}
+  
+  \vfill
+  \bigskip
+  
+  %\begin{minipage}{6cm}
+  %  \singlespacing
+    %\vspace{1.0cm}\hrule\smallskip
+    {Guide:
+    \MakeUppercase{\@supervisor}}
+  %\end{minipage}
+  \bigskip
+  
+  %\begin{minipage}{6cm}
+  %  \singlespacing
+    %\vspace{1.0cm}\hrule\smallskip
+  %  {Profesor Informante:\\
+  %  \MakeUppercase{\@informantex}}
+  %\end{minipage}
+  %\bigskip
+  %\hfill
+  %\begin{minipage}{6cm}
+  %  \singlespacing
+    %\vspace{1.0cm}\hrule\smallskip
+  %  {Profesor Informante:\\
+  %  \MakeUppercase{\@informantey}}
+  %\end{minipage}
+  %\bigskip
+  
+  %% TODO: What is?
+  {Profesor Informante: \MakeUppercase{\@informantex}}
+  \bigskip
+  
+  {Profesor Informante: \MakeUppercase{\@informantey}}
+  \bigskip
+  
+  %{\@adicional}
+  %\bigskip
+  \bigskip
+  \bigskip
+  
+  \ingcivil
+  
+  \calificacion
+  
+  \bigskip
+  
+  \footdate
+  %\bigskip
+  
+  \newpage
+  \pagestyle{headings} %% de ahora en adelante hay headings en las páginas
+  \onehalfspacing %% de ahora en adelante la separacion es de línea y 1/2
+
+
+
+  %%%%%% START OF ENGLISH VERSION
+  
+
 \singlespacing
 
 % TAPA 
@@ -144,13 +300,13 @@ Report to apply for a Civil Computer Engineer degree\\}
 \logo
 
 % Encabezado
-\makeencabezado
+\makeencabezadoEng
 
 % Título de la memoria
 \bigskip
 \begin{center}
   %\onehalfspacing
-  {\Large \bf \@titulo\\}  
+  {\Large \bf \@tituloEng\\}  
   %\singlespacing
 \end{center}
 
@@ -168,7 +324,7 @@ Report to apply for a Civil Computer Engineer degree\\}
 \bigskip
 \bigskip
 
-\ingcivil
+\ingcivilEng
 
 \footdate
 
@@ -188,7 +344,7 @@ Report to apply for a Civil Computer Engineer degree\\}
 % Título de la memoria
 \bigskip
 \begin{center}
-  {\Large \bf \@titulo\\}  
+  {\Large \bf \@tituloEng\\}  
 \end{center}
 
 % Autor
@@ -203,7 +359,7 @@ Report to apply for a Civil Computer Engineer degree\\}
 %\begin{minipage}{6cm}
 %  \singlespacing
   %\vspace{1.0cm}\hrule\smallskip
-  {Advisor:
+  {Guide:
   \MakeUppercase{\@supervisor}}
 %\end{minipage}
 \bigskip
@@ -225,10 +381,10 @@ Report to apply for a Civil Computer Engineer degree\\}
 %\bigskip
 
 %% TODO: What is?
-{Committee Member: \MakeUppercase{\@informantex}}
+{Advisor: \MakeUppercase{\@informantex}}
 \bigskip
 
-{Committee Member: \MakeUppercase{\@informantey}}
+{Advisor: \MakeUppercase{\@informantey}}
 \bigskip
 
 %{\@adicional}
@@ -236,9 +392,9 @@ Report to apply for a Civil Computer Engineer degree\\}
 \bigskip
 \bigskip
 
-\ingcivil
+\ingcivilEng
 
-\calificacion
+\calificacionEng
 
 \bigskip
 
