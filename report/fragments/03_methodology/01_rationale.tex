@@ -1,0 +1,9 @@
+
+\section{Rationale}
+IncrementalQuickSelect and its introspective version, IntrospectiveQuickSelect, already have their theoretical analyses for the worst case instances. But such theoretical analysis is not always feasible, sometimes not easy and most of the time it is not realistic. As a practical example of it, when testing IQS against HeapSort for a full array sorting under architectures with small cache memory, IQS outperforms vastly HeapSort as it trashes the cache on each iteration, but when cache units are large enough to support the entire array, there is no point on using IQS, as most operations are actually solved on cache directly. There is a huge gap when it comes to practice on algorithm design, and IIQS is also not free of such problems.
+
+The main issue arose when it comes to the analysis of the median-of-medians effects on the partition, as the execution of this algorithm offsets itself on each partition, so, it is the equivalent to run a partial sorting on fixed size contiguous segments of the array continuously. This effect displaces the elements but as it is in function of the positioning of the elements itself rather than their distribution, which makes really hard the use of standard techniques like amortized analysis to study the behaviour of IIQS. Even worse, due to the increased complexity of the algorithm, its theoretical analysis is likely to differ from the practical results.
+
+The problem at hand is to modify the current implementation of IQS and IIQS to support an extra case, which is when the sequence of elements can have repeated elements on it. This is now a problem for many reasons as it messes up the pivot selection heuristics and partition stages of the original algorithm.
+
+Due to the aforementioned reasons, we want to take a experimental approach to analyse this new instance and use the results to guide the development of a extension of this algorithm.

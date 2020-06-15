@@ -1,0 +1,100 @@
+\section{Experimental process breakdown}
+% first generate inputs
+% perform gridsearch
+% analyze results
+% present
+% raise next question
+Now we will present a breakdown of the experimental process definitions needed in order to begin executing our experiments.
+
+\subsection{Experimental cycle}
+As mentioned before in~\ref{SUBSECTION:EXPERIMENTAL_ALGORITMICS_CONSIDERATIONS}, this process is being handled in a cyclic manner, and each experiment is controlled by their own Jupyter Notebook. Now we will describe the steps followed through the realization of the experiments of this report.
+
+\subsubsection{Hypothesis}
+We begin by raising a question and a doable answer to it which we want to prove if it holds for the current experimentation cycle. In the context of this report, hypothesis are code tuning improvements that we want to check before building a solution for our problem.
+
+\subsubsection{Input and execution setup}
+After defining our topic, we start generating inputs and planning the experiment execution. As for the inputs, we already defined in Section~\ref{SECTION:METHODOLOGY_FOUNDATIONALS} how the inputs will be generated, as for each experiment inputs will be selected accordingly on what we want to test or explore. 
+
+On the other hand, as the main driver already accepts a defined set of parameters to control the execution, those are used to setup the experiment environment. From now on, we will refer to cross product of the combination of inputs and program parameters as the \textit{search space}.
+
+\subsubsection{Execution}
+At this point we execute a GridSearch over out \textit{search space} in sequential order - this way we reduce the amount of disturbances that the experiment can suffer along the way. After the execution of the experiments, snapshots are stored on a single ASCII file using a comma separated schema which is is later used for the analysis.
+
+\subsubsection{Analysis}
+The results are gathered on Jupyter and examinated in order to get insight on the phenomena and to check if the hypothesis is valid or not. After we gather enough information, a discussion on the results is held, which is written together with the results on this report.
+
+\subsection{Metrics and indicators}
+In order to evaluate the experiments we need to define beforehand some metrics to determine which aspects of the execution will become evaluated during the experiments. The difference between comparing raw data and use metrics is the pre-processing being made in order to gain useful insight about what is going on under the hood before executing our first benchmark.
+
+\subsubsection{Swaps}
+Using the definitions for measuring disorder given in Section \ref{SEC:MEASURING_DISORDER}, we can establish metric for complete sorting algorithms, but in our case, both IQS and IIQS falls into the definition of incremental sorting as shown on Section~\ref{SEC:INCREMENTAL_SORTING} which renders such metrics unrealistic given that we want to study the behaviour of extractions and not of a complete sorting execution.
+
+Still, such definitions can help us to establish a base to define our own disorder metric given the following known premises:
+
+\begin{itemize}
+    \item Both IQS and IIQS rely on \textit{partition} in order to perform partial sorting the same way as \textit{QuickSort}.
+    \item QuickSort being a adaptive sorting algorithm is influenced by presortedness.
+    \item \textit{Dis}, \textit{Max}, \textit{Exc}, \textit{Rem}, \textit{Runs}, \textit{SUS}, and \textit{SMS.SUS} are applicable metrics for \textit{QuickSort}.
+    \item Both IQS and IIQS perform their heavy lifting at the partition stage.
+\end{itemize}
+
+Then, the minimum common denominator of the aforementioned premises is the behaviour of swap operations. Given the nature of \textit{partition} operation, it is expected to not exchange any elements (\textit{Exc}) on a sorted sequence, and transitively, each segment of every iteration of IQS must follow the same property given that it is being performed in-place.
+
+On the other hand, as it can be seen on the executions for worst case of IQS, as there are longs ascending sub-sequences on the input (\textit{Runs}, \textit{SUS}, \textit{SMS.SUS}), the fastest the partition stage ends, as it is not performing any swaps and in some cases not storing any pivots at all.
+
+Now when a swap operation occurs at the partition stage, the elements being swapped and the pivot share a partial sorting relationship between them. Given that this relationship can occur at any point of the sequence we can state the following aspects of the swap operation:
+
+\begin{itemize}
+    \item The longest the distance of the swap being performed from the pivot, the elements are more far away from their actual position (\textit{Dis}, \textit{Max}).
+    \item A sorted sequence doesn't perform any swaps on their partition stage.
+    \item Given that all elements are being sorted in-place, and partitions are executed in a recursive way respect the pivot position, the previous two properties are transitive respect the partitions that are being generated during the extraction of a minima.
+\end{itemize}
+
+Then, we establish the following two disorder metrics for IQS and IIQS:
+
+\begin{itemize}
+    \item \textbf{N\_SWAPS}: As the number of swaps performed for a given iteration of IQS. This metric can be extended as cumulative regarding the extraction of a minima. The values for \textbf{N\_SWAPS} are in the range $[0, n^2]$ for a given iteration.
+    \item \textbf{MAX\_SWAP}: As the longest swap performed during a iteration of IQS. This metric only applies to each individual execution of partition, as the maximum distance is bound to decrease on each iteration. The values for \textbf{MAX\_SWAP} are in the range $[0, m]$, on which $m$ is the size of the current partition which follows $m \leq n$.
+\end{itemize}
+
+\subsubsection{Stack operations}
+A key aspect of IQS and IIQS is the amount of extra memory needed to perform the sorting. Under normal conditions, IQS requires $log_2(n)$ extra space in order to maintain all pivots for the first extraction (which is the most heavy from all of them as it partition and push pivots by $log_2(n)$ times the sequence length).
+
+One of the problems of IQS was the fact that in certain cases, $n$ pivots get stored on the stack, forcing for the non-introspective version to fix the stack size at $n$, whilst the introspective version due to its most stable behaviour can be safely set at $log_{1.7}(n)$ thanks to the median-of-median algorithm effect.
+
+In light of the aforementioned facts, it makes sense that any modification being made to IQS or IIQS must also compare the performance of the stack growth due to caching and memory consumption concerns. In contrast to the previous work on IIQS, this version of the analysis will also consider other extra metrics such as number of pulled elements and number of pushed elements per iteration and per minima extraction, as their behaviour is directly connected to the time used by the partitioning stage.
+
+\subsubsection{Number of executed subroutines}
+In line with the stack problem, it is sane to establish if the number of elements in the stack is in direct relation to the executions of the partition routine, and in the same way, the executions of the partition routine has direct relationship with the number of elements extracted. In this regard, we also want to log the time that both routines get called during minima extraction to study if they had any effect on the total running time of IQS and IIQS.
+
+\subsubsection{Pivot bias}
+The preferred way of testing worst-case executions on partition-based sorting algorithms is to fix the pivot selection to a position which ensures the worst outcome each time. This is the main reason on why introduction of randomization for selection for pivots is so effective on maintaining expected average case on such algorithms. For IQS, worst case comes from choosing the lowest or the highest element on the sequence which can be accomplished by fixing the pivot position on the edges of the sequence to be partitioned, given that the entire sequence is already sorted.
+
+But when testing synthetic test cases it is not proven if there is a position which performs better for certain cases than selecting the middle element as pivot on partition based algorithms (given the same constraints as the previous paragraph), nor if this bias for pivot selection can be used to tune the algorithm beforehand for certain cases.
+
+\subsubsection{Clocked routines}
+Not all parts of the program are subjected to monitoring via snapshots, as this approach is both nonsensical and non practical. We just change the execution of the program on certain points of the execution in order to gather metrics or to push elements to the log array. 
+
+Currently defined sections to be used as snapshot points are the following:
+
+\begin{tabularx}{\linewidth}{|r|r|X|}
+    \hline
+    Program flag & code & Description \\
+    \hline
+    \texttt{EXTRACTION\_STAGE\_BEGIN} & \texttt{10} & Start of the minima extraction\\
+    \hline
+    \texttt{EXTRACTION\_STAGE\_END} & \texttt{20} & End of the minima extraction \\
+    \hline
+    \texttt{ITERATION\_STAGE\_BEGIN} & \texttt{30} & Begin of a IQS or IIQS iteration \\
+    \hline
+    \texttt{ITERATION\_STAGE\_LOOP} & \texttt{40} & Middle point of a IQS or IIQS iteration \\
+    \hline
+    \texttt{ITERATION\_STAGE\_INTROSPECT} & \texttt{41} & Introspect stage of IIQS \\
+    \hline
+    \texttt{ITERATION\_STAGE\_END} & \texttt{50} & End of IQS or IIQS iteration \\
+    \hline
+    \texttt{PARTITION\_STAGE\_BEGIN} & \texttt{60} & Start of partitioning stage \\
+    \hline
+    \texttt{PARTITION\_STAGE\_END} & \texttt{70} & End of partitioning stage \\
+    \hline
+\end{tabularx}

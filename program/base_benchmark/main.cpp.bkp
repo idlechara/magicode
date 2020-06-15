@@ -1,0 +1,62 @@
+// Copyright (C) 2020 Erik Regla
+// 
+// This file is part of Magicode - (I)IQS benchmark.
+// 
+// Magicode - (I)IQS benchmark is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// Magicode - (I)IQS benchmark is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
+
+#include <cstdlib>
+#include <cstdio>
+#include <ctime>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <array>
+#include <iostream>
+
+#include <boost/program_options>
+
+#include "flags.h"
+
+#include "src/IQS.cpp"
+#include "src/BareBoneIQS.cpp"
+#include "src/IIQS.cpp"
+#include "src/BareBoneIIQS.cpp"
+
+
+int main(int argc, char const *argv[])
+{
+    // Declare the supported options.
+    boost po::options_description desc("Allowed options");
+    desc.add_options()
+        ("help", "produce help message")
+        ("compression", po::value<int>(), "set compression level")
+    ;
+
+    po::variables_map vm;
+    po::store(po::parse_command_line(ac, av, desc), vm);
+    po::notify(vm);    
+
+    if (vm.count("help")) {
+        cout << desc << "\n";
+        return 1;
+    }
+
+    if (vm.count("compression")) {
+        cout << "Compression level was set to " 
+    << vm["compression"].as<int>() << ".\n";
+    } else {
+        cout << "Compression level was not set.\n";
+    }
+}
