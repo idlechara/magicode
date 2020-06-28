@@ -44,7 +44,7 @@ inline std::size_t IQS<Container, Type>::random_between(std::size_t lhs, std::si
 template<class Container, class Type>
 inline std::size_t IQS<Container, Type>::biased_between(std::size_t lhs, std::size_t rhs, double bias) {
     double range = (double)(rhs - lhs);
-    std::size_t index_bias = round(bias / range);
+    std::size_t index_bias = floor(bias * range);
     return lhs + index_bias;
 }
 

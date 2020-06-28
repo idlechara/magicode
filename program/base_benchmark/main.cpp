@@ -110,6 +110,8 @@ int main(int argc, char const *argv[])
         else{
             iqs.next();
         }
+        // std::cout << "Waiting for input... Currently " << snapshots.size() << " in storage. \n";
+        // getchar();
     }
 
     std::cout << "Amount of snapshots: " << snapshots.size() << std::endl;
@@ -125,6 +127,8 @@ int main(int argc, char const *argv[])
     }
     
     output_file.close();
+
+    std::cout << "Recovered " << snapshots.size() << " registries.\n";
 
 
     std::cout << std::endl;
