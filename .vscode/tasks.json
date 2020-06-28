@@ -6,15 +6,36 @@
         {
             "type": "shell",
             "label": "gcc build active file",
-            "command": "/usr/bin/gcc",
+            "command": "/usr/bin/g++",
             "args": [
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-lboost_program_options",
             ],
             "options": {
-                "cwd": "/usr/bin"
+                "cwd": "${workspaceFolder}"//"/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+
+        {
+            "type": "shell",
+            "label": "g++ build protoype project",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/program/base_benchmark/main.cpp",
+                "-o",
+                "${workspaceFolder}/program/base_benchmark/main_prototype",
+                "-lboost_program_options",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/program/base_benchmark/"
             },
             "problemMatcher": [
                 "$gcc"
