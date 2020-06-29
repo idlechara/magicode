@@ -15,22 +15,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Magicode - (I)IQS benchmark.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef IQS_TEST_IIQS_H
-#define IQS_TEST_IIQS_H
+#ifndef IncrementalSorting_TEST_IncrementalSorting_H
+#define IncrementalSorting_TEST_IncrementalSorting_H
 
 #include "../flags.h"
 
-#include "IQS.h"
+#include <stack>
+#include "snapshot.h"
+#include <vector>
 
 template<class Container, class Type>
-class IIQS : public IQS<Container, Type>{
+class IncrementalSorting {
 public:
-    IIQS();
-    IIQS(Container &container, configuration_t &configuration, std::vector<snapshot_t> &snapshots, snapshot_t &snapshot);
-    Type next() override;
-    inline std::size_t bfprt (Container &container, std::size_t lhs, std::size_t rhs, std::size_t median_length);
-    inline std::size_t median(Container &container, std::size_t lhs, std::size_t rhs);
+    virtual inline void swap(Container &container, std::size_t lhs, std::size_t rhs, bool alternate_implementation);
+    virtual inline std::size_t partition(Type pivot_value, std::size_t lhs, std::size_t rhs);
+    virtual Type next();
+    virtual inline std::size_t random_between(std::size_t lhs, std::size_t rhs);
+    virtual inline std::size_t biased_between(std::size_t lhs, std::size_t rhs, double bias);
+    virtual std::size_t partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs, bool alternate_implementation);
+    virtual std::stack<std::size_t> stack;
 };
 
-
-#endif //IQS_TEST_IIQS_H
+#endif //UNTITLED1_IQS_H
