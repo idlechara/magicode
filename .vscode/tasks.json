@@ -9,6 +9,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
+                "-std=c++11",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
@@ -29,6 +30,8 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
+                "-std=c++11",
+                "-O0",
                 "${workspaceFolder}/program/base_benchmark/main.cpp",
                 "-o",
                 "${workspaceFolder}/program/base_benchmark/main_prototype",

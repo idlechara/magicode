@@ -37,6 +37,14 @@
 // #include "src/BareBoneIIQS.cpp"
 
 
+#define SWAP_BETWEEN(flag, param1, param2, operation) \
+if ( flag ) { \
+    param1 operation;\
+}\
+else {\
+    param2 operation;\
+}\
+
 
 int main(int argc, char const *argv[])
 {
@@ -57,6 +65,7 @@ int main(int argc, char const *argv[])
         ("set-bfprt-beta",      boost::program_options::value<double>(&(configuration_ptr)->alpha_value)->default_value(0.3f),               "set bfprt beta value")
         ("set-random-seed",     boost::program_options::value<int>(&(configuration_ptr)->random_seed_value)->default_value(42),              "set random seed value")
         ("set-pivot-bias",      boost::program_options::value<double>(&(configuration_ptr)->pivot_bias)->default_value(0.5),                 "set pivot selection bias, 0.0= left, 1.0=right, 0.5=center")
+        ("enable-reuse",        boost::program_options::value<bool>(&(configuration_ptr)->enable_reuse)->default_value(false),               "allow reuse of pivots")
         ("input-file",          boost::program_options::value<std::string>(&(configuration_ptr)->input_file_value)->required(),              "input file containing ascii numbers separated by a space")
         ("output-file",         boost::program_options::value<std::string>(&(configuration_ptr)->output_file_value)->required(),             "file to dump logs after execution is terminated")
         ("input-size",          boost::program_options::value<std::size_t>(&(configuration_ptr)->input_size)->required(),                    "amount of integers to read and load as input")
@@ -79,19 +88,29 @@ int main(int argc, char const *argv[])
     std::vector<TYPE_TO_USE> input_array;
     std::fstream input_file(configuration.input_file_value, std::ios_base::in);
 
-    for(size_t i = 0; i < configuration.input_size; i++){
-        TYPE_TO_USE input_element;
-        input_file >> input_element;
-        input_array.emplace_back(input_element);
+    if (input_file){
+        for(size_t i = 0; i < configuration.input_size; i++){
+            TYPE_TO_USE input_element;
+            input_file >> input_element;
+            input_array.emplace_back(input_element);
+        }
+    }
+    else{
+        std::cerr << "FATAL: INEXISTANT FILE " << configuration.input_file_value << "\n Exiting.\n";
+        exit(0);
     }
 
     input_file.close();
 
     std::vector<snapshot_t> snapshots;
+    snapshots.reserve(3000000);
     snapshot_t extraction_snapshot = generate_snapshot(EXTRACTION_STAGE_BEGIN);
     extraction_snapshot.input_size = configuration.input_size;
 
-    IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs = (configuration.use_iiqs) ? IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE>(input_array, configuration, snapshots, extraction_snapshot) : IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE>(input_array, configuration, snapshots, extraction_snapshot);
+    
+
+    IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(input_array, configuration, snapshots, extraction_snapshot);
+    IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(input_array, configuration, snapshots, extraction_snapshot);
 
 
     for(int i = 0; i < configuration.extractions; i++){
@@ -99,16 +118,20 @@ int main(int argc, char const *argv[])
 
         if (configuration.log_extraction_time) {
             std::chrono::high_resolution_clock::time_point extraction_start = std::chrono::high_resolution_clock::now();
-            iqs.next();
+            SWAP_BETWEEN(configuration.use_iiqs, iiqs, iqs, .next();)
+            
             std::chrono::high_resolution_clock::time_point extraction_end = std::chrono::high_resolution_clock::now();
             extraction_snapshot.snapshot_point = EXTRACTION_STAGE_END;
             extraction_snapshot.extraction_time = std::chrono::duration_cast<std::chrono::TIME_UNIT>(extraction_end - extraction_start);
             extraction_snapshot.total_extraction_time = extraction_snapshot.total_extraction_time + extraction_snapshot.extraction_time;
-            extraction_snapshot.current_stack_size = iqs.stack.size();
+            SWAP_BETWEEN(configuration.use_iiqs, 
+                extraction_snapshot.current_stack_size = iiqs.stack.size();, 
+                extraction_snapshot.current_stack_size = iqs.stack.size();,
+                 )
             snapshots.emplace_back(extraction_snapshot);
         }
         else{
-            iqs.next();
+            SWAP_BETWEEN(configuration.use_iiqs, iiqs, iqs, .next();)
         }
         // std::cout << "Waiting for input... Currently " << snapshots.size() << " in storage. \n";
         // getchar();

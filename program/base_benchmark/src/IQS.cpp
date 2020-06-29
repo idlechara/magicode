@@ -18,7 +18,7 @@
 #include "IQS.h"
 #include <cstdlib>
 #include <random>
-
+#include <iostream>
 /**
  *  Function to play with IQS implementation of random
  * @tparam Container container type to handle on the class
@@ -168,6 +168,11 @@ Type IQS<Container, Type>::next() {
         // resize the search window
 
         // reset counters
+        this->snapshot.current_iteration_partition_swaps = 0;
+        this->snapshot.current_iteration_longest_partition_swap = 0;
+        this->snapshot.current_iteration_executed_bfprt_partitions = 0;
+        this->snapshot.current_iteration_bfprt_partition_swaps = 0;
+        this->snapshot.current_iteration_longest_bfprt_partition_swap = 0;
         this->snapshot.current_iteration_pushed_pivots = 0;
         this->snapshot.current_iteration_pulled_pivots = 0;
 
@@ -235,4 +240,9 @@ container(container), configuration(configuration), snapshot(snapshot), snapshot
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
+    std::cout << "Initializing IQS \n";
+}
+
+template<class Container, class Type>
+IQS<Container, Type>::IQS() {
 }

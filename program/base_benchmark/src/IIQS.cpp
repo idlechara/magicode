@@ -32,9 +32,14 @@ Type IIQS<Container, Type>::next() {
  
     while(1){
         //reset counters
+        this->snapshot.current_iteration_partition_swaps = 0;
+        this->snapshot.current_iteration_longest_partition_swap = 0;
+        this->snapshot.current_iteration_executed_bfprt_partitions = 0;
+        this->snapshot.current_iteration_bfprt_partition_swaps = 0;
+        this->snapshot.current_iteration_longest_bfprt_partition_swap = 0;
         this->snapshot.current_iteration_pushed_pivots = 0;
         this->snapshot.current_iteration_pulled_pivots = 0;
-
+        
         // Base condition. If the element referenced by the top of the stack
         // is the element that we're actually searching, then retrieve it and
         // resize the search window
@@ -42,7 +47,7 @@ Type IIQS<Container, Type>::next() {
 
         std::size_t top_element = this->stack.top();
         std::size_t range = top_element - this->extracted_count;
-        std::size_t p70_idx = (std::size_t)std::ceil(range * this->configuration.beta_value);
+        std::size_t p70_idx = this->extracted_count + (std::size_t)std::ceil(range * this->configuration.beta_value);
 
         if (this->extracted_count == top_element){
             this->extracted_count++;
@@ -86,31 +91,31 @@ Type IIQS<Container, Type>::next() {
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
-        std::size_t p30_idx = (std::size_t)std::ceil(range * this->configuration.alpha_value); // actually, if we don't care about balancing the stack, you can ignore the p30 condition
+        std::size_t p30_idx = this->extracted_count + (std::size_t)std::ceil(range * this->configuration.alpha_value); // actually, if we don't care about balancing the stack, you can ignore the p30 condition
 
         //apply introspection rule
-        if (p30_idx > pivot_idx || pivot_idx > p70_idx){
+        if (pivot_idx < p30_idx || pivot_idx > p70_idx){
 
 
             CLOCK_ROUTINE(
                 this->configuration.log_pivot_time,
-                {
+                
                     // if we enter here, then it's because the index needs to be recomputed.
                     // So, we ditch the index and get a nice approximate median median and reuse previous computation
                     pivot_idx = this->bfprt(this->container, this->extracted_count, top_element, 5);
                     pivot_value = this->container[pivot_idx];
                     // then we re-partition, assuming that this median is better
                     pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element, this->configuration.use_bfprt);
-                },
+                ,
                 ITERATION_STAGE_INTROSPECT,
                 this->snapshot, this->snapshots,
                 partition_time, total_partition_time,
-                {
+                
                     this->snapshot.current_extracted_pivot = pivot_idx / this->container.size();
                     this->snapshot.total_executed_bfprt_partitions += 1;
                     this->snapshot.current_iteration_executed_bfprt_partitions += 1;
                     this->snapshot.current_stack_size += this->stack.size();
-                }
+                
             )
 
 
@@ -211,4 +216,14 @@ IIQS<Container, Type>::IIQS(Container &container, configuration_t &configuration
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
+    std::cout << "Initializing IIQS \n";
+}
+
+/**
+ * @tparam Container container type to handle on the class
+ * @tparam Type type used for comparison
+ */
+template<class Container, class Type>
+IIQS<Container, Type>::IIQS(): 
+    IQS<Container, Type>() {
 }
