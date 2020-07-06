@@ -26,6 +26,49 @@
             "miDebuggerPath": "/usr/bin/gdb"
         },
         {
+            "name": "gcc - Debug prototype asc",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/program/base_benchmark/main_prototype",
+            "args": [
+            
+                "--log-iteration-time=0",
+                "--log-pivot-time=0",
+                "--log-swaps=0",
+                "--log-extraction-time=1",
+                "--use-bfprt=1",
+                "--use-iiqs=0",
+                "--set-bfprt-alpha=0.3",
+                "--set-bfprt-beta=0.7",
+                "--use-random-pivot=0",
+                "--set-random-seed=42",
+                "--set-pivot-bias=0.0",
+                "--set-redundant-bias=0.0",
+                "--input-file=/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/experiments/01_base_benchmark_data/sorted_increasing/N_6.ascii",
+                "--output-file=/tmp/N_6.fold_1.ascii",
+                "--input-size=100000",
+                "--extractions=100000"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/program/base_benchmark/",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Skip stdio-common files",
+                    "text": "-interpreter-exec console \"skip -gfi stdlib/*.c\""
+                }   
+            ],
+            "preLaunchTask": "g++ build protoype project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
             "name": "gcc - Debug prototype reverse",
             "type": "cppdbg",
             "request": "launch",
@@ -47,6 +90,49 @@
                 "--output-file=/tmp/N_6.fold_1.ascii",
                 "--input-size=100000",
                 "--extractions=100000"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/program/base_benchmark/",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Skip stdio-common files",
+                    "text": "-interpreter-exec console \"skip -gfi stdlib/*.c\""
+                }   
+            ],
+            "preLaunchTask": "g++ build protoype project",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "gcc - Debug prototype binned",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/program/base_benchmark/main_prototype",
+            "args": [
+            
+                "--log-iteration-time=0",
+                "--log-pivot-time=0",
+                "--log-swaps=0",
+                "--log-extraction-time=1",
+                "--use-bfprt=1",
+                "--set-redundant-bias=1",
+                "--use-iiqs=1",
+                "--set-bfprt-alpha=0.3",
+                "--set-bfprt-beta=0.7",
+                "--use-random-pivot=0",
+                "--set-random-seed=42",
+                "--set-pivot-bias=0.0",
+                "--input-file=/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/experiments/01_base_benchmark_data/bins/N_4_R_0_C_1.fold_1.ascii",
+                "--output-file=/tmp/N_6.fold_1.ascii",
+                "--input-size=1000",
+                "--extractions=1000"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/program/base_benchmark/",
