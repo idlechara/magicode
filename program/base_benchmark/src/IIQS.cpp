@@ -46,13 +46,12 @@ Type IIQS<Container, Type>::next() {
         LOCAL_CLOCK_START(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_BEGIN)
 
         std::size_t top_element = this->stack.top();
-        std::size_t range = top_element - this->extracted_count;
-        std::size_t p70_idx = this->extracted_count + (std::size_t)std::ceil(range * this->configuration.beta_value);
+        //std::size_t range = top_element - this->extracted_count;
+        
 
         if (this->extracted_count == top_element){
             this->extracted_count++;
             this->stack.pop();
-
 
             LOCAL_CLOCK_END(this->configuration.log_iteration_time, iteration_time_clock, ITERATION_STAGE_END,
             this->snapshot, this->snapshots,
@@ -64,18 +63,16 @@ Type IIQS<Container, Type>::next() {
             return this->container[top_element];
         }
 
-
         std::size_t pivot_idx;
         if (this->configuration.use_random_pivot)
-            pivot_idx = this->random_between(this->extracted_count, top_element);
+            pivot_idx = this->random_between(this->extracted_count, top_element-1);
         else
-            pivot_idx = this->biased_between(this->extracted_count, top_element, this->configuration.pivot_bias);
+            pivot_idx = this->biased_between(this->extracted_count, top_element-1, this->configuration.pivot_bias);
         Type pivot_value = this->container[pivot_idx];
-
 
         CLOCK_ROUTINE(
             this->configuration.log_pivot_time,
-            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element, this->configuration.use_bfprt);},
+            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);},
             PARTITION_STAGE_END,
             this->snapshot, this->snapshots,
             partition_time, total_partition_time,
@@ -91,10 +88,11 @@ Type IIQS<Container, Type>::next() {
 
         // IIQS changes start! only check if range is less than the square root of the total size
         // First, we need to check if this pointer belongs P70 \union P30
-        std::size_t p30_idx = this->extracted_count + (std::size_t)std::ceil(range * this->configuration.alpha_value); // actually, if we don't care about balancing the stack, you can ignore the p30 condition
+        std::size_t p70_idx = this->biased_between(this->extracted_count, top_element-1, this->configuration.beta_value); //this->extracted_count + (std::size_t)std::ceil(range * this->configuration.beta_value);
+        std::size_t p30_idx = this->biased_between(this->extracted_count, top_element-1, this->configuration.alpha_value); //this->extracted_count + (std::size_t)std::floor(range * this->configuration.alpha_value); // actually, if we don't care about balancing the stack, you can ignore the p30 condition
 
         //apply introspection rule
-        if (pivot_idx < p30_idx || pivot_idx > p70_idx){
+        if ( (p70_idx - p30_idx > 3) && (pivot_idx < p30_idx || pivot_idx > p70_idx)){
 
 
             CLOCK_ROUTINE(
@@ -102,10 +100,10 @@ Type IIQS<Container, Type>::next() {
                 
                     // if we enter here, then it's because the index needs to be recomputed.
                     // So, we ditch the index and get a nice approximate median median and reuse previous computation
-                    pivot_idx = this->bfprt(this->container, this->extracted_count, top_element, 5);
+                    pivot_idx = this->bfprt(this->container, this->extracted_count, top_element-1, 5);
                     pivot_value = this->container[pivot_idx];
                     // then we re-partition, assuming that this median is better
-                    pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element, this->configuration.use_bfprt);
+                    pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
                 ,
                 ITERATION_STAGE_INTROSPECT,
                 this->snapshot, this->snapshots,

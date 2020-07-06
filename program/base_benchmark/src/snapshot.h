@@ -17,7 +17,7 @@
 
 typedef struct {
     bool log_pivot_time, log_iteration_time, log_extraction_time, log_swaps, use_bfprt, use_iiqs, use_random_pivot, enable_reuse;
-    double alpha_value, beta_value, pivot_bias;
+    double alpha_value, beta_value, pivot_bias, redundant_bias;
     int random_seed_value;
     std::size_t input_size, extractions;
     std::string input_file_value, output_file_value;
@@ -167,7 +167,7 @@ else {\
 
 std::string build_snapshot_header(){
     std::ostringstream ss;
-    std::string param_headers = "param.log_pivot_time,param.log_iteration_time,param.log_extraction_time,param.log_swaps,param.use_bfprt,param.use_iiqs,param.use_random_pivot,param.enable_reuse,alpha_value,param.beta_value,param.pivot_bias,random_seed_value,input_size,param.extractions,input_file_value,param.output_file_value";
+    std::string param_headers = "param.log_pivot_time,param.log_iteration_time,param.log_extraction_time,param.log_swaps,param.use_bfprt,param.use_iiqs,param.use_random_pivot,param.enable_reuse,alpha_value,param.beta_value,param.pivot_bias,param.redundant_bias,random_seed_value,input_size,param.extractions,input_file_value,param.output_file_value";
     std::string snapshot_headers = "snapshot.iteration_time,snapshot.total_iteration_time,snapshot.partition_time,snapshot.total_partition_time,snapshot.bfprt_partition_time,snapshot.total_bfprt_partition_time,snapshot.extraction_time,snapshot.total_extraction_time,snapshot.current_extraction_executed_partitions,snapshot.total_executed_partitions,snapshot.current_iteration_executed_bfprt_partitions,snapshot.total_executed_bfprt_partitions,snapshot.current_iteration_partition_swaps,snapshot.total_executed_partition_swaps,snapshot.current_iteration_longest_partition_swap,snapshot.total_executed_longest_partition_swap,snapshot.current_iteration_bfprt_partition_swaps,snapshot.total_executed_bfprt_partition_swaps,snapshot.current_iteration_longest_bfprt_partition_swap,snapshot.total_executed_longest_bfprt_partition_swap,snapshot.current_extracted_pivot,snapshot.current_stack_size,snapshot.total_pushed_pivots,snapshot.total_pulled_pivots,snapshot.current_iteration_pushed_pivots,snapshot.current_iteration_pulled_pivots,snapshot.current_extraction,snapshot.input_size,snapshot.snapshot_point";
     ss << param_headers << "," << snapshot_headers;
     return ss.str();
@@ -187,6 +187,7 @@ std::string build_snapshot_values(configuration_t &configuration, snapshot_t &sn
     ss << configuration.alpha_value << ",";
     ss << configuration.beta_value << ",";
     ss << configuration.pivot_bias << ",";
+    ss << configuration.redundant_bias << ",";
     ss << configuration.random_seed_value << ",";
     ss << configuration.input_size << ",";
     ss << configuration.extractions << ",";

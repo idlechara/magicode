@@ -44,7 +44,7 @@ inline std::size_t IQS<Container, Type>::random_between(std::size_t lhs, std::si
 template<class Container, class Type>
 inline std::size_t IQS<Container, Type>::biased_between(std::size_t lhs, std::size_t rhs, double bias) {
     double range = (double)(rhs - lhs);
-    std::size_t index_bias = floor(bias * range);
+    std::size_t index_bias = (int)(bias * range);
     return lhs + index_bias;
 }
 
@@ -107,13 +107,15 @@ inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, s
             j++;
         }
     }
-    #ifdef FORCE_PIVOT_SELECTION_LEFT
-        return i; // return left pivot
-    #elif FORCE_PIVOT_SELECTION_RIGHT
-        return k; // return left pivot
-    #else
-            return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
-    #endif
+    
+    return this->biased_between(i, k, configuration.redundant_bias);
+    // #ifdef FORCE_PIVOT_SELECTION_LEFT
+    //     return i; // return left pivot
+    // #elif FORCE_PIVOT_SELECTION_RIGHT
+    //     return k; // return left pivot
+    // #else
+    //         return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
+    // #endif
 }
 
 
@@ -194,9 +196,9 @@ Type IQS<Container, Type>::next() {
 
         std::size_t pivot_idx;
         if (this->configuration.use_random_pivot)
-            pivot_idx = this->random_between(this->extracted_count, top_element);
+            pivot_idx = this->random_between(this->extracted_count, top_element-1);
         else
-            pivot_idx = this->biased_between(this->extracted_count, top_element, this->configuration.pivot_bias);
+            pivot_idx = this->biased_between(this->extracted_count, top_element-1, this->configuration.pivot_bias);
 
 
         Type pivot_value = this->container[pivot_idx];
@@ -211,7 +213,7 @@ Type IQS<Container, Type>::next() {
 
         CLOCK_ROUTINE(
             this->configuration.log_pivot_time,
-            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element, this->configuration.use_bfprt);},
+            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);},
             PARTITION_STAGE_END,
             this->snapshot, this->snapshots,
             partition_time, total_partition_time,

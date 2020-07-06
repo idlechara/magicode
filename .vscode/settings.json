@@ -71,5 +71,7 @@
     "python.linting.pylintArgs": [
         "--init-hook",
         "import sys; sys.path.extend([\"\"/home/kuky_nekoi/.vscode/extensions/ms-python.devicesimulatorexpress-2020.0.36321/out\"\",\"\"/home/kuky_nekoi/.vscode/extensions/ms-python.devicesimulatorexpress-2020.0.36321/out/micropython\"\",\"\"/home/kuky_nekoi/.vscode/extensions/ms-python.devicesimulatorexpress-2020.0.36321/out/clue\"\",\"\"/home/kuky_nekoi/.vscode/extensions/ms-python.devicesimulatorexpress-2020.0.36321/out/base_circuitpython\"\"])"
-    ]
+    ],
+    "editor.wordWrapColumn": 140,
+    "editor.wordWrap": "bounded"
 }
