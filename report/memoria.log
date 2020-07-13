@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  13 JUL 2020 03:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  13 JUL 2020 04:15
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -359,11 +359,11 @@ Overfull \hbox (13.03082pt too wide) in paragraph at lines 109--109
 \tf@toc=\write3
 \openout3 = `memoria.toc'.
 
- [5] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lof)
+ [5] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lof [6])
 \tf@lof=\write4
 \openout4 = `memoria.lof'.
 
- [6] [7] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot)
+ [7] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot)
 \tf@lot=\write5
 \openout5 = `memoria.lot'.
 
@@ -394,57 +394,27 @@ Underfull \hbox (badness 10000) detected at line 5
 
 (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/01_rationale.tex [28
 
-]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/02_foundationals.tex [29] [30]
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 80--81
-[][] 
+]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/02_foundationals.tex
+Overfull \hbox (3.29202pt too wide) in paragraph at lines 8--9
+\OT1/cmr/m/n/12 IncrementalQuickSelect and In-tro-spec-tiveIn-cre-men-talQuick-S-e-lect are al-go-rithms used
  []
 
-[31]
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 151--152
-[][] 
- []
-
-[32] [33] [34] [35]
-Underfull \hbox (badness 10000) in paragraph at lines 247--247
+[29] [30] [31] [32] [33] [34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\OT1/cmr/m/n/12 Linux rspk-shoukugun 5.4.0-7629-generic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 247--247
-\OT1/cmr/m/n/12 #33[]1589834512[]20.04[]ff6e79e-Ubuntu SMP Mon May
- []
-
-
-Underfull \hbox (badness 5359) in paragraph at lines 247--247
+Underfull \hbox (badness 5359) in paragraph at lines 270--270
 []|\OT1/cmr/m/n/12 Linux ver-sion 5.4.0-7629-generic (buildd@lcy01-amd64-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 247--247
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 \OT1/cmr/m/n/12 013) (gcc ver-sion 9.3.0 (Ubuntu 9.3.0-10ubuntu2))
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 247--247
-\OT1/cmr/m/n/12 #33[]1589834512[]20.04[]ff6e79e-Ubuntu SMP Mon May
- []
-
-
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 247--248
-[][] 
- []
-
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/03_breakdown.tex [36] [37] [38] [39] [40])) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/index.tex
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 100--1
-[][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--1
-
- []
-
-[41] [42]
+) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/03_breakdown.tex [36] [37] [38] [39] [40])) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/index.tex [41]
 Chapter 4.
 
 Underfull \hbox (badness 10000) detected at line 1
@@ -452,61 +422,61 @@ Underfull \hbox (badness 10000) detected at line 1
  []
 
 (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/01_experimental_setup.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/02_base_benchmarking.tex
-<./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png, id=167, 976.64874pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png, id=164, 976.64874pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png  used on input line 10.
 (pdftex.def)             Requested size: 343.48299pt x 482.22237pt.
-<./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png, id=169, 976.64874pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png, id=166, 976.64874pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png  used on input line 23.
 (pdftex.def)             Requested size: 343.48299pt x 482.22237pt.
- [43
+ [42
 
-] [44 <./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>] [45 <./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>]
-<./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png, id=183, 957.5775pt x 1371.1225pt>
+] [43 <./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>] [44 <./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>]
+<./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png, id=178, 957.5775pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png  used on input line 41.
 (pdftex.def)             Requested size: 343.48299pt x 491.8254pt.
- [46] [47 <./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>]
-<./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png, id=191, 910.40125pt x 887.315pt>
+ [45] [46 <./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>]
+<./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png, id=188, 910.40125pt x 887.315pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png  used on input line 65.
 (pdftex.def)             Requested size: 343.48299pt x 334.77321pt.
-<./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png, id=192, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png, id=189, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png  used on input line 73.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-<./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png, id=193, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png, id=190, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png  used on input line 85.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-<./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png, id=194, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png, id=191, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png  used on input line 93.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
- [48]
-<./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png, id=198, 963.6pt x 1371.1225pt>
+ [47]
+<./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png, id=195, 963.6pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png  used on input line 106.
 (pdftex.def)             Requested size: 343.48299pt x 488.72899pt.
- [49 <./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>] [50 <./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png>] [51 <./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png>] [52 <./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>] [53 <./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/03_partitioning_schemes.tex [54
+ [48 <./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>] [49 <./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png>] [50 <./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png>] [51 <./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>] [52 <./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/03_partitioning_schemes.tex [53
 
-] [55] [56]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/04_pivot_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/05_median_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [57]
+] [54] [55]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/04_pivot_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/05_median_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [56]
 Chapter 5.
 
 Underfull \hbox (badness 10000) detected at line 1
 \OT1/cmr/bx/n/24.88 5.
  []
 
-) [58
+) [57
 
 ]
 Chapter 6.
@@ -515,28 +485,28 @@ Underfull \hbox (badness 10000) detected at line 97
 \OT1/cmr/bx/n/24.88 6.
  []
 
-[59
+[58
 
-] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl [60] [61]
+] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl [59] [60]
 Underfull \hbox (badness 1019) in paragraph at lines 96--99
 []\OT1/cmr/m/n/12 Steven S. Skiena.  En-croach-ing lists as a mea-sure of pre-sort-ed-ness.  \OT1/cmr/m/it/12 BIT\OT1/cmr/m/n/12 ,
  []
 
-) [62] [63
+) [61] [62
 
 ]
 Overfull \hbox (0.45876pt too wide) detected at line 150
 \OT1/cmr/bx/n/24.88 A.
  []
 
-[64
+[63
 
 ]
 Underfull \hbox (badness 10000) detected at line 163
 \OT1/cmr/bx/n/24.88 B.
  []
 
-[65
+[64
 
 ] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux)
 
@@ -544,18 +514,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3989 strings out of 481239
- 65253 string characters out of 5920377
- 322177 words of memory out of 5000000
- 19102 multiletter control sequences out of 15000+600000
+ 3994 strings out of 481239
+ 65358 string characters out of 5920377
+ 326232 words of memory out of 5000000
+ 19107 multiletter control sequences out of 15000+600000
  540769 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,33p,1041b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,10n,33p,1198b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (69 pages, 3195086 bytes).
+Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (68 pages, 3196911 bytes).
 PDF statistics:
- 310 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
+ 307 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
