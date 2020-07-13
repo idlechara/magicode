@@ -25,6 +25,11 @@ Thomas~H. Cormen, Charles~E. Leiserson, Ronald~L. Rivest, and Clifford Stein.
 \newblock {\em Introduction to Algorithms, Third Edition}.
 \newblock The MIT Press, 3rd edition, 2009.
 
+\bibitem{10.2307/167074}
+G.~A. Croes.
+\newblock A method for solving traveling-salesman problems.
+\newblock {\em Operations Research}, 6(6):791--812, 1958.
+
 \bibitem{10.5555/550359}
 Edsger~Wybe Dijkstra.
 \newblock {\em A Discipline of Programming}.
