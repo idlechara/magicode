@@ -2,6 +2,7 @@
 In experimental algorithms, the first step before engaging into a optimization job is to benchmark our current solutions in order to formulate our hypothesis and expectations. In this case we will check the behaivour of base implementations IQS and IIQS to understand better what IQS and IIQS is, what is happening when a worst case arises and to devise the next steps of this experimental development.
 
 \subsection{Average and worst case}
+\label{SUBSECTION:BASE_BENCHMARK__AVERAGE_WORST}
 
 We start by revisiting the results shown on \cite{7416566}, in order to understand when a worst case appears and what it does imply for the execution of the algorithm. In order to not dive too deep into other aspects of the experimental design, we will stick with the same metrics used in the original article.
 
@@ -68,25 +69,7 @@ Whilst not notorious, we will from now on consider any distribution of the repea
     \label{FIG:BENCHMARK_05_CLASSES}
 \end{figure}
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png}
-    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
-    \caption{Benchmark for randomly sorted sequence with repeated elements $1\times10^4$ elements. IQS and IIQS executions are shown on the first and second column respectively. All extractions are being shown using a linear scale.}
-    \label{FIG:BENCHMARK_06_NOISE_BIAS}
-\end{figure}
 
-At first glance there is no sign of the number of classes affecting the overall running time of the algorithm, as the Figure \ref{FIG:BENCHMARK_05_CLASSES} exhibits a similar behaviour to the one found on both IQS and IIQS, except for a small decrease of the extraction time when less classes are found.
-
-But it is not the case when a single repeated class is found on the sequence and examining  both the noise amount and the bias over the partition algorithm result. As it can be seen on Figure \ref{FIG:BENCHMARK_06_NOISE_BIAS}, there is a strong relationship between a low random noise amount and when the partition algorithm shows a strong bias towards the right-most part of the sequence.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png}
-    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
-    \caption{Benchmark for randomly sorted sequence with repeated elements $1\times10^4$ elements. IQS and IIQS executions are shown on the first and second column respectively. All extractions using a symlog scale.}
-    \label{FIG:BENCHMARK_07_NOISE_BIAS}
-\end{figure}
 
 \begin{figure}[!ht]
     \centering
@@ -96,9 +79,8 @@ But it is not the case when a single repeated class is found on the sequence and
     \label{FIG:BENCHMARK_08_NOISE_BIAS}
 \end{figure}
 
-By furthe examining the effect of the partition bias on the Figure \ref{FIG:BENCHMARK_07_NOISE_BIAS} we can observe that biasing the partition algorithm to return elements on the leftmost part of the repeated sequence yields higher extraction times in average than other values, and on the opposite side, biasing the algorithm to return elements towards the rightmost part of the sequence increments the time spent on the first extraction by a many orders of magnitude, similar to the former case. On the other hand, we can see a rather stable behaivour when fixing the bias to a value in the middle.
+As for the random noise in the sequence\footnote{We define as the random noise as the number of elements which does not belong to any controlled classes for the experiment. In this case, how many random elements are introduced as fillers on the array.}, as by itself as it does not make any visible changes on the behaviour of the algorithm in relation to its iterations. This is important, because the fact that a single class with low noise represents a case with the same behaviour as found on the worst case of IQS for both algorithms, as it can be checked on Figure \ref{FIG:BENCHMARK_04_SINGLE_CLASS}. 
 
-This is not the case of the random noise in the sequence, as by itself as it does not make any visible changes on the behaivour of the algorithm in relation to the iterations on the algorithm. This is important, because the fact that a single class with low noise represents a case with the same behaviour as found on the worst case of IQS for both algorithms, as it can be checked on Figure \ref{FIG:BENCHMARK_04_SINGLE_CLASS}. 
 
 
 \begin{figure}[!ht]
@@ -108,5 +90,7 @@ This is not the case of the random noise in the sequence, as by itself as it doe
     \caption{Benchmark for randomly sorted sequence with repeated elements $1\times10^4$ elements consisting of a unique class with no random noise added. Both IQS and IIQS executions are shown on the same chart. First column represents all extractions using a linear scale. Second column depicts a logarithmic scale and shows the first $1\times10^3$ extractions.}
     \label{FIG:BENCHMARK_04_SINGLE_CLASS}
 \end{figure}
+
+At first glance there is no sign of the number of classes affecting the overall running time of the algorithm, as the Figure \ref{FIG:BENCHMARK_05_CLASSES} exhibits a similar behaviour to the one found on both IQS and IIQS, except for a small decrease of the extraction time when less classes are found. Thus we can conclude that the mere fact of having at least a single repeated element can make our algorithm to fall into a worst-case scenario, comparable to the same intended to avoid on the original IIQS implementation.
 
 \FloatBarrier

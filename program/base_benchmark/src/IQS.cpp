@@ -60,7 +60,7 @@ inline std::size_t IQS<Container, Type>::biased_between(std::size_t lhs, std::si
  * @return std::size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
-inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t lhs, std::size_t rhs) {
+inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t lhs, std::size_t rhs, bool alternate_implementation) {
     lhs--;
     rhs++;
     while(1){
@@ -76,7 +76,7 @@ inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t
         if (lhs >= rhs) return rhs;
 
         // swap elements
-        this->swap(this-> container, lhs, rhs);
+        this->swap(this-> container, lhs, rhs, alternate_implementation);
     }
 }
 
@@ -213,7 +213,14 @@ Type IQS<Container, Type>::next() {
 
         CLOCK_ROUTINE(
             this->configuration.log_pivot_time,
-            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);},
+            {
+                if(this->configuration.use_dutch_flag){
+                    pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                }
+                else{
+                    pivot_idx = this->partition(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                }
+            },
             PARTITION_STAGE_END,
             this->snapshot, this->snapshots,
             partition_time, total_partition_time,

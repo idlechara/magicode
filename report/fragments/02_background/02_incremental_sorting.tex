@@ -41,6 +41,7 @@ If the pivot is not able to split the sequence into sub-sequences of similar siz
 A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.
 
 \subsection{Introspective Incremental QuickSort}
+\label{SUBSECTION:IIQS}
 
 A slightly more complex version of Incremental QuickSort were developed to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far~\cite{7416566}.
 
