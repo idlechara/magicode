@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  19 JUL 2020 16:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  19 JUL 2020 17:01
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -346,186 +346,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
  []
 
-[0] [1] [2]
-No file memoria.toc.
+[0] [1] [2] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc [3] [4]
+Overfull \hbox (13.03082pt too wide) in paragraph at lines 111--111
+ [][] []\OT1/cmr/m/n/12 Stack man-age-ment com-par-i-son for re-peated se-quences and unique 
+ []
+
+)
 \tf@toc=\write3
 \openout3 = `memoria.toc'.
 
-[3]
-No file memoria.lof.
+ [5] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lof [6])
 \tf@lof=\write4
 \openout4 = `memoria.lof'.
 
-[4]
-No file memoria.lot.
+ [7] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot)
 \tf@lot=\write5
 \openout5 = `memoria.lot'.
 
-[5] [6]
+ [8] [9]
 Chapter 1.
 
 Underfull \hbox (badness 10000) detected at line 60
 \OT1/cmr/bx/n/24.88 1.
  []
 
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/index.tex [7
+(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/index.tex [10
 
-] [8]
+] [11]
 Chapter 2.
 
 Underfull \hbox (badness 10000) detected at line 2
 \OT1/cmr/bx/n/24.88 2.
  []
 
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/01_sorting_algorithms.tex
+(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/01_sorting_algorithms.tex [12
 
-LaTeX Warning: Citation `estivil92' on page 9 undefined on input line 7.
-
-
-LaTeX Warning: Citation `Mehlhorn_1984' on page 9 undefined on input line 7.
-
-
-LaTeX Warning: Citation `10.5555/150918' on page 9 undefined on input line 13.
-
-
-LaTeX Warning: Citation `estivil92' on page 9 undefined on input line 13.
-
-[9
-
-]
-
-LaTeX Warning: Reference `ALG:QuickSelect' on page 10 undefined on input line 23.
-
-
-LaTeX Warning: Reference `ALG:Select_fixed' on page 10 undefined on input line 42.
-
-
-LaTeX Warning: Reference `ALG:Select_random' on page 10 undefined on input line 42.
-
-[10]
-
-LaTeX Warning: Citation `estivil92' on page 11 undefined on input line 64.
-
-
-LaTeX Warning: Citation `Estivill-Castro_Wood_1989' on page 11 undefined on input line 72.
-
-[11]
-
-LaTeX Warning: Citation `Estivill-Castro_Wood_1989' on page 12 undefined on input line 75.
-
-
-LaTeX Warning: Citation `Mannila_1985' on page 12 undefined on input line 78.
-
-
-LaTeX Warning: Citation `10.5555/270146' on page 12 undefined on input line 81.
-
-
-LaTeX Warning: Citation `10.5555/1614191' on page 12 undefined on input line 84.
-
-
-LaTeX Warning: Citation `10.5555/270146' on page 12 undefined on input line 84.
-
-[12]
-
-LaTeX Warning: Citation `Carlsson_Levcopoulos_Petersson_1993' on page 13 undefined on input line 87.
-
-
-LaTeX Warning: Citation `Carlsson_Levcopoulos_Petersson_1993' on page 13 undefined on input line 91.
-
-
-LaTeX Warning: Citation `Skiena_1988' on page 13 undefined on input line 95.
-
-
-LaTeX Warning: Citation `Baeza-Yates_Manber_1992' on page 13 undefined on input line 95.
-
-[13]
-
-LaTeX Warning: Citation `Levcopoulos_Petersson_1993' on page 14 undefined on input line 98.
-
-
-LaTeX Warning: Citation `Cantoni_Creutzburg_Levialdi_Wolf_1989' on page 14 undefined on input line 101.
-
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/02_incremental_sorting.tex
-
-LaTeX Warning: Citation `10.5555/1614191' on page 14 undefined on input line 7.
-
-[14]
-
-LaTeX Warning: Citation `Navarro_Paredes_2010' on page 15 undefined on input line 14.
-
-
-LaTeX Warning: Reference `ALG:IQS' on page 15 undefined on input line 34.
-
-[15]
-
-LaTeX Warning: Citation `7416566' on page 16 undefined on input line 46.
-
-
-LaTeX Warning: Citation `Blum_Floyd_Pratt_Rivest_Tarjan_1973' on page 16 undefined on input line 50.
-
-
-LaTeX Warning: Reference `ALG:IIQS' on page 16 undefined on input line 52.
-
-[16]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/03_experimental_algorithmics.tex
-
-LaTeX Warning: Citation `Wagner_Mount_Giles_2014' on page 17 undefined on input line 3.
-
-[17]
-
-LaTeX Warning: Citation `10.5555/2159557' on page 18 undefined on input line 9.
-
-
-LaTeX Warning: Citation `10.5555/1614191' on page 18 undefined on input line 16.
-
-
-LaTeX Warning: Citation `10.2307/167074' on page 18 undefined on input line 16.
-
-[18] [19] [20] [21]
-
-LaTeX Warning: Citation `Navarro_2009' on page 22 undefined on input line 69.
-
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/04_software.tex [22])) [23] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/index.tex [24]
+] [13] [14] [15] [16]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/02_incremental_sorting.tex [17] [18] [19]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/03_experimental_algorithmics.tex [20] [21] [22] [23] [24]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/04_software.tex [25])) [26] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/index.tex [27]
 Chapter 3.
 
 Underfull \hbox (badness 10000) detected at line 5
 \OT1/cmr/bx/n/24.88 3.
  []
 
-
-LaTeX Warning: Reference `SECTION:EXPERIMENTAL_ALGORITHMICS' on page 25 undefined on input line 7.
-
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/01_rationale.tex
-
-LaTeX Warning: Reference `SEC:MEASURING_DISORDER' on page 25 undefined on input line 5.
-
-[25
+(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/01_rationale.tex [28
 
 ]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/02_foundationals.tex
 Overfull \hbox (3.29202pt too wide) in paragraph at lines 8--9
 \OT1/cmr/m/n/12 IncrementalQuickSelect and In-tro-spec-tiveIn-cre-men-talQuick-S-e-lect are al-go-rithms used
  []
 
-[26]
-
-LaTeX Warning: Citation `Blum_Floyd_Pratt_Rivest_Tarjan_1973' on page 27 undefined on input line 23.
-
-[27]
-
-LaTeX Warning: Reference `TABLE:ARGUMENTS' on page 28 undefined on input line 44.
-
-[28]
-
-LaTeX Warning: Reference `TABLE:SNAPSHOT_STRUCTURE' on page 29 undefined on input line 98.
-
-[29] [30] [31]
-
-LaTeX Warning: Citation `10.5555/1614191' on page 32 undefined on input line 217.
-
-[32]
-
-LaTeX Warning: Reference `TABLE:SPECS' on page 33 undefined on input line 242.
-
-
+[29] [30] [31] [32] [33] [34] [35]
 Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\OT1/cmr/m/n/12 Linux rspk-shoukugun 5.4.0-7629-generic
  []
@@ -540,26 +410,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 270--270
 \OT1/cmr/m/n/12 013) (gcc ver-sion 9.3.0 (Ubuntu 9.3.0-10ubuntu2))
  []
 
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/03_breakdown.tex
-
-LaTeX Warning: Reference `SUBSECTION:EXPERIMENTAL_ALGORITMICS_CONSIDERATIONS' on page 33 undefined on input line 10.
-
-[33]
-
-LaTeX Warning: Reference `SECTION:METHODOLOGY_FOUNDATIONALS' on page 34 undefined on input line 16.
-
-[34]
-
-LaTeX Warning: Reference `SEC:MEASURING_DISORDER' on page 35 undefined on input line 30.
-
-
-LaTeX Warning: Reference `SEC:INCREMENTAL_SORTING' on page 35 undefined on input line 30.
-
-[35] [36] [37]
-
-LaTeX Warning: Reference `TABLE:POINTS' on page 38 undefined on input line 78.
-
-)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/index.tex [38]
+) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/03_methodology/03_breakdown.tex [36] [37] [38] [39] [40])) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/index.tex [41]
 Chapter 4.
 
 Underfull \hbox (badness 10000) detected at line 1
@@ -567,205 +418,105 @@ Underfull \hbox (badness 10000) detected at line 1
  []
 
 (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/01_experimental_setup.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/02_base_benchmarking.tex
-
-LaTeX Warning: Citation `7416566' on page 39 undefined on input line 7.
-
-<./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png, id=155, 948.54375pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png, id=164, 948.54375pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png  used on input line 11.
 (pdftex.def)             Requested size: 343.48299pt x 496.4909pt.
-
-LaTeX Warning: Reference `FIG:BENCHMARK_01_RANDOM_CASE' on page 39 undefined on input line 17.
-
-<./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png, id=157, 954.56625pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png, id=166, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png  used on input line 24.
 (pdftex.def)             Requested size: 343.48299pt x 493.37358pt.
-
-LaTeX Warning: Reference `FIG:BENCHMARK_02_ASC_CASE' on page 39 undefined on input line 30.
-
-[39
+ [42
 
 ]
 
-LaTeX Warning: Text page 40 contains only floats.
+LaTeX Warning: Text page 43 contains only floats.
 
-[40 <./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>] [41 <./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>]
-
-LaTeX Warning: Reference `SUBSEC:DUTCH_FLAG_PROBLEM' on page 42 undefined on input line 34.
-
-<./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png, id=170, 957.5775pt x 1371.1225pt>
+[43 <./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>] [44 <./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>]
+<./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png, id=178, 957.5775pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png  used on input line 42.
 (pdftex.def)             Requested size: 343.48299pt x 491.8254pt.
-
-LaTeX Warning: Reference `FIG:BENCHMARK_03_DESC_CASE' on page 42 undefined on input line 48.
-
-[42] [43 <./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>]
-<./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png, id=178, 910.40125pt x 887.315pt>
+ [45] [46 <./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>]
+<./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png, id=188, 910.40125pt x 887.315pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png  used on input line 66.
 (pdftex.def)             Requested size: 343.48299pt x 334.77321pt.
-<./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png, id=179, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png, id=189, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png  used on input line 76.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-
-
-LaTeX Warning: Reference `FIG:BENCHMARK_04_SINGLE_CLASS' on page 44 undefined on input line 82.
-
-<./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png, id=180, 963.6pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png, id=190, 963.6pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png  used on input line 88.
 (pdftex.def)             Requested size: 343.48299pt x 488.72899pt.
+ [47] [48 <./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>] [49 <./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>] [50 <./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/03_partitioning_schemes.tex [51
 
-LaTeX Warning: Reference `FIG:BENCHMARK_05_CLASSES' on page 44 undefined on input line 94.
-
-[44] [45 <./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>] [46 <./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>] [47 <./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/03_partitioning_schemes.tex
-
-LaTeX Warning: Reference `SEC:INCREMENTAL_SORTING' on page 48 undefined on input line 7.
-
-
-LaTeX Warning: Reference `SEC:MEASURING_DISORDER' on page 48 undefined on input line 11.
-
-[48
-
-] [49]
-
-LaTeX Warning: Citation `7416566' on page 50 undefined on input line 74.
-
-
-LaTeX Warning: Citation `10.5555/550359' on page 50 undefined on input line 76.
-
-<./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png, id=204, 954.56625pt x 1371.1225pt>
+] [52]
+<./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png, id=213, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png  used on input line 108.
 (pdftex.def)             Requested size: 343.48299pt x 493.37358pt.
-
-LaTeX Warning: Reference `FIG:PARTITION_SCHEME_01_SHUFFLED' on page 50 undefined on input line 113.
-
-[50] [51 <./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png>]
-<./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png, id=213, 948.54375pt x 1371.1225pt>
+ [53] [54 <./fragments/04_experimental_execution/images/02_basebenchmark_01_base_benchmark.png>]
+<./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png, id=221, 948.54375pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png  used on input line 117.
 (pdftex.def)             Requested size: 343.48299pt x 496.4909pt.
-<./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png, id=214, 957.5775pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png, id=222, 957.5775pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png  used on input line 124.
 (pdftex.def)             Requested size: 343.48299pt x 491.8254pt.
+ [55]
 
+LaTeX Warning: Text page 56 contains only floats.
 
-LaTeX Warning: Reference `FIG:PARTITION_SCHEME_01_ASCENDING' on page 52 undefined on input line 129.
-
-
-LaTeX Warning: Reference `FIG:PARTITION_SCHEME_01_DESCENDING' on page 52 undefined on input line 129.
-
-
-LaTeX Warning: Reference `SUBSECTION:BASE_BENCHMARK__AVERAGE_WORST' on page 52 undefined on input line 129.
-
-[52]
-
-LaTeX Warning: Text page 53 contains only floats.
-
-[53 <./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/04_pivot_selection.tex
-
-LaTeX Warning: Citation `estivil92' on page 54 undefined on input line 3.
-
-
+[56 <./fragments/04_experimental_execution/images/02_benchmark_02_sort_a_case.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/04_pivot_selection.tex
 Overfull \vbox (26.67058pt too high) has occurred while \output is active []
 
- [54 <./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png>]
-
-LaTeX Warning: Reference `SECTION:PARTITIONING_SCHEMES' on page 55 undefined on input line 7.
-
-
-LaTeX Warning: Reference `SUBSECITON:PARTITIONING_PROBLEM' on page 55 undefined on input line 11.
-
-
-LaTeX Warning: Reference `SECTION:STACK_STRUCTURE' on page 55 undefined on input line 14.
-
-
-LaTeX Warning: Reference `FIG:BENCHMARK_05_CLASSES' on page 55 undefined on input line 18.
-
-[55]
-<./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png, id=229, 910.40125pt x 1323.94624pt>
+ [57 <./fragments/04_experimental_execution/images/02_basebenchmark_03_sort_d_case.png>] [58]
+<./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png, id=238, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png  used on input line 26.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-
-
-LaTeX Warning: Reference `FIG:BENCHMARK_06_NOISE_BIAS' on page 56 undefined on input line 32.
-
-
-LaTeX Warning: Reference `FIG:BENCHMARK_02_ASC_CASE' on page 56 undefined on input line 35.
-
-
-LaTeX Warning: Citation `7416566' on page 56 undefined on input line 37.
-
-<./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png, id=230, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png, id=239, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png  used on input line 41.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-
-LaTeX Warning: Reference `FIG:BENCHMARK_07_NOISE_BIAS' on page 56 undefined on input line 47.
-
-[56] [57 <./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png>] [58 <./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/05_iiqs_parameters.tex
-
-LaTeX Warning: Reference `SUBSECTION:IIQS' on page 59 undefined on input line 3.
-
-
-LaTeX Warning: Citation `7416566' on page 59 undefined on input line 3.
-
-
-LaTeX Warning: Citation `Blum_Floyd_Pratt_Rivest_Tarjan_1973' on page 59 undefined on input line 8.
-
-<./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png, id=243, 910.40125pt x 1323.94624pt>
+ [59] [60 <./fragments/04_experimental_execution/images/01_basebenchmark_06_noise_bias.png>] [61 <./fragments/04_experimental_execution/images/01_basebenchmark_07_extraction_bias.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/05_iiqs_parameters.tex
+<./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png, id=251, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png  used on input line 14.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png, id=244, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png, id=252, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png  used on input line 22.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png, id=245, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png, id=253, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png  used on input line 30.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-[59] [60 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png>] [61 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png>]
-
-/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/05_iiqs_parameters.tex:42: LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.42 \end{itemize}
-                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_median_selection.tex [62 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [63]
+ [62] [63 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png>] [64 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_median_selection.tex [65 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [66]
 Chapter 5.
 
 Underfull \hbox (badness 10000) detected at line 1
 \OT1/cmr/bx/n/24.88 5.
  []
 
-) [64
+) [67
 
 ]
 Chapter 6.
@@ -774,47 +525,43 @@ Underfull \hbox (badness 10000) detected at line 98
 \OT1/cmr/bx/n/24.88 6.
  []
 
-[65
+[68
 
-]
-No file memoria.bbl.
-[66] [67
+] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl [69] [70]
+Underfull \hbox (badness 1019) in paragraph at lines 96--99
+[]\OT1/cmr/m/n/12 Steven S. Skiena.  En-croach-ing lists as a mea-sure of pre-sort-ed-ness.  \OT1/cmr/m/it/12 BIT\OT1/cmr/m/n/12 ,
+ []
+
+) [71] [72
 
 ]
 Overfull \hbox (0.45876pt too wide) detected at line 151
 \OT1/cmr/bx/n/24.88 A.
  []
 
-[68
+[73
 
 ]
 Underfull \hbox (badness 10000) detected at line 164
 \OT1/cmr/bx/n/24.88 B.
  []
 
-[69
+[74
 
-] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux) ) 
 Here is how much of TeX's memory you used:
- 4022 strings out of 481239
- 67737 string characters out of 5920377
- 325838 words of memory out of 5000000
- 19133 multiletter control sequences out of 15000+600000
- 541077 words of font info for 54 fonts, out of 8000000 for 9000
+ 4048 strings out of 481239
+ 68714 string characters out of 5920377
+ 326346 words of memory out of 5000000
+ 19152 multiletter control sequences out of 15000+600000
+ 540769 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,10n,33p,1198b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (73 pages, 5047165 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (78 pages, 5002464 bytes).
 PDF statistics:
- 340 PDF objects out of 1000 (max. 8388607)
- 216 compressed objects within 3 object streams
+ 351 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
