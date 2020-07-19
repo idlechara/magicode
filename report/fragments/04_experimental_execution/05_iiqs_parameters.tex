@@ -13,7 +13,7 @@ There is no point on shrinking the \emph{valid area}\footnote{Our central 40\%.}
     \centering
     \includegraphics[width=0.8\textwidth]{./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png}
     %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
-    \caption{Benchmark for randomly sorted sequences with$1\times10^5$ unique elements. IIQS executions for the first and second extractions are shown on the first and second column respectively. All extractions using a symlog scale.}
+    \caption{Benchmark for randomly sorted sequences with$1\times10^6$ unique elements. IIQS executions for the first and second extractions are shown on the first and second column respectively. All extractions using a symlog scale.}
     \label{FIG:05_ALPHABETA_RELATIONSHIP_RANDOM}
 \end{figure}
 
@@ -21,7 +21,7 @@ There is no point on shrinking the \emph{valid area}\footnote{Our central 40\%.}
     \centering
     \includegraphics[width=0.8\textwidth]{./fragments/04_experimental_execution/images/04_alphabeta_singleclass_asc.png}
     %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
-    \caption{Benchmark for ascending sequences with$1\times10^5$ unique elements. IIQS executions for the first and second extractions are shown on the first and second column respectively. All extractions using a symlog scale.}
+    \caption{Benchmark for ascending sequences with$1\times10^6$ unique elements. IIQS executions for the first and second extractions are shown on the first and second column respectively. All extractions using a symlog scale.}
     \label{FIG:05_ALPHABETA_RELATIONSHIP_ASC}
 \end{figure}
 
@@ -29,7 +29,7 @@ There is no point on shrinking the \emph{valid area}\footnote{Our central 40\%.}
     \centering
     \includegraphics[width=0.8\textwidth]{./fragments/04_experimental_execution/images/04_alphabeta_singleclass_desc.png}
     %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
-    \caption{Benchmark for descending sequences with$1\times10^5$ unique elements. IIQS executions for the first and second extractions are shown on the first and second column respectively. All extractions using a symlog scale.}
+    \caption{Benchmark for descending sequences with$1\times10^6$ unique elements. IIQS executions for the first and second extractions are shown on the first and second column respectively. All extractions using a symlog scale.}
     \label{FIG:05_ALPHABETA_RELATIONSHIP_DESC}
 \end{figure}
 
@@ -37,9 +37,9 @@ There is no point on shrinking the \emph{valid area}\footnote{Our central 40\%.}
 There is a interesting effect resulting of the selection of $\alpha$ and $\beta$ parameters. By just examining the first and second extractions we can appreciate that if we tight the bounds to a point that median-of-medians is executed each time, for all instances we get that the first extraction is accelerated by a huge factor but that comes at a cost of the second extraction being three orders of magnitude larger than the average execution. On the other hand, there are some interesting regions to note. When we start to completely ignore the alpha bound and when beta is lower than $0.5$ there is some noticeable benefit in running time for both instances.
 
 By watching the results of the experiment we clearly identify the following configurations:
-\begin{itemize}
-    %% list the configurations
-\end{itemize}
+% \begin{itemize}
+%     %% list the configurations
+% \end{itemize}
 
 %% explain why the fuck this is happening
 %explaining why that central 40% and why changing that makes you fail
