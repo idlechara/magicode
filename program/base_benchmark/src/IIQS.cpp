@@ -72,7 +72,14 @@ Type IIQS<Container, Type>::next() {
 
         CLOCK_ROUTINE(
             this->configuration.log_pivot_time,
-            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);},
+            {
+                if(this->configuration.use_dutch_flag){
+                    pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                }
+                else{
+                    pivot_idx = this->partition(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                }
+            },
             PARTITION_STAGE_END,
             this->snapshot, this->snapshots,
             partition_time, total_partition_time,
@@ -103,7 +110,13 @@ Type IIQS<Container, Type>::next() {
                     pivot_idx = this->bfprt(this->container, this->extracted_count, top_element-1, 5);
                     pivot_value = this->container[pivot_idx];
                     // then we re-partition, assuming that this median is better
-                    pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+
+                    if(this->configuration.use_dutch_flag){
+                        pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                    }
+                    else{
+                        pivot_idx = this->partition(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                    }
                 ,
                 ITERATION_STAGE_INTROSPECT,
                 this->snapshot, this->snapshots,
