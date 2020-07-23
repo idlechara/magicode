@@ -101,11 +101,7 @@
 \contentsline {subsection}{\numberline {4.5.2}Relaxation of $\alpha $ and $\beta $ constraints}{69}%
 \contentsline {subsection}{\numberline {4.5.3}Tightening $\alpha $ and $\beta $ constraints for unique elements}{69}%
 \contentsline {subsection}{\numberline {4.5.4}Effect of repeated elements in the sequence}{69}%
-\contentsline {section}{\numberline {4.6}Median selection}{84}%
-\contentsline {subsection}{\numberline {4.6.1}Current median selection approach}{84}%
-\contentsline {subsection}{\numberline {4.6.2}Iterative median of medians}{84}%
-\contentsline {subsection}{\numberline {4.6.3}Effects on future calls}{84}%
-\contentsline {subsection}{\numberline {4.6.4}Suggestions}{84}%
+\contentsline {section}{\numberline {4.6}A note on median selection techniques}{72}%
 \contentsline {section}{\numberline {4.7}Stack structure}{84}%
 \contentsline {subsection}{\numberline {4.7.1}Stack performance}{84}%
 \contentsline {subsection}{\numberline {4.7.2}Paired stack performance}{84}%
