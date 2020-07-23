@@ -70,7 +70,7 @@ As stated by BFPRT definition, as the pivot returned belongs to the middle 40 pe
 
 \subsection{Tightening $\alpha$ and $\beta$ constraints for unique elements}
 
-As for independent tunning of $\alpha$ beta shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_LEFT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_LEFT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_LEFT} and $\beta$ parameter shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_RIGHT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_RIGHT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_RIGHT}, there is no relaxation available outside of the expected bounds for BFPRT unless we are expecting to optimize the execution for certain distributions.
+As for independent tuning of $\alpha$ beta shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_LEFT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_LEFT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_LEFT} and $\beta$ parameter shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_RIGHT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_RIGHT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_RIGHT}, there is no relaxation available outside of the expected bounds for BFPRT unless we are expecting to optimize the execution for certain distributions.
 
 A total opposite of the previous case, as it does seem that tightening BFPRT parameters does not contribute at lowering our current upper bound nor to changing it at all. But different to our initial expectations, it does seem that for certain combinations we obtain in average a better performance on all cases for non repeated elements in the sequence. This is the case of $\alpha=0.5$ and $\beta=0.65$, which appears as the best performant combination of parameters on Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_INNER},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_INNER}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_INNER}. 
 
@@ -149,6 +149,7 @@ A total opposite of the previous case, as it does seem that tightening BFPRT par
 
 \subsection{Effect of repeated elements in the sequence}
 
+Further testing against the more aggressive situation for IIQS reveals that there are two cases when dealing with repeated elements on IIQS. When there is only one class across the entire sequence a performance boost for all extractions is only achieved by continuously executing IIQS on all iterations. In other cases, the performance is degraded by at least two orders of magnitude. More interesting, for all cases on which BFPRT were executed, the stack size remained stable with a solid %TODO: finish this
 
 \begin{figure}[!ht]
     \centering
@@ -174,6 +175,12 @@ A total opposite of the previous case, as it does seem that tightening BFPRT par
 
 %% explain why the fuck this is happening
 %explaining why that central 40% and why changing that makes you fail
+\section{A note on median selection techniques}
 
+As our attention is now focused on BFPRT, it is worth questioning if the side-effects of sorting the small segments used on BFPRT does affect IIQS behaviour. While this does hold for elements with repeated elements, as the scope of this work is to support the worst possible case for repeating elements in a sequence, experiments related to this parameter are not covered in this document.
+
+In order to understand why BFPRT modifications are our of our interest, let us consider the size of BFPRT segments as a parameter for IIQS execution. This is important as for each execution of BFPRT the elements on each index moves to their corresponding position in their local segment. Let us denote as $k$ the size of the median used on BFPRT, for now we fix this value for all our examples as $k=5$ unless stated otherwise.
+
+Then, when a sequence $S$ is composed of $\norm{S}$ elements which follows $\forall~S_i, S_j~\in~S,~\forall i \neq j : S_i=S_j$, as $S_i=S_j$ holds for all cases, any permutation $\sigma$ and $\tau$ of size $k$ will be bound to $\sigma = \tau$. Hence, sorting any portion of any size in the sequence will not change the running time as the elements value will remain the same along the sequence. The only way to make a change is by controlling how stack is allocated on the execution, which is shown at the beggining of this section.
 
 \FloatBarrier

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  20 JUL 2020 03:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  22 JUL 2020 20:38
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -347,7 +347,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--31
  []
 
 [0] [1] [2] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc [3] [4]
-Overfull \hbox (13.03082pt too wide) in paragraph at lines 113--113
+Overfull \hbox (13.03082pt too wide) in paragraph at lines 109--109
  [][] []\OT1/cmr/m/n/12 Stack man-age-ment com-par-i-son for re-peated se-quences and unique 
  []
 
@@ -570,16 +570,25 @@ File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasin
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png  used on input line 144.
 (pdftex.def)             Requested size: 339.18527pt x 482.61987pt.
+ [69] [70 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random.png>]
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png  used on input line 155.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png  used on input line 156.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png, id=291, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png, id=299, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png  used on input line 165.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png  used on input line 166.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
- [69] [70 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random.png>] [71 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing.png>] [72 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing.png>] [73 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_inner.png>] [74 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png>] [75 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png>] [76 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png>] [77 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png>] [78 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png>] [79 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png>] [80 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png>] [81 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png>] [82] [83 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_median_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [84
+ [71 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing.png>]
+Overfull \vbox (18.79837pt too high) has occurred while \output is active []
+
+ [72 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing.png>] [73 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_inner.png>] [74 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png>] [75 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png>] [76 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png>]
+Overfull \hbox (25.98912pt too wide) in paragraph at lines 184--185
+[]\OT1/cmr/m/n/12 Then, when a se-quence $\OML/cmm/m/it/12 S$ \OT1/cmr/m/n/12 is com-posed of $\OMS/cmsy/m/n/12 k\OML/cmm/m/it/12 S\OMS/cmsy/m/n/12 k$ \OT1/cmr/m/n/12 el-e-ments which fol-lows $\OMS/cmsy/m/n/12 8 \OML/cmm/m/it/12 S[]; S[]  \OMS/cmsy/m/n/12 2  \OML/cmm/m/it/12 S;  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12 i \OMS/cmsy/m/n/12 6\OT1/cmr/m/n/12 =
+ []
+
+[77 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png>] [78 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png>] [79 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png>] [80 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png>] [81 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png>] [82] [83 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_median_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [84
 
 ]
 Chapter 5.
@@ -630,7 +639,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  38i,10n,33p,1258b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (96 pages, 10169525 bytes).
+Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (96 pages, 10197402 bytes).
 PDF statistics:
  434 PDF objects out of 1000 (max. 8388607)
  262 compressed objects within 3 object streams
