@@ -8,45 +8,45 @@ Warning--to sort, need author, editor, or key in Cantoni_Creutzburg_Levialdi_Wol
 Warning--empty author and editor in Cantoni_Creutzburg_Levialdi_Wolf_1989
 Warning--empty author and editor in Baeza-Yates_Manber_1992
 Warning--empty school in 10.5555/150918
-You've used 20 entries,
+You've used 22 entries,
             2118 wiz_defined-function locations,
-            639 strings with 6862 characters,
-and the built_in function-call counts, 5967 in all, are:
-= -- 570
-> -- 217
+            651 strings with 7135 characters,
+and the built_in function-call counts, 6492 in all, are:
+= -- 620
+> -- 231
 < -- 2
-+ -- 94
-- -- 68
-* -- 417
-:= -- 979
-add.period$ -- 58
-call.type$ -- 20
-change.case$ -- 88
++ -- 101
+- -- 72
+* -- 451
+:= -- 1068
+add.period$ -- 64
+call.type$ -- 22
+change.case$ -- 95
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 256
-empty$ -- 524
-format.name$ -- 68
-if$ -- 1261
+cite$ -- 27
+duplicate$ -- 279
+empty$ -- 575
+format.name$ -- 72
+if$ -- 1371
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 25
-newline$ -- 101
-num.names$ -- 36
-pop$ -- 104
+int.to.str$ -- 22
+missing$ -- 28
+newline$ -- 111
+num.names$ -- 40
+pop$ -- 113
 preamble$ -- 1
-purify$ -- 74
+purify$ -- 80
 quote$ -- 0
-skip$ -- 168
+skip$ -- 181
 stack$ -- 0
-substring$ -- 386
-swap$ -- 45
+substring$ -- 424
+swap$ -- 47
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 64
+type$ -- 70
 warning$ -- 5
-while$ -- 50
-width$ -- 22
-write$ -- 217
+while$ -- 55
+width$ -- 24
+write$ -- 239
 (There were 5 warnings)

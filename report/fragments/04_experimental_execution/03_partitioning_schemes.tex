@@ -1,7 +1,7 @@
 \section{Partitioning Schemes}
 \label{SECTION:PARTITIONING_SCHEMES}
 \subsection{Rationale}
-Before diving into the results for this experiment, we will now explain two partition strategies to take into consideration before designing our first experiment and our second algorithm modification in order to understand the modifications made to IQS.
+Before diving into the results for this experiment, we now explain two partition strategies to take into consideration before designing our first experiment and our second algorithm modification in order to understand the modifications made to IQS.
 
 \subsection{Partition schemes}
 As explained before in~\ref{SEC:INCREMENTAL_SORTING}, partition algorithms play a fundamental role on sorting algorithms like QuickSort. But partition algorithms can use different schemes in order to partition the array into two sections, depending on which properties of the process we want to optimise.
@@ -65,15 +65,15 @@ Both of the aforementioned algorithms were designed to operate on sets, but when
 
 \subsection{Problem definition and solution}
 \label{SUBSECITON:PARTITIONING_PROBLEM}
-Let's take as example the partitioning problem of the following two sequences:
+Let us take as example the partitioning problem of the following two sequences:
 
 $$ S_1={1,2,3,4,5,6,7,8,9} $$
 and
 $$S_2={1,2,5,5,5,5,5,8,9}$$
 
-It's clear that if we chose $p$ equal to $5$, the element in the fifth position of $S_1$ will be the pivot on its correct place. But it's not the case for $S_2$ as we can get a pivot from the third up to the seventh position on the sequence. In this case, as all the positions are valid pivots as they are following the definition of partitioning. There is no safety guarantee that the resulting pivot will partition the array in half in order to ensure a $log_2$ decay on the problem space. Situation worsens if all the elements are repeated, as it defeats the purpose of partitioning the sequence~\cite{7416566}.
+It is clear that if we chose $p$ equal to $5$, the element in the fifth position of $S_1$ is the pivot on its correct place. But it is not the case for $S_2$ as we can get a pivot from the third up to the seventh position on the sequence. In this case, as all the positions are valid pivots as they are following the definition of partitioning. There is no safety guarantee that the resulting pivot  partitions the array in half in order to ensure a $log_2$ decay on the problem space. Situation worsens if all the elements are repeated, as it defeats the purpose of partitioning the sequence~\cite{7416566}.
 
-This problem is also known as the Dutch Flag problem~\cite{10.5555/550359}, which for given a sequence it partition in-place the elements lower than the pivot value, the elements equal to the pivot value and the elements greater than the pivot value and it will return the indices of the beginning and the end of the middle portion.
+This problem is also known as the Dutch Flag problem~\cite{10.5555/550359}, which for given a sequence it partition in-place the elements lower than the pivot value, the elements equal to the pivot value and the elements greater than the pivot value and it returns the indices of the beginning and the end of the middle portion.
 
 \begin{algorithm}
 \caption{Three-way Partition}\label{ALG:DUTCH_FLAG_PARTITION}
@@ -128,6 +128,6 @@ As depicted in Figure \ref{FIG:PARTITION_SCHEME_01_SHUFFLED}, there is no notice
 
 Figure \ref{FIG:PARTITION_SCHEME_01_ASCENDING} and Figure \ref{FIG:PARTITION_SCHEME_01_DESCENDING} confirms our hypothesis in Section~\ref{SUBSECTION:BASE_BENCHMARK__AVERAGE_WORST} about the different behaviour of IQS and IIQS when dealing with repeating sequences and how the stack is consumed, validating our base benchmark results.
 
-Apart from those behaviour deviations, there no noticeable difference between running time of our implementations for three-way partitioning and standard partitioning algorithms in terms of complexity. As such, from now on we will use \textit{three-way-partition} as our default implementation for the partitioning stage. This allows us to contrast results between IQS and IIQS with such modifications using both repeated and non repeated elements as dataset inputs under the same partitioning conditions.
+Apart from those behaviour deviations, there no noticeable difference between running time of our implementations for three-way partitioning and standard partitioning algorithms in terms of complexity. As such, from now on we use \textit{three-way-partition} as our default implementation for the partitioning stage. This allows us to contrast results between IQS and IIQS with such modifications using both repeated and non repeated elements as dataset inputs under the same partitioning conditions.
 
 \FloatBarrier

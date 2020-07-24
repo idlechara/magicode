@@ -142,6 +142,8 @@ INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/utalca1-eps-
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/utalca1.eps
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/utalca1-eps-converted-to.pdf
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/utalca1-eps-converted-to.pdf
+INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/00_base/index.tex
+INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/00_base/index.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti12.tfm
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc
@@ -153,6 +155,8 @@ OUTPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lof
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot
 OUTPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.lot
+INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/01_introduction/index.tex
+INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/01_introduction/index.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/index.tex
@@ -282,6 +286,7 @@ INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl
 INPUT /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux
@@ -297,6 +302,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb
