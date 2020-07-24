@@ -1,10 +1,11 @@
 \section{Base benchmarking}
-In experimental algorithms, the first step before engaging into a optimization job is to benchmark our current solutions in order to formulate our hypothesis and expectations. In this case we will check the behaivour of base implementations IQS and IIQS to understand better what IQS and IIQS is, what is happening when a worst case arises and to devise the next steps of this experimental development.
+\label{SUBSECTION:BASE_BENCHMARK}
+In experimental algorithms, the first step before engaging into a optimization job is to benchmark our current solutions in order to formulate our hypothesis and expectations. In this case we check the behaivour of base implementations IQS and IIQS to understand better what IQS and IIQS is, what is happening when a worst case arises and to devise the next steps of this experimental development.
 
 \subsection{Average and worst case}
 \label{SUBSECTION:BASE_BENCHMARK__AVERAGE_WORST}
 
-We start by revisiting the results shown on \cite{7416566}, in order to understand when a worst case appears and what it does imply for the execution of the algorithm. In order to not dive too deep into other aspects of the experimental design, we will stick with the same metrics used in the original article.
+We start by revisiting the results shown on \cite{7416566}, in order to understand when a worst case appears and what it does imply for the execution of the algorithm. In order to not dive too deep into other aspects of the experimental design, we stick with the same metrics used in the original article.
 
 \begin{figure}[!ht]
     \centering
@@ -59,7 +60,7 @@ The question at hand now is what happens when repeated elements are found on the
     \item \textbf{Redundant bias}: Bias of the partition algorithm to deliver the pivot in regard of the repeated sequence.
 \end{itemize}
 
-Whilst not notorious, we will from now on consider any distribution of the repeated element classes a instance of a uniformly distributed sequence. We can make this assumption based on how IQS works, as it reduces in average case by half on each iteration. Thus, for any distribution, the complexity toll is paid by the largest class found on the sequence.
+Whilst not notorious, we from now on consider any distribution of the repeated element classes a instance of a uniformly distributed sequence. We can make this assumption based on how IQS works, as it reduces in average case by half on each iteration. Thus, for any distribution, the complexity toll is paid by the largest class found on the sequence.
 
 \begin{figure}[!ht]
     \centering

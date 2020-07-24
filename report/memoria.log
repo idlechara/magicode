@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  22 JUL 2020 20:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.6.19)  24 JUL 2020 06:08
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -195,7 +195,11 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count266
 \l__pdf_internal_box=\box51
-) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux)
+) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux
+
+LaTeX Warning: Label `IIQS_main_cycle' multiply defined.
+
+)
 \openout1 = `memoria.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
@@ -346,8 +350,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--31
 
  []
 
-[0] [1] [2] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc [3] [4]
-Overfull \hbox (13.03082pt too wide) in paragraph at lines 109--109
+[0] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/00_base/index.tex [1] [2]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.toc [3] [4]
+Overfull \hbox (13.03082pt too wide) in paragraph at lines 116--116
  [][] []\OT1/cmr/m/n/12 Stack man-age-ment com-par-i-son for re-peated se-quences and unique 
  []
 
@@ -363,14 +367,14 @@ Overfull \hbox (13.03082pt too wide) in paragraph at lines 109--109
 \tf@lot=\write5
 \openout5 = `memoria.lot'.
 
- [11] [12]
+ [11] [12] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/01_introduction/index.tex
 Chapter 1.
 
-Underfull \hbox (badness 10000) detected at line 60
+Underfull \hbox (badness 10000) detected at line 2
 \OT1/cmr/bx/n/24.88 1.
  []
 
-(/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/index.tex [13
+) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/02_background/index.tex [13
 
 ] [14]
 Chapter 2.
@@ -421,12 +425,12 @@ Underfull \hbox (badness 10000) detected at line 1
 <./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png, id=173, 948.54375pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png  used on input line 11.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_01_random_case.png  used on input line 12.
 (pdftex.def)             Requested size: 343.48299pt x 496.4909pt.
 <./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png, id=175, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png  used on input line 24.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_02_sort_a_case.png  used on input line 25.
 (pdftex.def)             Requested size: 343.48299pt x 493.37358pt.
  [45
 
@@ -438,23 +442,23 @@ LaTeX Warning: Text page 46 contains only floats.
 <./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png, id=189, 957.5775pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png  used on input line 42.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png  used on input line 43.
 (pdftex.def)             Requested size: 343.48299pt x 491.8254pt.
  [48] [49 <./fragments/04_experimental_execution/images/01_basebenchmark_03_sort_d_case.png>]
 <./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png, id=197, 910.40125pt x 887.315pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png  used on input line 66.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png  used on input line 67.
 (pdftex.def)             Requested size: 343.48299pt x 334.77321pt.
 <./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png, id=198, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png  used on input line 76.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png  used on input line 77.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
 <./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png, id=199, 963.6pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>
-Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png  used on input line 88.
+Package pdftex.def Info: ./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png  used on input line 89.
 (pdftex.def)             Requested size: 343.48299pt x 488.72899pt.
  [50] [51 <./fragments/04_experimental_execution/images/01_basebenchmark_05_classes.png>] [52 <./fragments/04_experimental_execution/images/01_basebenchmark_08_extraction_bias.png>] [53 <./fragments/04_experimental_execution/images/01_basebenchmark_04_single_class.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/03_partitioning_schemes.tex [54
 
@@ -530,119 +534,118 @@ File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_in
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_inner.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_inner.png  used on input line 80.
 (pdftex.def)             Requested size: 339.18527pt x 487.18079pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png, id=283, 954.56625pt x 1371.1225pt>
+ [69] [70 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random.png>] [71 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing.png>] [72 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing.png>]
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png, id=299, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png  used on input line 88.
 (pdftex.def)             Requested size: 339.18527pt x 487.18079pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png, id=284, 954.56625pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png, id=300, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png  used on input line 96.
 (pdftex.def)             Requested size: 339.18527pt x 487.18079pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png, id=285, 948.54375pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png, id=301, 948.54375pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png  used on input line 104.
 (pdftex.def)             Requested size: 339.18527pt x 490.29811pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png, id=286, 954.56625pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png, id=302, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png  used on input line 112.
 (pdftex.def)             Requested size: 339.18527pt x 487.18079pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png, id=287, 954.56625pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png, id=303, 954.56625pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png  used on input line 120.
 (pdftex.def)             Requested size: 339.18527pt x 487.18079pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png, id=288, 948.54375pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png, id=304, 948.54375pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png  used on input line 128.
 (pdftex.def)             Requested size: 339.18527pt x 490.29811pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png, id=289, 948.54375pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png, id=305, 948.54375pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png  used on input line 136.
 (pdftex.def)             Requested size: 339.18527pt x 490.29811pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png, id=290, 963.6pt x 1371.1225pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png, id=306, 963.6pt x 1371.1225pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png  used on input line 144.
 (pdftex.def)             Requested size: 339.18527pt x 482.61987pt.
- [69] [70 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random.png>]
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass.png  used on input line 156.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
-<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png, id=299, 910.40125pt x 1323.94624pt>
+<./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png, id=307, 910.40125pt x 1323.94624pt>
 File: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png Graphic file (type png)
 <use ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png>
 Package pdftex.def Info: ./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png  used on input line 166.
 (pdftex.def)             Requested size: 343.48299pt x 499.5089pt.
- [71 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing.png>]
-Overfull \vbox (18.79837pt too high) has occurred while \output is active []
 
- [72 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing.png>] [73 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_inner.png>] [74 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png>] [75 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png>] [76 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png>]
-Overfull \hbox (25.98912pt too wide) in paragraph at lines 184--185
+Overfull \hbox (25.98912pt too wide) in paragraph at lines 185--186
 []\OT1/cmr/m/n/12 Then, when a se-quence $\OML/cmm/m/it/12 S$ \OT1/cmr/m/n/12 is com-posed of $\OMS/cmsy/m/n/12 k\OML/cmm/m/it/12 S\OMS/cmsy/m/n/12 k$ \OT1/cmr/m/n/12 el-e-ments which fol-lows $\OMS/cmsy/m/n/12 8 \OML/cmm/m/it/12 S[]; S[]  \OMS/cmsy/m/n/12 2  \OML/cmm/m/it/12 S;  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12 i \OMS/cmsy/m/n/12 6\OT1/cmr/m/n/12 =
  []
 
-[77 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png>] [78 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png>] [79 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png>] [80 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png>] [81 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png>] [82] [83 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_median_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex [84
-
-]
+[73] [74 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_inner.png>] [75 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_inner.png>] [76 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_inner.png>] [77 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_left.png>] [78 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_left.png>] [79 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_left.png>] [80 <./fragments/04_experimental_execution/images/04_alphabeta_detail_random_right.png>] [81 <./fragments/04_experimental_execution/images/04_alphabeta_detail_increasing_right.png>] [82 <./fragments/04_experimental_execution/images/04_alphabeta_detail_decreasing_right.png>] [83] [84 <./fragments/04_experimental_execution/images/04_alphabeta_singleclass_stack.png>]) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/06_median_selection.tex) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/04_experimental_execution/07_stack_structure.tex)) (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/fragments/05_workhorse_experiment/index.tex
 Chapter 5.
 
 Underfull \hbox (badness 10000) detected at line 1
 \OT1/cmr/bx/n/24.88 5.
  []
 
-) [85
+[85
 
-]
+] [86] [87] [88] [89]) [90] [91]
 Chapter 6.
 
-Underfull \hbox (badness 10000) detected at line 98
+Underfull \hbox (badness 10000) detected at line 65
 \OT1/cmr/bx/n/24.88 6.
- []
-
-[86
-
-] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl [87] [88]
-Underfull \hbox (badness 1019) in paragraph at lines 96--99
-[]\OT1/cmr/m/n/12 Steven S. Skiena.  En-croach-ing lists as a mea-sure of pre-sort-ed-ness.  \OT1/cmr/m/it/12 BIT\OT1/cmr/m/n/12 ,
- []
-
-) [89] [90
-
-]
-Overfull \hbox (0.45876pt too wide) detected at line 151
-\OT1/cmr/bx/n/24.88 A.
- []
-
-[91
-
-]
-Underfull \hbox (badness 10000) detected at line 164
-\OT1/cmr/bx/n/24.88 B.
  []
 
 [92
 
-] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux) ) 
+] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.bbl [93] [94]
+Underfull \hbox (badness 1019) in paragraph at lines 107--110
+[]\OT1/cmr/m/n/12 Steven S. Skiena.  En-croach-ing lists as a mea-sure of pre-sort-ed-ness.  \OT1/cmr/m/it/12 BIT\OT1/cmr/m/n/12 ,
+ []
+
+) [95] [96
+
+]
+Overfull \hbox (0.45876pt too wide) detected at line 118
+\OT1/cmr/bx/n/24.88 A.
+ []
+
+[97
+
+]
+Underfull \hbox (badness 10000) detected at line 131
+\OT1/cmr/bx/n/24.88 B.
+ []
+
+[98
+
+] (/home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4140 strings out of 481239
- 75291 string characters out of 5920377
- 326514 words of memory out of 5000000
- 19231 multiletter control sequences out of 15000+600000
- 540769 words of font info for 53 fonts, out of 8000000 for 9000
+ 4166 strings out of 481239
+ 76242 string characters out of 5920377
+ 326659 words of memory out of 5000000
+ 19248 multiletter control sequences out of 15000+600000
+ 541115 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,10n,33p,1258b,302s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (96 pages, 10197402 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on /home/kuky_nekoi/Documents/Sources/KuKy_NeKoi/magicode/report/memoria.pdf (102 pages, 10221386 bytes).
 PDF statistics:
- 434 PDF objects out of 1000 (max. 8388607)
- 262 compressed objects within 3 object streams
+ 457 PDF objects out of 1000 (max. 8388607)
+ 278 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  141 words of extra memory for PDF output out of 10000 (max. 10000000)
 
