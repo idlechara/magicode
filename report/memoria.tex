@@ -5,14 +5,28 @@
 \usepackage{tabularx}
 \usepackage{placeins}
 \usepackage[noend]{algpseudocode}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{graphicx,eso-pic}
+
+\newcommand\chapterimage[2][]{%
+  \AddToShipoutPictureBG*{% Add picture to BackGround on this page only
+    \AtTextUpperLeft{% Position at upper left of text block
+      \hspace*{\textwidth}% Move over to upper right of text block
+      \llap{% Ignore horizontal width and overlap to the left
+        \smash{% Ignore vertical height
+          \raisebox{-\height}{% Lower so top touches baseline
+            \includegraphics[#1]{#2}}}}}}}% Include image with options
+
 
 \algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
 \newcommand{\abs}[1]{\lvert#1\rvert}
 \newcommand{\norm}[1]{\lVert#1\rVert}
 
 %% datos generales y para la tapa
-\titulo{Análisis experimental de IIQS para extender el soporte a secuencias de elementos repetidos}
-\tituloEng{Experimental analysis of (I)IQS to fine-tune support for arrays with repeated elements}
+\titulo{Extendiendo IIQS para soportar secuencias con elementos repetidos}
+\tituloEng{Extending IIQS to support sequences with repeated elements}
 \author{Erik Andrés Regla Torres}
 \supervisor{Rodrigo Andrés Paredes Moraleda}
 \informantes
@@ -40,7 +54,7 @@
 
 %% resumen
 \begin{resumen}
-  I'm gonna write the summary as the last part.
+  We fixed IIQS and finished what the original work started.
 \end{resumen}
 
 %% abstract
@@ -109,29 +123,7 @@
 %% genera las referencias
 \bibliography{refs}
 
-
-%% comienzo de la parte de anexos
-\appendixpart
-
-%% contenido del primer anexo
-\appendix{El Primer Anexo}
-Aquí va el texto del primer anexo...
-
-\section{La primera sección del primer anexo}
-Aquí va el texto de la primera sección del primer anexo...
-
-\section{La segunda sección del primer anexo}
-Aquí va el texto de la segunda sección del primer anexo...
-
-\subsection{La primera subsección de la segunda sección del primer anexo}
-
-
-%% contenido del segundo anexo
-\appendix{El segundo Anexo}
-Aquí va el texto del segundo anexo...
-
-\section{La primera sección del segundo anexo}
-Aquí va el texto de la primera sección del segundo anexo...
+\input{fragments/appendix/index.tex}
 
 %% fin
 \end{document}
