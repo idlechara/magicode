@@ -235,6 +235,6 @@ IIQS<Container, Type>::IIQS(Container &container, configuration_t &configuration
  * @tparam Type type used for comparison
  */
 template<class Container, class Type>
-IIQS<Container, Type>::IIQS(): 
-    IQS<Container, Type>() {
+IIQS<Container, Type>::IIQS(): IQS<Container, Type>() {
+    
 }

@@ -16,9 +16,10 @@
 #define PARTITION_STAGE_END         70
 
 typedef struct {
-    bool log_pivot_time, log_iteration_time, log_extraction_time, log_swaps, use_bfprt, use_iiqs, use_dutch_flag, use_random_pivot, enable_reuse;
+    bool log_pivot_time, log_iteration_time, log_extraction_time, log_swaps, use_bfprt, use_dutch_flag, use_random_pivot, enable_reuse;
     double alpha_value, beta_value, pivot_bias, redundant_bias;
-    int random_seed_value;
+    int random_seed_value, use_iiqs;
+
     std::size_t input_size, extractions;
     std::string input_file_value, output_file_value;
 } configuration_t;

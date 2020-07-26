@@ -93,7 +93,7 @@ template<class Container, class Type>
 inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs, bool alternate_implementation) {
     std::size_t i = lhs;
     std::size_t j = lhs;
-    std::size_t k = rhs;
+    std::size_t k = rhs+1;
 
     while (j < k) {
         if(this->container[j] < pivot_value){
@@ -108,7 +108,7 @@ inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, s
         }
     }
     
-    return this->biased_between(i, k, configuration.redundant_bias);
+    return this->biased_between(i, j-1, configuration.redundant_bias);
     // #ifdef FORCE_PIVOT_SELECTION_LEFT
     //     return i; // return left pivot
     // #elif FORCE_PIVOT_SELECTION_RIGHT

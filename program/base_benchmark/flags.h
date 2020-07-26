@@ -32,4 +32,34 @@
 //#define FORCE_PIVOT_SELECTION_RIGHT 1
 
 //#define REUSE_PIVOTS 1
+
+
+#define EXECUTION_MODE_IQS 0
+#define EXECUTION_MODE_IIQS 1
+#define EXECUTION_MODE_RIIQS 2
+
+#define SWAP_BETWEEN(flag, param1, param2, operation) \
+if ( flag ) { \
+    param1 operation;\
+}\
+else {\
+    param2 operation;\
+}\
+
+
+#define SWITCH_BETWEEN(flag, param1, param2, param3, operation) \
+switch (flag){ \
+case EXECUTION_MODE_IQS: \
+    param1 operation; \
+    break; \
+case EXECUTION_MODE_IIQS: \
+    param2 operation; \
+    break; \
+case EXECUTION_MODE_RIIQS: \
+    param3 operation; \
+    break; \
+default: \
+    break; \
+}
+
 #endif //IQS_TEST_FLAGS_H

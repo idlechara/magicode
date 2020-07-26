@@ -35,15 +35,8 @@
 // #include "src/BareBoneIQS.cpp"
 #include "src/IIQS.cpp"
 // #include "src/BareBoneIIQS.cpp"
-
-
-#define SWAP_BETWEEN(flag, param1, param2, operation) \
-if ( flag ) { \
-    param1 operation;\
-}\
-else {\
-    param2 operation;\
-}\
+#include "src/rIIQS.cpp"
+// #include "src/BareBoneIIQS.cpp"
 
 
 int main(int argc, char const *argv[])
@@ -59,7 +52,7 @@ int main(int argc, char const *argv[])
         ("log-extraction-time", boost::program_options::value<bool>(&(configuration_ptr)->log_extraction_time)->default_value(false),        "record time taken by extraction selection")
         ("log-swaps",           boost::program_options::value<bool>(&(configuration_ptr)->log_swaps)->default_value(false),                  "record swaps used")
         ("use-bfprt",           boost::program_options::value<bool>(&(configuration_ptr)->use_bfprt)->default_value(false),                  "use bfprt as median selection strategy")
-        ("use-iiqs",            boost::program_options::value<bool>(&(configuration_ptr)->use_iiqs)->default_value(false),                   "use IIQS as main algorithm")
+        ("use-iiqs",            boost::program_options::value<int>(&(configuration_ptr)->use_iiqs)->default_value(0),                       "use IIQS as main algorithm (0:iqs, 1:iiqs, 2:riqs)")
         ("use-dutch-flag",      boost::program_options::value<bool>(&(configuration_ptr)->use_dutch_flag)->default_value(true),             "use dutch-flag as partition algorithm")
         ("use-random-pivot",    boost::program_options::value<bool>(&(configuration_ptr)->use_random_pivot)->default_value(false),           "use random pivot selection")
         ("set-bfprt-alpha",     boost::program_options::value<double>(&(configuration_ptr)->alpha_value)->default_value(0.3f),                "set bfprt alpha value")
@@ -113,6 +106,7 @@ int main(int argc, char const *argv[])
 
     IQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iqs(input_array, configuration, snapshots, extraction_snapshot);
     IIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> iiqs(input_array, configuration, snapshots, extraction_snapshot);
+    rIIQS<std::vector<TYPE_TO_USE>, TYPE_TO_USE> riiqs(input_array, configuration, snapshots, extraction_snapshot);
 
 
     for(int i = 0; i < configuration.extractions; i++){
@@ -120,20 +114,21 @@ int main(int argc, char const *argv[])
 
         if (configuration.log_extraction_time) {
             std::chrono::high_resolution_clock::time_point extraction_start = std::chrono::high_resolution_clock::now();
-            SWAP_BETWEEN(configuration.use_iiqs, iiqs, iqs, .next();)
+            SWITCH_BETWEEN(configuration.use_iiqs, iqs, iiqs, riiqs, .next())
             
             std::chrono::high_resolution_clock::time_point extraction_end = std::chrono::high_resolution_clock::now();
             extraction_snapshot.snapshot_point = EXTRACTION_STAGE_END;
             extraction_snapshot.extraction_time = std::chrono::duration_cast<std::chrono::TIME_UNIT>(extraction_end - extraction_start);
             extraction_snapshot.total_extraction_time = extraction_snapshot.total_extraction_time + extraction_snapshot.extraction_time;
-            SWAP_BETWEEN(configuration.use_iiqs, 
+            SWITCH_BETWEEN(configuration.use_iiqs, 
+                extraction_snapshot.current_stack_size = iqs.stack.size();, 
                 extraction_snapshot.current_stack_size = iiqs.stack.size();, 
-                extraction_snapshot.current_stack_size = iqs.stack.size();,
-                 )
+                extraction_snapshot.current_stack_size = riiqs.rStack.size();,
+            )
             snapshots.emplace_back(extraction_snapshot);
         }
         else{
-            SWAP_BETWEEN(configuration.use_iiqs, iiqs, iqs, .next();)
+            SWITCH_BETWEEN(configuration.use_iiqs, iqs, iiqs, riiqs, .next())
         }
         // std::cout << "Waiting for input... Currently " << snapshots.size() << " in storage. \n";
         // getchar();
