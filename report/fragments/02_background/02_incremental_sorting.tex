@@ -2,16 +2,16 @@
 \section{Incremental Sorting}
 \label{SEC:INCREMENTAL_SORTING}
 
-While sorting algorithms can be seen as a straightforward process, the definition of sorting can be extended as \textit{partial sorting} and \textit{incremental sorting}, as in practice, even though is used as an intermediate step of many procedures, it is not mandatory to always sort the entire array, sometimes it is needed to sort only a fragment of interest.
+While sorting algorithms can be seen as a straightforward process, the definition of sorting can be extended as \textit{partial sorting} and \textit{incremental sorting}, as in practice, even though is used as an intermediate step of many procedures, it is not mandatory to always sort the entire array, sometimes it is needed to sort only a fragment of interest.\\
 
-When partitioning a sequence using a pivot, the relationship between the pivot and the other two sub-sequences generated can be seen as a equivalence relationship~\cite{10.5555/1614191}. Then for any sequence $A' \in A$, we can define a \textit{partial order} if the relationship on the elements of $A$ is reflexive, antisymmetric and transitive and then $A'$ is called a \textit{partially ordered sequence}.
+When partitioning a sequence using a pivot, the relationship between the pivot and the other two sub-sequences generated can be seen as a equivalence relationship~\cite{10.5555/1614191}. Then for any sequence $A' \in A$, we can define a \textit{partial order} if the relationship on the elements of $A$ is reflexive, antisymmetric and transitive and then $A'$ is called a \textit{partially ordered sequence}.\\
 
-Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ --- a partially sorted sequence of $A$ --- , if the elements are retrieved in a way that sub-sequential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.
+Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ --- a partially sorted sequence of $A$ --- , if the elements are retrieved in a way that sub-sequential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.\\
 
-A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants. Then there is no need to waste time sorting all the elements for a query that can be executed only one time.
+A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants. Then there is no need to waste time sorting all the elements for a query that can be executed only one time.\\
 
 \subsection{Incremental QuickSort}
-Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for using on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
+Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for using on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.\\
 
 \subsubsection{Algorithm overview}
 
@@ -31,25 +31,25 @@ Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSel
   \end{algorithmic}
 \end{algorithm}
 
-As it can be seen on Algorithm~\ref{ALG:IQS}, the execution of IQS is equivalent to sorting the array by executing QuickSelect searching for the element which belongs to the corresponding position in sequential order. The advantage of using IQS for this task is that the stack stores all the previous pivots generated, making next minima extraction calls cheaper than executing QuickSearch from scratch, hence the $O(m + k~log_2(k) ) $ running time on which $m$ is the size of the sequence and $k~log_2(k)$ is the cost of subsequent extraction. When all elements are extracted, then the complexity yields $m = k$, being comparable to the running time of QuickSort.
+As it can be seen on Algorithm~\ref{ALG:IQS}, the execution of IQS is equivalent to sorting the array by executing QuickSelect searching for the element which belongs to the corresponding position in sequential order. The advantage of using IQS for this task is that the stack stores all the previous pivots generated, making next minima extraction calls cheaper than executing QuickSearch from scratch, hence the $O(m + k~log_2(k) ) $ running time on which $m$ is the size of the sequence and $k~log_2(k)$ is the cost of subsequent extraction. When all elements are extracted, then the complexity yields $m = k$, being comparable to the running time of QuickSort.\\
 
 \subsubsection{Worst case}
-Since this is a partition-based sorting algorithm, the performance of the sorting operation relies on the \textit{quality} of the pivots generated along each iteration. As QuickSort, the \textit{quality} of the a given pivot is the capability to separate the sequence into two sub-sequences of similar length, thus reducing the size of sequences being solved on next calls.
+Since this is a partition-based sorting algorithm, the performance of the sorting operation relies on the \textit{quality} of the pivots generated along each iteration. As QuickSort, the \textit{quality} of the a given pivot is the capability to separate the sequence into two sub-sequences of similar length, thus reducing the size of sequences being solved on next calls.\\
 
-If the pivot is not able to split the sequence into sub-sequences of similar size, one side of the recursion is bound to continue with little to no reduction of the elements. On IQS case, it executes the partition stage which has $O(n)$ complexity $n$ times, yielding $O(n^2)$ running time.
+If the pivot is not able to split the sequence into sub-sequences of similar size, one side of the recursion is bound to continue with little to no reduction of the elements. On IQS case, it executes the partition stage which has $O(n)$ complexity $n$ times, yielding $O(n^2)$ running time.\\
 
-A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.
+A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.\\
 
 \subsection{Introspective Incremental QuickSort}
 \label{SUBSECTION:IIQS}
 
-A slightly more complex version of Incremental QuickSort were developed to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far~\cite{7416566}.
+A slightly more complex version of Incremental QuickSort were developed to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far~\cite{7416566}.\\
 
-The modification consists on extending the capabilities of the partition stage of IQS in order to determine if the pivot has a minimum expected quality. For such effects, the information of the relative position of the extracted pivot towards the partitioned sequence is calculated to determine if the pivot obtained can be refined or not by using another pivot selection technique.
+The modification consists on extending the capabilities of the partition stage of IQS in order to determine if the pivot has a minimum expected quality. For such effects, the information of the relative position of the extracted pivot towards the partitioned sequence is calculated to determine if the pivot obtained can be refined or not by using another pivot selection technique.\\
 
-In this case the algorithm used for the alternative pivot selection is \textit{median of medians}~\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}. Median of medians algorithm guarantees that the median selected belongs to central 40\% of elements in the sequence. Let $P_{30}$ and $P_{70}$ the 30th and 70th percentile of an $S$ sequence of $m$ size. For any sorted sequence $S$ on which graphically the leftmost element is the lowest element and the rightmost element is the greater, $P_{30}$ is a subsequence of $S$ which contains the $\lfloor0.3*|S|\rfloor$ lowest elements in $S$, and $P_{70} \setminus P_{30}$ is a subsequence which contains the $\lceil0.3*|S|\rceil$ greatest elements of $S$. 
+In this case the algorithm used for the alternative pivot selection is \textit{median of medians}~\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}. Median of medians algorithm guarantees that the median selected belongs to central 40\% of elements in the sequence. Let $P_{30}$ and $P_{70}$ the 30th and 70th percentile of an $S$ sequence of $m$ size. For any sorted sequence $S$ on which graphically the leftmost element is the lowest element and the rightmost element is the greater, $P_{30}$ is a subsequence of $S$ which contains the $\lfloor0.3*|S|\rfloor$ lowest elements in $S$, and $P_{70} \setminus P_{30}$ is a subsequence which contains the $\lceil0.3*|S|\rceil$ greatest elements of $S$.\\
 
-If the median returned by $select$ does not belong to a position between $P_{70} \setminus P_{30}$, then median of medians is executed in order to guarantee a decrease of the search space for the next call of at least 30\%. As the pivot index can be mapped to their relative position on the sequence $S$, then $\alpha=0.3$ and $\beta=0.7$ dennotes the values used to compare the pivot position. The details on how this comparison is performed can be seen on Algorithm~\ref{ALG:IIQS}.
+If the median returned by $select$ does not belong to a position between $P_{70} \setminus P_{30}$, then median of medians is executed in order to guarantee a decrease of the search space for the next call of at least 30\%. As the pivot index can be mapped to their relative position on the sequence $S$, then $\alpha=0.3$ and $\beta=0.7$ dennotes the values used to compare the pivot position. The details on how this comparison is performed can be seen on Algorithm~\ref{ALG:IIQS}.\\
 
 \subsubsection{Algorithm overview}
 \begin{algorithm}
@@ -86,4 +86,6 @@ If the median returned by $select$ does not belong to a position between $P_{70}
   \end{algorithmic}
 \end{algorithm}
 
-The reason behind why use median of medians is that it has $O(n)$ complexity, being the same complexity as same as the partition, thus it does not increase the asymptotic complexity of the iteration if it were to be used as a fallback to reduce the problem space.
+The reason behind why use median of medians is that it has $O(n)$ complexity, being the same complexity as same as the partition, thus it does not increase the asymptotic complexity of the iteration if it were to be used as a fallback to reduce the problem space.\\
+
+\FloatBarrier

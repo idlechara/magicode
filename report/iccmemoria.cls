@@ -132,7 +132,7 @@ Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
 \parbox{180pt}{
 %\MakeUppercase{
 %Memoria para optar al título de Ingeniero Civil en Computación\\}%} \\}
-Report to apply for a Civil Computer Engineer degree\\}
+Report to apply for a Civil Computer Engineer title\\}
 }
 
 \def\calificacion

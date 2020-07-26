@@ -50,6 +50,11 @@ Vladmir Estivill-Castro and Derick Wood.
 \newblock A survey of adaptive sorting algorithms.
 \newblock {\em ACM Comput. Surv.}, 24(4):441–476, December 1992.
 
+\bibitem{10.1093/molbev/msw211}
+Benjamin~C. Haller and Philipp~W. Messer.
+\newblock {SLiM 2: Flexible, Interactive Forward Genetic Simulations}.
+\newblock {\em Molecular Biology and Evolution}, 34(1):230--240, 10 2016.
+
 \bibitem{10.5555/270146}
 Donald~E. Knuth.
 \newblock {\em The Art of Computer Programming, Volume 2 (3rd Ed.):
