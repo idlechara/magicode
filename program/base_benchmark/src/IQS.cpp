@@ -18,7 +18,7 @@
 #include "IQS.h"
 #include <cstdlib>
 #include <random>
-
+#include <iostream>
 /**
  *  Function to play with IQS implementation of random
  * @tparam Container container type to handle on the class
@@ -44,7 +44,7 @@ inline std::size_t IQS<Container, Type>::random_between(std::size_t lhs, std::si
 template<class Container, class Type>
 inline std::size_t IQS<Container, Type>::biased_between(std::size_t lhs, std::size_t rhs, double bias) {
     double range = (double)(rhs - lhs);
-    std::size_t index_bias = round(bias / range);
+    std::size_t index_bias = (int)(bias * range);
     return lhs + index_bias;
 }
 
@@ -60,7 +60,7 @@ inline std::size_t IQS<Container, Type>::biased_between(std::size_t lhs, std::si
  * @return std::size_t the index on which the partition value belongs
  */
 template<class Container, class Type>
-inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t lhs, std::size_t rhs) {
+inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t lhs, std::size_t rhs, bool alternate_implementation) {
     lhs--;
     rhs++;
     while(1){
@@ -76,7 +76,7 @@ inline std::size_t IQS<Container, Type>::partition(Type pivot_value, std::size_t
         if (lhs >= rhs) return rhs;
 
         // swap elements
-        this->swap(this-> container, lhs, rhs);
+        this->swap(this-> container, lhs, rhs, alternate_implementation);
     }
 }
 
@@ -93,7 +93,7 @@ template<class Container, class Type>
 inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, std::size_t lhs, std::size_t rhs, bool alternate_implementation) {
     std::size_t i = lhs;
     std::size_t j = lhs;
-    std::size_t k = rhs;
+    std::size_t k = rhs+1;
 
     while (j < k) {
         if(this->container[j] < pivot_value){
@@ -107,13 +107,15 @@ inline std::size_t IQS<Container, Type>::partition_redundant(Type pivot_value, s
             j++;
         }
     }
-    #ifdef FORCE_PIVOT_SELECTION_LEFT
-        return i; // return left pivot
-    #elif FORCE_PIVOT_SELECTION_RIGHT
-        return k; // return left pivot
-    #else
-            return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
-    #endif
+    
+    return this->biased_between(i, j-1, configuration.redundant_bias);
+    // #ifdef FORCE_PIVOT_SELECTION_LEFT
+    //     return i; // return left pivot
+    // #elif FORCE_PIVOT_SELECTION_RIGHT
+    //     return k; // return left pivot
+    // #else
+    //         return (i + k) / 2; // if there is a group, then return the middle element to guarantee a position
+    // #endif
 }
 
 
@@ -168,6 +170,11 @@ Type IQS<Container, Type>::next() {
         // resize the search window
 
         // reset counters
+        this->snapshot.current_iteration_partition_swaps = 0;
+        this->snapshot.current_iteration_longest_partition_swap = 0;
+        this->snapshot.current_iteration_executed_bfprt_partitions = 0;
+        this->snapshot.current_iteration_bfprt_partition_swaps = 0;
+        this->snapshot.current_iteration_longest_bfprt_partition_swap = 0;
         this->snapshot.current_iteration_pushed_pivots = 0;
         this->snapshot.current_iteration_pulled_pivots = 0;
 
@@ -189,9 +196,9 @@ Type IQS<Container, Type>::next() {
 
         std::size_t pivot_idx;
         if (this->configuration.use_random_pivot)
-            pivot_idx = this->random_between(this->extracted_count, top_element);
+            pivot_idx = this->random_between(this->extracted_count, top_element-1);
         else
-            pivot_idx = this->biased_between(this->extracted_count, top_element, this->configuration.pivot_bias);
+            pivot_idx = this->biased_between(this->extracted_count, top_element-1, this->configuration.pivot_bias);
 
 
         Type pivot_value = this->container[pivot_idx];
@@ -206,7 +213,14 @@ Type IQS<Container, Type>::next() {
 
         CLOCK_ROUTINE(
             this->configuration.log_pivot_time,
-            {pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element, this->configuration.use_bfprt);},
+            {
+                if(this->configuration.use_dutch_flag){
+                    pivot_idx = this->partition_redundant(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                }
+                else{
+                    pivot_idx = this->partition(pivot_value, this->extracted_count, top_element-1, this->configuration.use_bfprt);
+                }
+            },
             PARTITION_STAGE_END,
             this->snapshot, this->snapshots,
             partition_time, total_partition_time,
@@ -235,4 +249,9 @@ container(container), configuration(configuration), snapshot(snapshot), snapshot
     this->extracted_count = 0;
     this->stack = std::stack<std::size_t>();
     this->stack.push(container.size()-1);
+    std::cout << "Initializing IQS \n";
+}
+
+template<class Container, class Type>
+IQS<Container, Type>::IQS() {
 }

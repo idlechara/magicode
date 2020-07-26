@@ -3,10 +3,12 @@
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{tabularx}
+\usepackage{placeins}
 \usepackage[noend]{algpseudocode}
 
 \algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
-
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
 
 %% datos generales y para la tapa
 \titulo{Análisis experimental de IIQS para extender el soporte a secuencias de elementos repetidos}
@@ -30,17 +32,7 @@
 %cambio 5
 %cambio 3
 %cambio 4
-
-%% dedicatoria
-\begin{dedicatory}
-  Dedicated to... someone ?
-\end{dedicatory}
-
-%% agradecimientos
-\begin{acknowledgment}
-  Agradecimientos a ... (how the fuck do I choose whom to acknowledge?)
-\end{acknowledgment}
-
+\input{fragments/00_base/index.tex}
 %% indices
 \tableofcontents
 \listoffigures
@@ -54,30 +46,7 @@
 %% abstract
 
 %% contenido del primer capítulo
-%% This should be the last thing to write
-\chapter{Introduction}
-Aquí va el texto del capítulo 1...
-
-\section{Context}
-Aquí va el texto de la primera sección del capítulo 1...
-
-\section{Application areas}
-Aquí va el texto de la primera subsección de la primera sección del capítulo 1...
-
-\section{Problem description}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
-
-\section{Goals}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
-
-\subsection{General goals}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
-
-\subsection{Specific goals}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
-
-\section{Document Structure}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+\input{fragments/01_introduction/index.tex}
 
 \input{fragments/02_background/index.tex}
 
@@ -92,8 +61,7 @@ Aquí va el texto de la segunda subsección de la primera sección del capítulo
 \input{fragments/03_methodology/index.tex}
 \input{fragments/04_experimental_execution/index.tex}
 \input{fragments/05_workhorse_experiment/index.tex}
-
-\chapter{Summary}
+\input{fragments/06_summary/index.tex}
 % \chapter{Experiments}
 % \section{Experimental setup}
 % \section{Experimental results}
@@ -132,10 +100,10 @@ Aquí va el texto de la segunda subsección de la primera sección del capítulo
 
 
 %% ambiente glosario
-\begin{glosario}
-  \item[El primer término:] Este es el significado del primer término, realmente no se bien lo que significa pero podría haberlo averiguado si hubiese tenido un poco mas de tiempo.
-  \item[El segundo término:] Este si se lo que significa pero me da lata escribirlo...
-\end{glosario}
+% \begin{glosario}
+%   \item[El primer término:] Este es el significado del primer término, realmente no se bien lo que significa pero podría haberlo averiguado si hubiese tenido un poco mas de tiempo.
+%   \item[El segundo término:] Este si se lo que significa pero me da lata escribirlo...
+% \end{glosario}
 
 
 %% genera las referencias

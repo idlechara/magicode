@@ -11,12 +11,14 @@ set(PROJECT_HEADERS
         src/IQS.h
         src/BareBoneIQS.h
         src/IIQS.h
+        src/rIIQS.h
         src/BareBoneIIQS.h flags.h)
 set(PROJECT_SOURCES
         main.cpp
         src/IQS.cpp
         src/BareBoneIQS.cpp
         src/IIQS.cpp
+        src/rIIQS.cpp
         src/BareBoneIIQS.cpp)
 
 add_executable(iqs_test ${PROJECT_SOURCES} ${PROJECT_HEADERS})

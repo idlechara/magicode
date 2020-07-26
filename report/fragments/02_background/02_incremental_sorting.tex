@@ -8,10 +8,10 @@ When partitioning a sequence using a pivot, the relationship between the pivot a
 
 Using this very same definition of partial order, if we retrieve the elements of a sequence and store them as $A_s$ --- a partially sorted sequence of $A$ --- , if the elements are retrieved in a way that sub-sequential pushes to the $A_s$ is always ordered, then it is said that $A$ is being \textit{incrementally sorted}.
 
-A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants, then there is no need to waste time sorting all the elements for a query that can be executed only one time.
+A good example of the uses of this kind of sorting are the results given by a web search engine. When a user inputs a query, regardless of the size of the database, the search engine paginates the results and presents only the first page of results. It is not actually needed to sort all the results, rather to get the most relevants. Then there is no need to waste time sorting all the elements for a query that can be executed only one time.
 
 \subsection{Incremental QuickSort}
-Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for usage on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
+Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSelect designed for using on incremental sorting problems, intended to be a direct replacement of HeapSort on Kruskal's algorithm.
 
 \subsubsection{Algorithm overview}
 
@@ -31,24 +31,25 @@ Incremental QuickSort (IQS)~\cite{Navarro_Paredes_2010} is a variant of QuickSel
   \end{algorithmic}
 \end{algorithm}
 
-As it can be seen on Algorithm~\ref{ALG:IQS}, the execution of IQS is equivalent to sorting the array by executing QuickSelect searching for the element which belongs to the corresponding position in sequential order. The advantage of using IQS for this task is that the stack stores all the previous pivots generated making next minima extraction calls cheaper than executing QuickSearch from scratch, hence the $n*log_2(n)$ running time.
+As it can be seen on Algorithm~\ref{ALG:IQS}, the execution of IQS is equivalent to sorting the array by executing QuickSelect searching for the element which belongs to the corresponding position in sequential order. The advantage of using IQS for this task is that the stack stores all the previous pivots generated, making next minima extraction calls cheaper than executing QuickSearch from scratch, hence the $O(m + k~log_2(k) ) $ running time on which $m$ is the size of the sequence and $k~log_2(k)$ is the cost of subsequent extraction. When all elements are extracted, then the complexity yields $m = k$, being comparable to the running time of QuickSort.
 
 \subsubsection{Worst case}
 Since this is a partition-based sorting algorithm, the performance of the sorting operation relies on the \textit{quality} of the pivots generated along each iteration. As QuickSort, the \textit{quality} of the a given pivot is the capability to separate the sequence into two sub-sequences of similar length, thus reducing the size of sequences being solved on next calls.
 
-If the pivot is not able to split the sequence into similar sized sub-sequences, one side of the recursion is bound to continue with little to no reduction of the elements. On IQS case, it executes the partition stage which has $O(n)$ complexity $n$ times, yielding $O(n^2)$ running time.
+If the pivot is not able to split the sequence into sub-sequences of similar size, one side of the recursion is bound to continue with little to no reduction of the elements. On IQS case, it executes the partition stage which has $O(n)$ complexity $n$ times, yielding $O(n^2)$ running time.
 
 A way to force a worst case execution is to force the pivot selection to choose each time a pivot that makes a whole partition of the array and leaves it at the end. To force this we use a sequence of elements ordered in a decreasing way and we force the pivot selection to always select the first element of the sequence.
 
 \subsection{Introspective Incremental QuickSort}
+\label{SUBSECTION:IIQS}
 
 A slightly more complex version of Incremental QuickSort were developed to avoid the worst case running time of IQS by changing the pivot selection strategy on function of how many recursive calls has executed so far~\cite{7416566}.
 
 The modification consists on extending the capabilities of the partition stage of IQS in order to determine if the pivot has a minimum expected quality. For such effects, the information of the relative position of the extracted pivot towards the partitioned sequence is calculated to determine if the pivot obtained can be refined or not by using another pivot selection technique.
 
-In this case the used algorithm is the \textit{median of medians}~\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}. Median of medians algorithm guarantees that the median selected will belong to $P_{70} \cap P_{30}$ of the sequence to be partitioned, which sets the measures of quality for IIQS. 
+In this case the algorithm used for the alternative pivot selection is \textit{median of medians}~\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}. Median of medians algorithm guarantees that the median selected belongs to central 40\% of elements in the sequence. Let $P_{30}$ and $P_{70}$ the 30th and 70th percentile of an $S$ sequence of $m$ size. For any sorted sequence $S$ on which graphically the leftmost element is the lowest element and the rightmost element is the greater, $P_{30}$ is a subsequence of $S$ which contains the $\lfloor0.3*|S|\rfloor$ lowest elements in $S$, and $P_{70} \setminus P_{30}$ is a subsequence which contains the $\lceil0.3*|S|\rceil$ greatest elements of $S$. 
 
-If the median returned by $select$ does not belong to a position between $P_{70} \cap P_{30}$, then median of medians is executed in order to guarantee a decrease of the search space for the next call of at least 30\%. The details on how this comparison is performed can be seen on Algorithm~\ref{ALG:IIQS}.
+If the median returned by $select$ does not belong to a position between $P_{70} \setminus P_{30}$, then median of medians is executed in order to guarantee a decrease of the search space for the next call of at least 30\%. As the pivot index can be mapped to their relative position on the sequence $S$, then $\alpha=0.3$ and $\beta=0.7$ dennotes the values used to compare the pivot position. The details on how this comparison is performed can be seen on Algorithm~\ref{ALG:IIQS}.
 
 \subsubsection{Algorithm overview}
 \begin{algorithm}
@@ -56,25 +57,28 @@ If the median returned by $select$ does not belong to a position between $P_{70}
     \caption{Introspective IncrementalQuickSort}\label{ALG:IIQS}
     \Procedure{iiqs}{$A, S, k$}
     \While{$k < S.top()$}
-    \State $pidx \gets random(k,S.top()-1)$
-    \State $pidx \gets partition(A_{k,S.top()-1}, pidx)$
-    \State $m \gets S.top() - k$
-    \State $\alpha \gets 0.3$
-    \State $r \gets -1$
-    \If{$pidx < k + \alpha m$}
-    \State $r \gets pidx$
-    \State $pidx \gets pick(A_{r+1,S.top()-1})$
-    \State $pidx \gets partition(A_{r+1,S.top()-1},pidx)$
-    \ElsIf{$pidx > S.top() - \alpha m$}
-    \State $r \gets pidx$
-    \State $pidx \gets pick(A_{k,pidx})$
-    \State $pidx \gets partition(A_{k,r}, pidx)$
-    \State $r \gets -1$
-    \EndIf
-    \State S.push($pidx$)
-    \If{$r > -1$}
-    \State S.push($r$)
-    \EndIf
+      \State $pidx \gets random(k,S.top()-1)$
+      \State $pidx \gets partition(A_{k,S.top()-1}, pidx)$
+      \State $m \gets S.top() - k$
+      \State $\alpha \gets 0.3$
+      \State $r \gets -1$
+
+      \If{$pidx < k + \alpha m$}
+        \State $r \gets pidx$
+        \State $pidx \gets pick(A_{r+1,S.top()-1})$
+        \State $pidx \gets partition(A_{r+1,S.top()-1},pidx)$
+      \ElsIf{$pidx > S.top() - \alpha m$}
+        \State $r \gets pidx$
+        \State $pidx \gets pick(A_{k,pidx})$
+        \State $pidx \gets partition(A_{k,r}, pidx)$
+        \State $r \gets -1$
+      \EndIf
+
+      \State S.push($pidx$)
+
+      \If{$r > -1$}
+        \State S.push($r$)
+      \EndIf  
     \EndWhile
     \State S.pop()
     \State \textbf{return} $A_{k}$\label{IIQS_main_cycle}
