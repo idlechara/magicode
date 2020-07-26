@@ -1,24 +1,56 @@
 %% This should be the last thing to write
 \chapter{Introduction}
-Aquí va el texto del capítulo 1...
+\chapterimage[height=3cm]{./fragments/memes/ears}
 
 \section{Context}
-Aquí va el texto de la primera sección del capítulo 1...
+
+Since early computing, \emph{the sorting problem} has been a focus of interest of many researchers. Challenges range from efficient implementations for certain machines or architectures, minimizing asymptotic complexity, handling special cases or structures to even simple sorting algorithms to introduce new computer science students to the topic. And it is not surprising, when taking into  that sorting most programs rely on a sorting process as part of their procedures.\\
+
+In algorithm design, pure theoretical analyses are the preferred way to prove both correctness and limits of algorithms. Usually these analyses are performed by using a series of mathematical techniques, which aim to provide generality of the results. As such, these analysis usually developed to establish space and time complexities which are later used to determine best use cases and feasibility of implementation.\\
+
+But in practice, when implementing these algorithms, there are many factors that can give different results than expected. The same algorithm can perform better depending on the distribution of the input, on which case this becomes the subject of our analysis. On others, computer architecture has a huge impact on the running time. Even initial values for a variable can induce different results which can benefit or hinder our processes. \\
+
+In order to close the gap generated between theory and practice, the concept of \emph{Experimental Algoritmics} is born. Extrapolating \emph{Design of Experiments} practices to algorithm design and engineering, this approach targets to ease the development of new programs by taking a ``nuts and bolts'' approach complementing theoretical analysis with practical results. \\
+
+There are many algorithms developed using this process, and one of those is an incremental sorting algorithm known as \emph{Introspective Incremental Quick Select}. This is a extension of an incremental sorting algorithm called \emph{Incremental Quick Select}, intended to overcome their worst-case scenario by using the concept of \emph{algorithm introspection} used on \emph{IntroSort}\cite{10.5555/261387.261395}.\\
 
 \section{Application areas}
-Aquí va el texto de la primera subsección de la primera sección del capítulo 1...
+
+In contrast to the most common sorting algorithms like \emph{QuickSort}, incremental sorting algorithms are intended to retrieve elements from a sequence without completely sorting it. This kind of behaviour is exploited on structures like the optimal minimum heaps used to implement priority queues. \\
+
+On the other hand, as a continuous extraction of elements via incremental sorting can be seen as a sorting process, incremental sorting is by extension a resumeable sorting. This is useful in process which rely on heavy sorting processes that demand constant updates to the user. This is the example of \emph{Haplotype Plots} generation in programs like \emph{SLiM}~\cite{10.1093/molbev/msw211}, on which incremental sorting provides a way to constantly inform the user in cases on which the sorting process can take hours to complete.\\
 
 \section{Problem description}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+Both Incremental Quick Select and its introspective version as they were presented do not present any choices for the subroutines used. As such, their behaviour changes depending on which subroutines are used. This leads to problems like being unable to sort sequences when repeated elements are present, due to the implementation of the partition subroutine.\\
+
+Additionally, the original work on which IIQS were presented has a rough theoretical analysis for its worst-case performance and a simple execution analysis. While most of the time this information is enough to present an algorithm and validate it, it does present some difficulties to developers as they try to test them into actual applications.\\
 
 \section{Goals}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+The objective of this document is to compile the efforts behind the use of an experimental algorithmics approach to develop an improved version of Introspective Incremental Quick Select. This implementation aims to maintain its properties for the standard case of sorting sequences with no repeated elements, but than it is also capable of managing repeated elements without changing its complexity.\\
 
 \subsection{General goals}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+The main objective in this work is to \emph{``use an experimental algorithmics approach to extend Introspective Incremental Quick Select's implementation to accept repeated sequences as input''}.\\
 
 \subsection{Specific goals}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+In order to reach our specific goal, we need to complete the following tasks:
+
+\begin{itemize}
+    \item Research on the foundations of Incremental Quick Select and Introspective Incremental Quick Select.
+    \item Plan pilot experiments to gain insight on potential improvements.
+    \item Apply this insight to design a new version of the target algorithm.
+    \item Empirically prove its correctness by benchmarking it. 
+\end{itemize}
 
 \section{Document Structure}
-Aquí va el texto de la segunda subsección de la primera sección del capítulo 1...
+The document is organized in the same way as the design process has been followed though, from the initial background research, each experiment performed and final implementation.\\
+
+\emph{Chapter~\ref{CHAPTER:BACKGROUND}:} This chapter is focused on explaining all relevant details in order to understand the problem at hand. It presents an introduction to our base algorithms, the methodology used, tools and techniques needed for the reader to understand the next chapters.\\
+
+\emph{Chapter~\ref{CHAPTER:METHODLOGY}:} This chapter explains how the methodology introduced on the previous section is applied to this work. Details as experimental setup and implementation concerns,
+measuring criteria and a breakdown of the process is presented here.\\
+
+\emph{Chapter~\ref{CHAPTER:EXPERIMENTAL_EXECUTION}:} This chapter presents a series of pilots experiments used to understand more the problem and to guide our algorithm engineering process. Each experiment covers their own additional background as research is part of this process.\\
+
+\emph{Chapter~\ref{CHAPTER:WORKHORSE_EXPERIMENT}:} This chapter presents our algorithm proposal and the experiments used to prove its correctness.\\
+
+\emph{Chapter~\ref{CHAPTER:SUMMARY}:} This chapter is focused on discussing the results of this process and to expose our findings.

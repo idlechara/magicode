@@ -1,16 +1,19 @@
 \chapter{Summary}
+\chapterimage[height=3cm]{./fragments/memes/merlin}
+\label{CHAPTER:SUMMARY}
 
-In this work we have tackled the problem of extending IIQS, an algorithm designed to operate over sets of elements to support sequences of elements which can contain repeated elements. At first instance we present the execution of a experimental algorithms methodology along with an in-depth overview of each foundation required to analyze and understand out problem. Then we propose a new variant of IIQS which is baptized as rIIQS which is an algorithm developed through the insight gained of those previous experiments.
+In this work we have tackled the problem of extending IIQS, an algorithm designed to operate over sets of elements to support sequences of elements which can contain repeated elements. At first instance we present the execution of a experimental algorithms methodology along with an in-depth overview of each foundation required to analyze and understand out problem. Then we propose a new variant of IIQS which is baptized as bIIQS which is an algorithm developed through the insight gained of those previous experiments.\\
 
-As we already know, algorithm research is usually driven by formulating the problem and then performing theoretical analyses on it. However, most of those algorithms designed based on purely abstract foundations, most of specific-purpose algorithms lack on the implementation details which can cause confusion and misleading results.
+As we already know, algorithm research is usually driven by formulating the problem and then performing theoretical analyses on it. However, most of those algorithms designed based on purely abstract foundations, most of specific-purpose algorithms lack on the implementation details which can cause confusion and misleading results.\\
 
-In this work we have applied an experimental approach for our algorithm design process. Using the book \emph{A Guide To Experimental Algorithmics}\cite{10.5555/2159557} as our base reference material, we have broken our lineal algorithm design process into an modular cycle. This cycle cam be summarized as understanding the problem at hand, designing experiments, analyze and interpret the results and formulate new questions.
+In this work we have applied an experimental approach for our algorithm design process. Using the book \emph{A Guide To Experimental Algorithmics}\cite{10.5555/2159557} as our base reference material, we have broken our lineal algorithm design process into an modular cycle. This cycle cam be summarized as understanding the problem at hand, designing experiments, analyze and interpret the results and formulate new questions.\\
 
-As this process needs to be controlled, our goals are have been set to support a new input case for IIQS.
+As this process needs to be controlled, our goals are have been set to support a new input case for IIQS.\\
 
-In order to gain useful insight from experiments, both careful planning and rigorous implementation is due. We had chosen C++ as our language of choice, as it enables us to fine tune both structural and execution aspects directly on the code. As for our tool for examining our data and plan our experimental process we have used Jupyter due to the simplicity of its pipelining. A direct consequence of this is the ease replication of results and validations by third parties.
+In order to gain useful insight from experiments, both careful planning and rigorous implementation is due. We had chosen C++ as our language of choice, as it enables us to fine tune both structural and execution aspects directly on the code. As for our tool for examining our data and plan our experimental process we have used Jupyter due to the simplicity of its pipelining. A direct consequence of this is the ease replication of results and validations by third parties.\\
 
 During our experimental process we have discovered some implementation caveats which were not described on the original paper. We can summarize them as follows:
+
 \begin{itemize}
     \item IIQS belongs to the \emph{adaptive sorting} algorithms family. This means that the algorithm performance is in function of its input. This allowed us to focus our efforts on later stages.
     \item Different partitioning schemes do not affect our algorithm complexity nor its running time as long as they divide the elements and provide a way to reduce our search space. But they do alter how the pivots are stored or retrieved.
@@ -20,22 +23,25 @@ During our experimental process we have discovered some implementation caveats w
     \item Experimentally, IIQS has on average a 3-fold overhead in comparison to IQS.
 \end{itemize}
 
+
+It is important to state that while bIIQS does represent a huge improvement, given the nature of the extensions made through its development, there is more room for improvement. This improvements come directly related to hardware aspects and input nature.\\
+
 The main results and findings of this work can be summarized as follows:
 \begin{itemize}
-    \item We presented rIIQS, which is a direct replacement of IIQS aimed to support a new input case not considered on the original work.
+    \item We presented bIIQS, which is a direct replacement of IIQS aimed to support a new input case not considered on the original work.
     \item We have corrected misleading information from the original paper, by gaining insight using a \emph{Experimental Algorithmics} methodology.
-    \item We have made available a portable and extensible implementations of IQS, IIQS, and rIIQS aimed for further experimentation using C++.
+    \item We have made available a portable and extensible implementations of IQS, IIQS, and bIIQS aimed for further experimentation using C++.
 \end{itemize}
 
-It is important to state that while rIIQS does represent a huge improvement, given the nature of the extensions made through its development, there is more room for improvement. This improvements come directly related to hardware aspects and input nature.
-
 \section{Future work}
-As the scope of the work presented here has been bounded to only study how to implement an improved version of IIQS for a new input case and to bound its worst-case execution, we have not covered the study of the effects of different data distributions on IIQS. This can result useful on bioinformatics applications, on which visualization tools like \emph{Haplotype plots} use incremental sorting strategies to give the user feedback on the program state.
 
-A direct extension of this work is a study on the implications of using different computer architectures to run this algorithm. As IQS family obtains their speed thanks to a cache-friendly implementation, different architectures with different memory hierarchy models can yield interesting results for the use of this algorithm on constrained implementations.
+As the scope of the work presented here has been bounded to only study how to implement an improved version of IIQS for a new input case and to bound its worst-case execution, we have not covered the study of the effects of different data distributions on IIQS. This can result useful on bioinformatics applications, on which visualization tools like \emph{Haplotype plots} use incremental sorting strategies to give the user feedback on the program state.\\
 
-A different spin-off of this study is directly related on execution timing. During our experiments we noticed a common problem when gathering execution data. As each snapshot takes a constant time to be stored on memory, as this information is stored it creates a little overhead which can alter results. This occurs because snapshots are stored on the same memory boundary as the program execution. Also, timing operations interrupt the original execution flow of the program. 
+A direct extension of this work is a study on the implications of using different computer architectures to run this algorithm. As IQS family obtains their speed thanks to a cache-friendly implementation, different architectures with different memory hierarchy models can yield interesting results for the use of this algorithm on constrained implementations.\\
 
-As our timed sections nest into each other, this snapshot overhead accumulates deviating results. This problem is related to the \emph{observer theory} described in quantum physics, which states that the mere observation of a phenomenon alters it state. 
+A different spin-off of this study is directly related on execution timing. During our experiments we noticed a common problem when gathering execution data. As each snapshot takes a constant time to be stored on memory, as this information is stored it creates a little overhead which can alter results. This occurs because snapshots are stored on the same memory boundary as the program execution. Also, timing operations interrupt the original execution flow of the program. \\
 
-A promising alternative is to separate the implementation of the algorithm and their snapshot mechanism at physical level. That is, implementing them on different physical instances and communicate state changes as analogue signals. This could be accomplished by using bare-metal implementation of this algorithm using a FPGA software-based CPU wired to a separate high-resolution clocking system on the same chip.
+As our timed sections nest into each other, this snapshot overhead accumulates deviating results. This problem is related to the \emph{observer theory} described in quantum physics, which states that the mere observation of a phenomenon alters it state. \\
+
+A promising alternative is to separate the implementation of the algorithm and their snapshot mechanism at physical level. That is, implementing them on different physical instances and communicate state changes as analogue signals. This could be accomplished by using bare-metal implementation of this algorithm using a FPGA software-based CPU wired to a separate high-resolution clocking system on the same chip.\\
+\FloatBarrier
