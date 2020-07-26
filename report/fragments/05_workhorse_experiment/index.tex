@@ -152,8 +152,8 @@ On the other hand the extensions for Algorithm~\ref{ALG:DUTCH_FLAG_PARTITION_RAN
         \State $pidx \gets random(k,S.rangedTop()-1)$
         \State $pidx, range \gets partition(A_{k,S.rangedTop()-1}, pidx)$
         \State $m \gets S.rangedTop() - k$
-        \State $\alpha \gets 0.5$
-        \State $\beta \gets 0.65$
+        \State $\alpha \gets 0.3$
+        \State $\beta \gets 0.7$
         \State $idx_\alpha \gets k + \alpha m$
         \State $idx_\beta \gets k + \beta m$
         \State $r \gets -1$
@@ -181,9 +181,84 @@ This makes \emph{rIIQS} a direct replacement of \emph{IIQS} for all cases. Addit
 
 \section{Experimental evaluation}
 
+Now we present the experimental results for our proposed implementation of rIIQS against our existing implementations of IQS and IIQS to validate our aforementioned proposals.
 
-\subsection{Performance comparison for repeated sequences and unique sequences}
 
-\subsection{Stack management comparison for repeated sequences and unique sequences}
+\subsection{Performance comparison for unique sequences}
 
-% more work: extend to skew shit, analysis more analuysis
+Experments have shown that rIIQS does not induce an increase of the algorithm complexity for our standard test cases such as random sequences, ascending sorted sequences and descending sorted sequences, as shown in detail in Figures~\ref{FIG:WORKHORSE_BENCHMARK_01},~\ref{FIG:WORKHORSE_BENCHMARK_02} and ~\ref{FIG:WORKHORSE_BENCHMARK_03}. For then, our hypothesis on the equivalence of IIQS and rIIQS for our base IQS test cases is confirmed. 
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using elements $1\times10^4$ as a randomly sorted sequence. IQS and IIQS executions are shown on the first and second column respectively. All extractions using a symlog scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_01}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using elements $1\times10^4$ as a ascending sorted sequence. IQS and IIQS executions are shown on the first and second column respectively. All extractions using a symlog scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_02}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using elements $1\times10^4$ as a descending sorted sequence. IQS and IIQS executions are shown on the first and second column respectively. All extractions using a symlog scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_03}
+\end{figure}
+
+\FloatBarrier
+\subsection{Performance comparison for repeated sequences}
+
+For single class instances which represent the worst case for IIQS when dealing with repeated sequences, rIIQS shows more than three orders of magnitude boost in performance in comparison to IIQS. As shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_05}, while our single class input continues to represent our worst case, it does not pose a problem as before. Experimental results shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_04} reveal that rIIQS does not only perform a fastest first element extraction, but also that formerly stated properties of IIQS as optimal space usage and fastest extractions are also preserved. As the stack now stores a range of elements, each extraction performed on it does not require any extra partition stage as it is being immediately delivered. This makes the ---optional--- pop-push operation the only overhead in this implementation.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using $1\times10^4$ elements for sequences with a variable number of classes. IQS and IIQS executions are shown on the first and second column respectively. All extractions using linear symlog scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_05}
+\end{figure}
+
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using $1\times10^4$ elements for sequences with a single class spanned on it. IQS and IIQS executions are shown on the first and second column respectively. All extractions using linear symlog scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_04}
+\end{figure}
+
+
+As for the noise impact we can clearly identify that now the bias on the resulting index provided by the three-way partition does not impact on the performance of rIIQS except for very small values (see Figure~\ref{FIG:WORKHORSE_BENCHMARK_05}). In contrast, the noise now has a slight negative impact on rIIQS which can be attributed to the extra step performed to stack a pair of elements instead of a single one. Even with this degradation, the performance on all cases is stable in comparison to IIQS and delivers results in the expected running time, on par with random sequences of unique elements.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using $1\times10^4$ elements for sequences with a single class spanned on it with variable noise and three-way-partition bias. IQS and IIQS executions are shown on the first and second column respectively. Only first extraction is shown.}
+    \label{FIG:WORKHORSE_BENCHMARK_05}
+\end{figure}
+
+We confirm our hypothesis by examining both noise impact and three-way-partition bias as separate elements depicted in Figures~\ref{FIG:WORKHORSE_BENCHMARK_06} and Figures~\ref{FIG:WORKHORSE_BENCHMARK_07} respectively.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using $1\times10^4$ elements for sequences with a single class spanned on it with variable noise and three-way-partition bias. IQS and IIQS executions are shown on the first and second column respectively. All extractions using a linear scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_06}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png}
+    %\caption{Benchmark for random case. IQS and IIQS executions are shown on the first and second columns respectively.}
+    \caption{Benchmark for rIIQS using $1\times10^4$ elements for sequences with a single class spanned on it with variable noise and three-way-partition bias. IQS and IIQS executions are shown on the first and second column respectively. All extractions using a linear scale.}
+    \label{FIG:WORKHORSE_BENCHMARK_07}
+\end{figure}
