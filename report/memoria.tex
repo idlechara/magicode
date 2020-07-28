@@ -10,6 +10,10 @@
 
 \usepackage{graphicx,eso-pic}
 
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
 \newcommand\chapterimage[2][]{%
   \AddToShipoutPictureBG*{% Add picture to BackGround on this page only
     \AtTextUpperLeft{% Position at upper left of text block
@@ -19,10 +23,6 @@
           \raisebox{-\height}{% Lower so top touches baseline
             \includegraphics[#1]{#2}}}}}}}% Include image with options
 
-
-\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
-\newcommand{\abs}[1]{\lvert#1\rvert}
-\newcommand{\norm}[1]{\lVert#1\rVert}
 
 %% datos generales y para la tapa
 \titulo{Extendiendo IIQS para soportar secuencias con elementos repetidos}

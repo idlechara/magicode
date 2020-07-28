@@ -1,0 +1,203 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: utalca.eps
+%%Creator: fig2dev Version 3.2 Patchlevel 3d
+%%CreationDate: Fri Mar  7 21:57:08 2003
+%%For: fmeza@toshiba (Federico Meza)
+%%BoundingBox: 0 0 41 40
+%%Magnification: 0.3000
+%%EndComments
+/$F2psDict 200 dict def
+$F2psDict begin
+$F2psDict /mtrx matrix put
+/col-1 {0 setgray} bind def
+/col0 {0.000 0.000 0.000 srgb} bind def
+/col1 {0.000 0.000 1.000 srgb} bind def
+/col2 {0.000 1.000 0.000 srgb} bind def
+/col3 {0.000 1.000 1.000 srgb} bind def
+/col4 {1.000 0.000 0.000 srgb} bind def
+/col5 {1.000 0.000 1.000 srgb} bind def
+/col6 {1.000 1.000 0.000 srgb} bind def
+/col7 {1.000 1.000 1.000 srgb} bind def
+/col8 {0.000 0.000 0.560 srgb} bind def
+/col9 {0.000 0.000 0.690 srgb} bind def
+/col10 {0.000 0.000 0.820 srgb} bind def
+/col11 {0.530 0.810 1.000 srgb} bind def
+/col12 {0.000 0.560 0.000 srgb} bind def
+/col13 {0.000 0.690 0.000 srgb} bind def
+/col14 {0.000 0.820 0.000 srgb} bind def
+/col15 {0.000 0.560 0.560 srgb} bind def
+/col16 {0.000 0.690 0.690 srgb} bind def
+/col17 {0.000 0.820 0.820 srgb} bind def
+/col18 {0.560 0.000 0.000 srgb} bind def
+/col19 {0.690 0.000 0.000 srgb} bind def
+/col20 {0.820 0.000 0.000 srgb} bind def
+/col21 {0.560 0.000 0.560 srgb} bind def
+/col22 {0.690 0.000 0.690 srgb} bind def
+/col23 {0.820 0.000 0.820 srgb} bind def
+/col24 {0.500 0.190 0.000 srgb} bind def
+/col25 {0.630 0.250 0.000 srgb} bind def
+/col26 {0.750 0.380 0.000 srgb} bind def
+/col27 {1.000 0.500 0.500 srgb} bind def
+/col28 {1.000 0.630 0.630 srgb} bind def
+/col29 {1.000 0.750 0.750 srgb} bind def
+/col30 {1.000 0.880 0.880 srgb} bind def
+/col31 {1.000 0.840 0.000 srgb} bind def
+
+end
+save
+newpath 0 40 moveto 0 0 lineto 41 0 lineto 41 40 lineto closepath clip newpath
+-0.0 40.0 translate
+1 -1 scale
+
+/cp {closepath} bind def
+/ef {eofill} bind def
+/gr {grestore} bind def
+/gs {gsave} bind def
+/sa {save} bind def
+/rs {restore} bind def
+/l {lineto} bind def
+/m {moveto} bind def
+/rm {rmoveto} bind def
+/n {newpath} bind def
+/s {stroke} bind def
+/sh {show} bind def
+/slc {setlinecap} bind def
+/slj {setlinejoin} bind def
+/slw {setlinewidth} bind def
+/srgb {setrgbcolor} bind def
+/rot {rotate} bind def
+/sc {scale} bind def
+/sd {setdash} bind def
+/ff {findfont} bind def
+/sf {setfont} bind def
+/scf {scalefont} bind def
+/sw {stringwidth} bind def
+/tr {translate} bind def
+/tnt {dup dup currentrgbcolor
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add
+  4 -2 roll dup 1 exch sub 3 -1 roll mul add srgb}
+  bind def
+/shd {dup dup currentrgbcolor 4 -2 roll mul 4 -2 roll mul
+  4 -2 roll mul srgb} bind def
+/$F2psBegin {$F2psDict begin /$F2psEnteredState save def} def
+/$F2psEnd {$F2psEnteredState restore end} def
+
+$F2psBegin
+10 setmiterlimit
+ 0.01800 0.01800 sc
+%
+% Fig objects follow
+%
+% Polyline
+%
+% pen to black in case this eps object doesn't set color first
+0 0 0 setrgbcolor
+% Originally from a TIFF File: logo.tif
+
+% Begin Imported PCX File: logo.tif
+
+%***********************************************************************
+%*                                                                     *
+%* Object: Image decoding PS-routine                    Date: 01.02.93 *
+%* Author: Evgeni CHERNYAEV (chernaev@vxcern.cern.ch)                  *
+%*                                                                     *
+%* Function: Display a run-length encoded color image.                 *
+%*           The image is displayed in color on viewers and printers   *
+%*           that support color Postscript, otherwise it is displayed  *
+%*           as grayscale.                                             *
+%*                                                                     *
+%***********************************************************************
+/byte 1 string def
+/color 3 string def
+systemdict /colorimage known { /cnt 3 def } { /cnt 1 def } ifelse
+/String 256 cnt mul string def
+%***********************************************************************
+/DecodePacket            % Decode color packet                         *
+%***********************************************************************
+{
+  currentfile byte readhexstring pop 0 get
+  /Nbyte exch 1 add cnt mul def
+  /color ColorMap currentfile byte readhexstring pop 0 get get def
+  String dup
+  0 cnt Nbyte 1 sub { color putinterval dup } for
+  pop 0 Nbyte getinterval
+} bind def
+%***********************************************************************
+/DisplayImage            % Display run-length encoded color image      *
+%***********************************************************************
+{
+  gsave
+  currentfile String readline pop
+  token { /columns exch def } { } ifelse
+  token { /rows exch def pop } { } ifelse
+  currentfile String readline pop
+  token { /Ncol exch def pop } { } ifelse
+  /ColorMap Ncol array def
+  systemdict /colorimage known {
+    0 1 Ncol 1 sub {
+      ColorMap exch
+      currentfile 3 string readhexstring pop put
+    } for
+    columns rows 8
+    [ columns 0 0 rows neg 0 rows ]
+    { DecodePacket } false 3 colorimage
+  }{
+    0 1 Ncol 1 sub {
+      ColorMap exch
+      1 string dup 0
+      currentfile color readhexstring pop pop
+      color 0 get 0.299 mul
+      color 1 get 0.587 mul add
+      color 2 get 0.114 mul add
+      cvi put put
+    } for
+    columns rows 8
+    [ columns 0 0 rows neg 0 rows ]
+    { DecodePacket } image
+  } ifelse
+  grestore
+} bind def
+n gs
+0 0 tr
+15.000000 -15.000000 sc
+0 -148 tr
+0 0 tr
+sa
+/showpage {} def
+% PCX image follows:
+150 148 sc
+%***********************************************
+%*              Image decoding                 *
+%***********************************************
+DisplayImage
+150 148
+2
+000000ffffff
+ff01ff015c018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b00
+09018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b00
+09018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b00
+09018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b0009018b00
+09018b0009018b0009018b0009018b0009018b0009018b00ff01ff01ff01ff01ff01e501
+2d002f012d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f01
+2d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f012d000901
+2d002f012d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f01
+2d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f012d000901
+2d002f012d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f01
+2d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f012d000901
+2d002f012d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f01
+2d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f012d000901
+2d002f012d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f01
+2d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f012d000901
+2d002f012d0009012d002f012d0009012d002f012d0009012d002f012d0009012d002f01
+2d0009012d002f012d0009012d002f012d0009012d002f012d0009012e002d012e000901
+8b0009018b0009018b0009018b0009018a000b0189000b0189000b0189000b0189000c01
+87000d0187000d0187000e0185000f018500100183001101830012018100130181001401
+7f0015017e0017017d0018017b001a0179001c0177001e01750020017300220171002401
+6f0027016b002a0169002d01640033015f003801590040014f00ff01ff01ff011001
+restore grestore
+%
+% End Imported PIC File: logo.tif
+%
+$F2psEnd
+rs
