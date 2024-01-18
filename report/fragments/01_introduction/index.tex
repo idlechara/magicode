@@ -13,7 +13,7 @@ But in practice, when it comes to implementing these algorithms, there are many 
 
 In order to close the gap generated between theory and practice, the concept of \emph{Experimental Algoritmics} is born. Extrapolating \emph{Design of Experiments} practices to algorithm design and engineering, this approach targets to ease the development of new programs by taking a ``nuts and bolts'' approach complementing theoretical analysis with practical results. \\
 
-There are many algorithms developed using this process, and one of those is an incremental sorting algorithm known as \emph{Introspective Incremental Quick Sort}. This is a extension of an incremental sorting algorithm called \emph{Incremental Quick Sort}, intended to overcome their worst-case scenario by using the concept of \emph{algorithm introspection} used on \emph{IntroSort}\cite{10.5555/261387.261395}.\\
+There are many algorithms developed using this process, and one of those is an incremental sorting algorithm known as \emph{Introspective Incremental Quick Sort}. This is a extension of an incremental sorting algorithm called \emph{Incremental Quick Sort}, intended to overcome their worst-case scenario by using the concept of \emph{algorithm introspection} used on \emph{IntroSort}\cite{MusserIntroSort}.\\
 
 \section{Application areas}
 
@@ -21,31 +21,31 @@ In contrast to the most common sorting algorithms like \emph{QuickSort}, increme
 
 Thus, as a continuous extraction of all elements via incremental sorting ends with a completely sorted dataset, incremental sorting is by extension a \emph{resumeable} sorting.
 
-This is useful in process which rely on heavy sorting processes that demand constant updates to the user. This is the example of \emph{Haplotype Plots} generation in programs like \emph{SLiM}~\cite{10.1093/molbev/msw211}, on which incremental sorting provides a way to constantly inform the user in cases on which the sorting process can take hours to complete.\\
+This is useful in process which rely on heavy sorting processes that demand constant updates to the user. This is the example of \emph{Haplotype Plots} generation in programs like \emph{SLiM}~\cite{msw211}, on which incremental sorting provides a way to constantly inform the user in cases on which the sorting process can take hours to complete.\\
 
 \section{Problem description}
 Both Incremental Quick Sort and Introspective Incremental Quick Sort as defined in their original papers \cite{7416566} do not enforce any particular subroutines to be used to fill in the gaps of the procedures to follow. As such, the behaviour of both algorithms are subjected to change in function on which subroutines are used to implement it as an actual program. This leads to problems like being unable to sort sequences when repeated elements are present, due to the implementation of the partition subroutine.\\
 
-The original work for IIQS contains a rough theoretical analysis for its worst-case performance, and a rather simple execution analysis used it to compare it with other state-of-the-art algorithms. While most of the time this information is enough to introduce an algorithm and validate their theoretical constraints, developers may struggle as they try to reproduce the reference implementation and test them in order to make use of them into actual applications\footnote{For Introspective Incremental Quick Select, there is a reference implementation available on one of the author's GitHub page (\url{https://github.com/idlechara/research/iiqs}), but in order to comply with the conference standards at the moment of publishing, such data were not included in the paper but mentioned its presentation.}.\\ 
+The original work for Introspective Incremental QuickSort (IIQS) \cite{7416566} contains a rough theoretical analysis for its worst-case performance, and a rather simple execution analysis used it to compare it with other state-of-the-art algorithms. While most of the time this information is enough to introduce an algorithm and validate their theoretical constraints, developers may struggle as they try to reproduce the reference implementation and test them in order to make use of them into actual applications\footnote{For Introspective Incremental Quick Sort, there is a reference implementation available on one of the author's GitHub page, but in order to comply with the conference standards at the moment of publishing, such data were not included in the paper but mentioned its presentation.}.\\ 
 
 \section{Goals}
-The objective of this document is to compile the efforts behind the use of an experimental algorithmics approach to develop an improved version of Introspective Incremental Quick Select. This implementation aims to maintain its properties for the standard case of sorting sequences with no repeated elements, but than it is also capable of managing repeated elements without changing its complexity.\\
+The objective of this document is to compile the efforts behind the use of an experimental algorithmics approach to develop an improved version of Introspective Incremental Quick Sort. This implementation aims to maintain its properties for the standard case of sorting sequences with no repeated elements, but it is also capable of managing repeated elements without changing its complexity.\\
 
 \subsection{General goals}
-The main objective in this work is to \emph{``use an experimental algorithmics approach to extend Introspective Incremental Quick Select's implementation to accept repeated sequences as input''}.\\
+The main objective in this work is to \emph{``use an experimental algorithmics approach to extend Introspective Incremental Quick Sort's implementation to accept repeated sequences as input''}.\\
 
 \subsection{Specific goals}
 In order to reach our specific goal, we need to complete the following tasks:
 
 \begin{itemize}
-    \item Research on the foundations of Incremental Quick Select and Introspective Incremental Quick Select.
+    \item Research on the foundations of Incremental Quick Sort and Introspective Incremental Quick Sort.
     \item Plan pilot experiments to gain insight on potential improvements.
     \item Apply this insight to design a new version of the target algorithm.
     \item Empirically prove its correctness by benchmarking it. 
 \end{itemize}
 
 \section{Document Structure}
-The document is organized in the same way as the design process has been followed though, from the initial background research, each experiment performed and final implementation.\\
+The document is organized in the same way as the design process has been followed, from the initial background research, each experiment performed and final implementation.\\
 
 \emph{Chapter~\ref{CHAPTER:BACKGROUND}:} This chapter is focused on explaining all relevant details in order to understand the problem at hand. It presents an introduction to our base algorithms, the methodology used, tools and techniques needed for the reader to understand the next chapters.\\
 

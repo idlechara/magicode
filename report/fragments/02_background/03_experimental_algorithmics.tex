@@ -13,10 +13,10 @@ The most complete recompilation of techniques and recommendations on how to appl
 
 \subsubsection{Algorithm instantiation hierarchy}
 
-On experimental algorithmics there is no such difference between algorithms and programs as programmers usually use\footnote{For developers, algorithms are usually referred as an abstract blueprint for describing a process while the program is the executable instance usually without any middle ground in it. Concepts like processes or the intermediate products of their implementation tend to be ignored as they are part of the previous aforementioned defitions.}. Instead the differences on the abstraction level introduced as how specific is their representation on a target environment. Driven by this, we can divide our scale of instantiation as follows:\\
+On experimental algorithmics there is no such difference between algorithms and programs as programmers usually use\footnote{For developers, algorithms are usually referred as an abstract blueprint for describing a process while the program is the executable instance usually without any middle ground in it. Concepts like processes or the intermediate products of their implementation tend to be ignored as they are part of the previous aforementioned definitions.}. Instead, the differences on the abstraction level introduced as how specific is their representation on a target environment. Driven by this, we can divide our scale of instantiation as follows:\\
 
 \begin{itemize}
-    \item \textit{Metaheuristics and algorithm paradigms}, describing algoritmic structures which are not needed to be tied to a specific problem or domain at hand. By example, \textit{Dijkstra's algorithm}~\cite{10.5555/1614191} is a \emph{dynamic programming} algorithm while \textit{2-opt} is a \emph{metaheuristic}~\cite{10.2307/167074}. As such, we can consider them as blueprints to solve generic problems.
+    \item \textit{Metaheuristics and algorithm paradigms}, describing algorithmic structures which are not needed to be tied to a specific problem or domain at hand. For example, \textit{Dijkstra's algorithm}~\cite{10.5555/1614191} is a \emph{dynamic programming} algorithm while \textit{2-opt} is a \emph{metaheuristic}~\cite{10.2307/167074}. As such, we can consider them as blueprints to solve generic problems.
     \item \textit{Algorithms}, being as the description step-by-step of the process for solving a specific instance of a problem. In our case, the pseudocode used to describe \textit{MinMax} belongs to this level. Note that since at this point we have more information on what is happening, we can add more details as needed or desired.
     \item \textit{Source program} as the implementation of the algorithm in a particular high-level language intended to be deployed on a given environment. At this level, the specification is given by the language standards and conventions; but at source code level there is no machine-specific code, so the target platform is not relevant at this point.
     \item \textit{Object code} as the result of the compilation (or execution) process of the source code, being influenced by the architecture, environment and machine specs.
@@ -41,7 +41,7 @@ One of the main goals of algorithm engineering is to combine results from differ
 
 It is important to always take into account all levels of algorithm design and instantiation hierarchies. Usually in academia, algorithm designers tend to focus only on the first two levels, completely ignoring the remaining three ones, which could lead on algorithms with attractive asymptotic bounds but with worse than desirable performance in practice.\\
 
-But as important of taking into account of all level of design, its also important to remark that this process is not linear. It is bound that some changes can present new opportunities, roadblocks, paradigm changes and so on so forth, and when it happens it may be needed to start from scratch or to skip some steps depending on the situation.\\
+But as important of taking into account of all level of design, it's also important to remark that this process is not linear. It is bound that some changes can present new opportunities, roadblocks, paradigm changes and so on so forth, and when it happens it may be needed to start from scratch or to skip some steps depending on the situation.\\
 
 
 \subsection{Methodology overview}
@@ -55,18 +55,18 @@ On experimental algorithmics the first step is to plan the involved experiments 
     \item Experiment design to address the question.
 \end{itemize}
 
-At this stage we do not analyse any data yet as we only design the process to study at a later stage. Given that the experimental setup can alter the question at hand, this process tends to repeat until the experiment is fully assembled.\\
+At this stage we do not analyze any data yet as we only design the process to study at a later stage. Given that the experimental setup can alter the question at hand, this process tends to repeat until the experiment is fully assembled.\\
 
 In order to determine if a given experiment is viable --- namely, a \emph{workhorse experiment} ---, the practitioner must perform a series of \emph{pilot experiments} beforehand, in order to understand the environment, implementation challenges and the problem itself. \\
 
-Pilot experiments are expected to be small experiments which answer a highly constrained and specific question that drives towards the construction of the workhorse experiment, as workhorse experiments are expected to be complex in both setup, execution, and analysis.\\
+Pilot experiments are expected to be small experiments which answer a highly constrained and specific question that drives towards the construction of the workhorse experiment, as workhorse experiments are expected to be complex in both setup, execution, and analysis. \\
 
 At this step, it is expected that the practitioner develops metrics, indicators, and configurations which leads to a deeper understanding of the original question proposed.\\
 
 \subsubsection{Execution}
 Whilst this step is taken locally as a sequential process, there is a mutual dependency between the execution step and the planning stages. The execution of both pilot and workhorse experiments generates data which is used to gain information and insight on the context. But at the same time, in order to set the context, a set of previous results are needed. \\
 
-Because of this mutual dependency between those two processes, it is agreed that if the question at hand is answered then the process is finished. Otherwise the process starts again from the planning stage taking the results from this stage as input.\\
+Because of this mutual dependency between those two processes, it is agreed that if the question at hand is answered then the process is finished. Otherwise, the process starts again from the planning stage taking the results from this stage as input.\\
 
 \subsection{Result driven development}
 As results from experiment execution and analysis yield data from all the levels of algorithm design, those results are used to tune up existing algorithms in order to optimize their execution for certain cases, specific architectures or given constraints.\\
@@ -75,6 +75,6 @@ One of the key benefits of this strategy is that whilst a pure theoretical appro
 
 This approach is widely used on metaheuristics tuning, as there is no guarantee of returning optimal solutions or even worse, converging into one. Experiments are used to fill the gap by simplifying assumptions necessary to theory and the realistic use cases in a \emph{nuts-and-bolts} fashion\footnote{By randomly turning dials and pressing switches in a machine until something happens}. \\
 
-Characterising and improve profiling, gain insight on average and worst cases, suggest new theorems and proof strategies and to extend theoretical analyses to realistic inputs becomes part of this cycle driven by a necessity of replicate the effects at a later time.\\
+Characterizing and improve profiling, gain insight on average and worst cases, suggest new theorems and proof strategies and to extend theoretical analyses to realistic inputs becomes part of this cycle driven by a necessity of replicate the effects at a later time.\\
 
-A example of the use of this methodology is the building of \textit{LZ-index}~\cite{Navarro_2009}, a compressed data structure designed to support indexing and fast lookup. Navarro used experiments to guide the choices of during the implementation process and compare the finished product against current competing strategies.\\
+An example of the use of this methodology is the building of \textit{LZ-index}~\cite{Navarro_2009}, a compressed data structure designed to support indexing and fast lookup. Navarro used experiments to guide the choices of during the implementation process and compare the finished product against current competing strategies.\\

@@ -7,23 +7,23 @@ In this section, we present the consolidation of our previous experiments in the
 \section{Repeating elements problem}
 \label{SECTION:STACK_STRUCTURE}
 
-Contrary to our intitial expectations, BFPRT parameters did not influence the result when dealing with a sequence with repeated elements. So, for this experiment we change tune a different level, as we now see the structures involved on its resolution.\\
+Contrary to our initial expectations, BFPRT parameters did not influence the result when dealing with a sequence with repeated elements. So, for this experiment we change tune a different level, as we now see the structures involved on its resolution.\\
 
 Reminiscing the main concept of incremental sorting, this approach was designed to tackle the problem of extracting elements from a sequence in a sorted fashion in optimal time when there is no information beforehand on how many elements are needed to be extracted from its source.\\
 
-In all our previous experiments we always took as granted the definition of our input sequence, which from now we dennote as $S_{in}$. For all our implementation and structural concerns, $S_{in}$  have a defined size $\norm{S_{in}}$ over a $\mathcal{Z}^{\geq0}$ domain.\footnote{This may seem obvious, but as this structured can be implemented in an arbitra\\tive way, we need to constrain our restrictions for the program as much as possible in order to clearly define our algorithm bounds.} 
+In all our previous experiments we always took as granted the definition of our input sequence, which from now we denote as $S_{in}$. For all our implementation and structural concerns, $S_{in}$  have a defined size $\norm{S_{in}}$ over a $\mathcal{Z}^{\geq0}$ domain.\footnote{This may seem obvious, but as this structured can be implemented in an arbitrating way, we need to constrain our restrictions for the program as much as possible in order to clearly define our algorithm bounds.} 
 
-Depending on the problem to be solved using IQS/IIQS, we may need different representations for the output. In this regard, we can see IQS and IIQS as a function which maps a sequence $S_{in}$ into another sequence $S_{out}$ which contains the same elements but arbinned via a certain criteria. We do not specify the criteria at this point, as it is not the point of this work to compare different comparison mechanisms. For such effects is safe to assume that our comparison criteria is the one in Section~\ref{SEC:INCREMENTAL_SORTING}.\\
+Depending on the problem to be solved using IQS/IIQS, we may need different representations for the output. In this regard, we can see IQS and IIQS as a function which maps a sequence $S_{in}$ into another sequence $S_{out}$ which contains the same elements but binned via a certain criterion. We do not specify the criteria at this point, as it is not the point of this work to compare different comparison mechanisms. For such effects is safe to assume that our comparison criteria is the one in Section~\ref{SEC:INCREMENTAL_SORTING}.\\
 
 \subsection{Current paradigm}
-In rough terms, both IQS and IIQS algorithms belong to the divide-and-conquer paradigm as they recursively break our problem into a smaller ones which are solved later. Contrary to a complete sorting algorithm, on partial sorting we do not expect to solve the problem for our entire input, in other words, we do not need to solve all the recursion steps in the execution tree in order to get an accepted output. \\
+In rough terms, both IQS and IIQS algorithms belong to the divide-and-conquer paradigm as they recursively break our problem into a smaller one which are solved later. Contrary to a complete sorting algorithm, on partial sorting we do not expect to solve the problem for our entire input, in other words, we do not need to solve all the recursion steps in the execution tree in order to get an accepted output. \\
 
-As a example of this let us consider a sequence $T={4,1,2,3}$. Now let us say that we need a partial sorting over the first two elements of $T$. Then our solutions are $T_1={1,2,3,4}$ and $T_2={1,2,4,3}$. Both $T_1$ and $T_2$ are accepted inputs as the first two elements are sorted. This aforementioned definition does not bound our final implementation to solve all the recursion tree induced by our paradigm and considers this solution as a state of our recursion tree. \\
+As an example of this let us consider a sequence $T={4,1,2,3}$. Now let us say that we need a partial sorting over the first two elements of $T$. Then our solutions are $T_1={1,2,3,4}$ and $T_2={1,2,4,3}$. Both $T_1$ and $T_2$ are accepted inputs as the first two elements are sorted. This aforementioned definition does not bound our final implementation to solve all the recursion tree induced by our paradigm and considers this solution as a state of our recursion tree. \\
 
 Another ---less graphical--- way of depicting this situation is by modeling our execution tree as a non-deterministic stacked state machine, on which our root node the final node, the leaves of the recursion tree are the initial states (the elements that can be placed in their correct position) with strategically placed elements to be consumed in the stack. There is no need to go through all the states as long as we reach an accepted final state.\\
 
 
-In practice\footnote{As another way to say, in common implementations.}, few sorting algorithms run pre-checks in order to avoid certain cases. As these \emph{sanity checks} are bound to cost at least $O(n)$ time, they are not feasible in most cases. That is why introspective algorithms like introsort~\cite{10.5555/261387.261395} and IIQS~\cite{7416566} integrate such process to be part of already existing processes, in order to not affect the overall complexity. \\
+In practice\footnote{As another way to say, in common implementations.}, few sorting algorithms run pre-checks in order to avoid certain cases. As these \emph{sanity checks} are bound to cost at least $O(n)$ time, they are not feasible in most cases. That is why introspective algorithms like introsort~\cite{MusserIntroSort} and IIQS~\cite{7416566} integrate such process to be part of already existing processes, in order to not affect the overall complexity. \\
 
 \subsection{Paradigm shift}
 
@@ -35,12 +35,12 @@ If we want to continue using IQS or IIQS to solve our incremental sorting proble
 
 As shown in Section~\ref{SUBSECTION:BASE_BENCHMARK}, our ideal input for both IQS and IIQS is a sequence with unique elements. Counting sort already solves this problem by mapping our elements present in $S_{in}$ as a set $C$ of ordered pairs $(v,f)$ on which $v$ is the value in $S_in$, and $v$ is the frequency of the value in $S_in$.~\cite{10.5555/280635} Sorting is achieved by the container of the set or by extending the set to a sequence of elements and storing them accordingly --- this being the preferred way of implementation. \\
 
-Unfortunately, while counting sort performs in lineal time, this algorithm does not exhibit a reasonable space-complexity performance when compared to IIQS, as in worst case it requires extra $O(n)$ space whereas IIQS requires $O(log_2(n))$.\\
+Unfortunately, while counting sort performs in lineal time, this algorithm does not exhibit a reasonable space-complexity performance when compared to IIQS, as in the worst case it requires extra $O(n)$ space whereas IIQS requires $O(log_2(n))$.\\
 
 \subsection{Mapping}
 \label{SECTION:MAPPING}
 
-As shown in Section~\ref{SECTION:NOTE_ON_MEDIAN_SELECTION}, our sorting problem does not take into account the position of the elements and only relies on the value of such elements. This allows us to use the mapping induced by counting sort, $C_{in}$, as a intermediate representation of our original sequence $S_{in}$.\\
+As shown in Section~\ref{SECTION:NOTE_ON_MEDIAN_SELECTION}, our sorting problem does not take into account the position of the elements and only relies on the value of such elements. This allows us to use the mapping induced by counting sort, $C_{in}$, as an intermediate representation of our original sequence $S_{in}$.\\
 
 Let us define $S_{repeated(\gamma)}$ as a sequence of elements $(s_0, s_1,...,s_{n-1},s_{n})$ on which $\forall ~s_i \in [0,n]:~s_i = \gamma$. Then every sequence $S_in$ can be seen as a concatenation of $m$ sequences of size $k$ on which $k \leq m$. Then we can establish two functions $roll$ and $unroll$ defined as follows:
 
@@ -58,8 +58,8 @@ And analogously:
 
 This mapping allows us to represent any sequence of elements as a sequence of pairs which represent the element and how many repetitions of this element are concatenated to it.\footnote{This representation is also known as \emph{frequency table}.}\\
 
-\subsection{Integrating counting strategies as a external process}
-As both $roll$ and $unroll$ functions operate per each element and not at sequence level we can extend their usage both inside of our current IQS and IIQS implementation or as a external process.\\
+\subsection{Integrating counting strategies as an external process}
+As both $roll$ and $unroll$ functions operate per each element and not at sequence level we can extend their usage both inside of our current IQS and IIQS implementation or as an external process.\\
 
 We denote our candidate sorting algorithm as an anonymous function $\lambda_{sort}$. Then our external reduction strategy is as follows:
 
@@ -79,17 +79,17 @@ We denote our candidate sorting algorithm as an anonymous function $\lambda_{sor
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm~\ref{ALG:EXTERNAL_IQS} shows an implementation of a external reduction strategy. We asume that roll operation as it is an instance of counting sort it takes $O(n)$ time and line 4 onwards also take $O(n)$. \\
+Algorithm~\ref{ALG:EXTERNAL_IQS} shows an implementation of an external reduction strategy. We assume that roll operation as it is an instance of counting sort it takes $O(n)$ time and line 4 onwards also take $O(n)$. \\
 
 As the average running time for IQS and IIQS is $O(n~+~k~log_2(k))$, then the addition of our external strategy to deal with repeating elements introduces a fixed $n + l$ overhead on which $l$ denotes the number of classes present on $S_{in}$. But this overhead does not change the complexity of both algorithms. But this does not prevent IQS from hitting its worst case scenario unless we control how the keys retrieved from $C_{in}$ are retrieved.\\
 
-Another drawback of this implementation is that since we are using an external strategy to reduce the repeating elements problem, we need $l$ extra space. In worst case, $l~=~\norm{S_{in}}$, which is suboptimal in relation to IQS.\\
+Another drawback of this implementation is that since we are using an external strategy to reduce the repeating elements problem, we need $l$ extra space. In the worst case, $l~=~\norm{S_{in}}$, which is suboptimal in relation to IQS.\\
 
 \subsection{Integrating counting strategies as part of the partition process}
 
 When integrating this problem reduction stage directly into the algorithm, then we need to materialize it at implementation level. For such effects the ideal place to install it in on the stack which tracks the information for the next calls. \\
 
-In order to accomplish this, we change the structure of the stack used by extending the operations involved on it, allowing to group a range of of elements instead of just a single element. For such effects, the stack store pairs of elements $u = (p_{start}, p_{end})$ on which $p_{start}$ is the first position of the pivot and $p_{end}$ is the frequency on the array. \\
+In order to accomplish this, we change the structure of the stack used by extending the operations involved on it, allowing to group a range of elements instead of just a single element. For such effects, the stack store pairs of elements $u = (p_{start}, p_{end})$ on which $p_{start}$ is the first position of the pivot and $p_{end}$ is the frequency on the array. \\
 
 By extension of the concepts shown in Section~\ref{SECTION:MAPPING} and~\ref{SECTION:NOTE_ON_MEDIAN_SELECTION}, we extend the operations $partition$, $top$ and $pop$ to support both $roll$ and $unroll$ definitions as follows:
 
@@ -146,7 +146,7 @@ By extension of the concepts shown in Section~\ref{SECTION:MAPPING} and~\ref{SEC
 \end{algorithm}
 
 \section{Binned IIQS}
-The extensions shown in Algorithms~\ref{ALG:STACK_TOP}, ~\ref{ALG:STACK_POP} fixes the position of the index returned from the middle section as pivot to the left-most element. As proven in Section~\ref{SECTION:IQS_PARAMS} this bias generates an synthetic best-case execution, which is used directly after the partition stage. Those two algorithms integrate both $roll$ and $unroll$ definitions by storing the range of pivots in a map notation.\\
+The extensions shown in Algorithms~\ref{ALG:STACK_TOP}, ~\ref{ALG:STACK_POP} fixes the position of the index returned from the middle section as pivot to the left-most element. As proven in Section~\ref{SECTION:IQS_PARAMS} this bias generates a synthetic best-case execution, which is used directly after the partition stage. Those two algorithms integrate both $roll$ and $unroll$ definitions by storing the range of pivots in a map notation.\\
 
 
 On the other hand the extensions for Algorithm~\ref{ALG:DUTCH_FLAG_PARTITION_RANGED} are integrated into IIQS almost directly with no major modifications, allowing a transparent use without any extra overhead, as shown in Algorithm~\ref{ALG:RANGED_IIQS}.\\
@@ -173,12 +173,12 @@ On the other hand the extensions for Algorithm~\ref{ALG:DUTCH_FLAG_PARTITION_RAN
 
     \EndWhile
     \State S.pop()
-    \State \textbf{return} $A_{k}$\label{IIQS_main_cycle}
+    \State \textbf{return} $A_{k}$\label{RANGED_IIQS}
     \EndProcedure
   \end{algorithmic}
 \end{algorithm}
 
-As both Algorithms~\ref{ALG:STACK_TOP}, ~\ref{ALG:STACK_POP} have $O(1)$ worst-case complexity and Algorithm~\ref{ALG:DUTCH_FLAG_PARTITION_RANGED} maintains $O(n)$ complexity on which $n$ dennotes the number of elements in the sequence to partition. Both expected and worst-case time complexity for this \emph{Binned IntrospectiveIncrementalQuickSort} (\emph{bIIQS} from now on) remains $O(n~+~k~log_2(k))$ and our original $O(log_2(k))$ space complexity is maintained as the stack only doubles its size at most.\\
+As both Algorithms~\ref{ALG:STACK_TOP}, ~\ref{ALG:STACK_POP} have $O(1)$ worst-case complexity and Algorithm~\ref{ALG:DUTCH_FLAG_PARTITION_RANGED} maintains $O(n)$ complexity on which $n$ denotes the number of elements in the sequence to partition. Both expected and worst-case time complexity for this \emph{Binned IntrospectiveIncrementalQuickSort} (\emph{bIIQS} from now on) remains $O(n~+~k~log_2(k))$ and our original $O(log_2(k))$ space complexity is maintained as the stack only doubles its size at most.\\
 
 As elements in the stack are stored as a pair, this enables the use or custom structures to store such pairs, which enables a better use of DRAM bursts on the target machine. This guarantees a nearly zero overhead on read and write operations for the stack.\\
 
@@ -193,7 +193,7 @@ Now we present the experimental results for our proposed implementation of bIIQS
 
 \subsection{Performance comparison for unique sequences}
 
-Experments have shown that bIIQS does not induce an increase of the algorithm complexity for our standard test cases such as random sequences, ascending sorted sequences and descending sorted sequences, as shown in detail in Figures~\ref{FIG:WORKHORSE_BENCHMARK_01},~\ref{FIG:WORKHORSE_BENCHMARK_02} and ~\ref{FIG:WORKHORSE_BENCHMARK_03}. For then, our hypothesis on the equivalence of IIQS and bIIQS for our base IQS test cases is confirmed. \\
+Experiments have shown that bIIQS does not induce an increase of the algorithm complexity for our standard test cases such as random sequences, ascending sorted sequences and descending sorted sequences, as shown in detail in Figures~\ref{FIG:WORKHORSE_BENCHMARK_01},~\ref{FIG:WORKHORSE_BENCHMARK_02} and ~\ref{FIG:WORKHORSE_BENCHMARK_03}. For then, our hypothesis on the equivalence of IIQS and bIIQS for our base IQS test cases is confirmed. \\
 
 
 \begin{figure}
@@ -203,26 +203,26 @@ Experments have shown that bIIQS does not induce an increase of the algorithm co
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.0_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.0_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.0_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.0_1.png}
         \caption{Cumulated extraction time}
         \label{FIG:WORKHORSE_BENCHMARK_01__0_0}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.1_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.1_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.1_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.1_1.png}
         \caption{Extraction time}
-        \label{FIG:WORKHORSE_BENCHMARK_01__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_01__0_1}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.2_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.2_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.2_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_01_random_case.png.2_1.png}
         \caption{Stack size}
-        \label{FIG:WORKHORSE_BENCHMARK_01__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_01__0_2}
     \end{subfigure}
     
     \caption{bIIQS benchmark for a random sequence with $100\times10^3$ elements.}
@@ -237,29 +237,29 @@ Experments have shown that bIIQS does not induce an increase of the algorithm co
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.0_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.0_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.0_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.0_1.png}
         \caption{Cumulated extraction time}
         \label{FIG:WORKHORSE_BENCHMARK_02__0_0}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.1_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.1_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.1_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.1_1.png}
         \caption{Extraction time}
-        \label{FIG:WORKHORSE_BENCHMARK_02__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_02__0_1}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.2_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.2_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.2_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_02_sort_a_case.png.2_1.png}
         \caption{Stack size}
-        \label{FIG:WORKHORSE_BENCHMARK_02__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_02__0_2}
     \end{subfigure}
     
-    \caption{bIIQS benchmark for a ascending sorted sequence with $100\times10^3$ elements.}
+    \caption{bIIQS benchmark for an ascending sorted sequence with $100\times10^3$ elements.}
        \label{FIG:WORKHORSE_BENCHMARK_02}
 \end{figure}
 
@@ -272,26 +272,26 @@ Experments have shown that bIIQS does not induce an increase of the algorithm co
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.0_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.0_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.0_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.0_1.png}
         \caption{Cumulated extraction time}
         \label{FIG:WORKHORSE_BENCHMARK_03__0_0}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.1_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.1_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.1_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.1_1.png}
         \caption{Extraction time}
-        \label{FIG:WORKHORSE_BENCHMARK_03__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_03__0_1}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.2_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.2_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.2_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_03_sort_d_case.png.2_1.png}
         \caption{Stack size}
-        \label{FIG:WORKHORSE_BENCHMARK_03__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_03__0_2}
     \end{subfigure}
     
     \caption{bIIQS benchmark for a descending sorted sequence with $100\times10^3$ elements.}
@@ -303,7 +303,7 @@ Experments have shown that bIIQS does not induce an increase of the algorithm co
 
 For single class instances which represent the worst case for IIQS when dealing with repeated sequences, bIIQS shows more than three orders of magnitude boost in performance in comparison to IIQS. As shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_05}, while our single class input continues to represent our worst case, it does not pose a problem as before. \\
 
-Experimental results shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_04} reveal that bIIQS does not only perform a fastest first element extraction, but also that formerly stated properties of IIQS as optimal space usage and fastest extractions are also preserved. As the stack now stores a range of elements, each extraction performed on it does not require any extra partition stage as it is being immediately delivered. This makes the ---optional--- pop-push operation the only overhead in this implementation.\\
+Experimental results shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_04} reveal that bIIQS does not only perform the fastest first element extraction, but also that formerly stated properties of IIQS as optimal space usage and fastest extractions are also preserved. As the stack now stores a range of elements, each extraction performed on it does not require any extra partition stage as it is being immediately delivered. This makes the ---optional--- pop-push operation the only overhead in this implementation.\\
 
 \begin{figure}
     %BENCHMARK_05_CLASSES
@@ -311,22 +311,22 @@ Experimental results shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_04} reveal tha
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.1_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.1_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.1_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.1_1.png}
         \caption{IQS}
-        \label{FIG:WORKHORSE_BENCHMARK_05__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_05_NOISE__0_0}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.0_1.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.0_2.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.0_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_05_classes.png.0_2.png}
         \caption{IIQS}
-        \label{FIG:WORKHORSE_BENCHMARK_05__0_1}
+        \label{FIG:WORKHORSE_BENCHMARK_05_NOISE__0_1}
     \end{subfigure}
 
     \caption{bIIQS benchmark for class impact on extraction time.}
-    \label{FIG:WORKHORSE_BENCHMARK_05}
+    \label{FIG:WORKHORSE_BENCHMARK_05_NOISE}
 \end{figure}
 
 
@@ -336,26 +336,26 @@ Experimental results shown in Figure~\ref{FIG:WORKHORSE_BENCHMARK_04} reveal tha
     \centering
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.0_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.0_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.0_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.0_1.png}
         \caption{Cumulated extraction time}
         \label{FIG:WORKHORSE_BENCHMARK_04__0_0}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.1_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.1_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.1_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.1_1.png}
         \caption{Extraction time}
-        \label{FIG:WORKHORSE_BENCHMARK_04__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_04__0_1}
     \end{subfigure}
 
     \begin{subfigure}[b]{\textwidth}
         \centering
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.2_0.png}
-        \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.2_1.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.2_0.png}
+        \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_04_single_class.png.2_1.png}
         \caption{Stack size}
-        \label{FIG:WORKHORSE_BENCHMARK_04__0_0}
+        \label{FIG:WORKHORSE_BENCHMARK_04__0_2}
     \end{subfigure}
     
     \caption{bIIQS benchmark for a random sorted sequence with $100\times10^3$ repeated elements.}
@@ -373,8 +373,8 @@ As for the noise impact we can clearly identify that now the bias on the resulti
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.1_0.png}
-        % \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.1_1.png}
-        % \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.1_2.png}
+        % \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.1_1.png}
+        % \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.1_2.png}
         \caption{IIQS}
         \label{FIG:WORKHORSE_BENCHMARK_05__0_0}
     \end{subfigure}
@@ -382,7 +382,7 @@ As for the noise impact we can clearly identify that now the bias on the resulti
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.0_0.png}
-        %\includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.0_1.png}
+        %\includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_redundant_bias.png.0_1.png}
         \caption{bIIQS}
         \label{FIG:WORKHORSE_BENCHMARK_05__0_1}
     \end{subfigure}
@@ -401,8 +401,8 @@ We confirm our hypothesis by examining both noise impact and three-way-partition
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.1_0.png}
-        % \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.1_1.png}
-        % \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.1_2.png}
+        % \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.1_1.png}
+        % \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.1_2.png}
         \caption{IIQS}
         \label{FIG:WORKHORSE_BENCHMARK_06__0_0}
     \end{subfigure}
@@ -410,7 +410,7 @@ We confirm our hypothesis by examining both noise impact and three-way-partition
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.0_0.png}
-        %\includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.0_1.png}
+        %\includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_redundant_bias.png.0_1.png}
         \caption{bIIQS}
         \label{FIG:WORKHORSE_BENCHMARK_06__0_1}
     \end{subfigure}
@@ -427,8 +427,8 @@ We confirm our hypothesis by examining both noise impact and three-way-partition
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.1_0.png}
-        % \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.1_1.png}
-        % \includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.1_2.png}
+        % \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.1_1.png}
+        % \includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.1_2.png}
         \caption{IIQS}
         \label{FIG:WORKHORSE_BENCHMARK_07__0_0}
     \end{subfigure}
@@ -436,7 +436,7 @@ We confirm our hypothesis by examining both noise impact and three-way-partition
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.0_0.png}
-        %\includegraphics[width=0.40\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.0_1.png}
+        %\includegraphics[width=0.35\textwidth]{./fragments/05_workhorse_experiment/images/01_basebenchmark_06_noise_bias.png.0_1.png}
         \caption{bIIQS}
         \label{FIG:WORKHORSE_BENCHMARK_07__0_1}
     \end{subfigure}
