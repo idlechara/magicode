@@ -1,29 +1,32 @@
 %% This should be the last thing to write
-\chapter{Introduction}
+
+
 \chapterimage[height=3cm]{./fragments/memes/ears}
 
 \section{Context}
 
-Since early computing, \emph{the sorting problem} has been a focus of interest of many researchers. Challenges range from efficient implementations for certain machines or architectures, minimizing asymptotic complexity, handling special cases or structures to even simple sorting algorithms to introduce new computer science students to the topic. And it is not surprising, when taking into  that sorting most programs rely on a sorting process as part of their procedures.\\
+Since early computing, \emph{the sorting problem} has been a focus of interest of many researchers. Challenges range from efficient implementations for certain machines or architectures, minimizing asymptotic complexity, to handling special cases or structures. Not surprisingly, most programs ---if not all of them--- rely on a sorting process as part of their procedures.\\
 
-In algorithm design, pure theoretical analyses are the preferred way to prove both correctness and limits of algorithms. Usually these analyses are performed by using a series of mathematical techniques, which aim to provide generality of the results. As such, these analysis usually developed to establish space and time complexities which are later used to determine best use cases and feasibility of implementation.\\
+In algorithm design, pure theoretical analyses are the preferred way to prove both correctness and limits of algorithms. Usually these analyses are performed by using a series of mathematical techniques, which aim to provide generality of the results. As such, these analysis are usually developed to establish space and time complexities which are later used to determine best use cases and feasibility of implementation.\\
 
-But in practice, when implementing these algorithms, there are many factors that can give different results than expected. The same algorithm can perform better depending on the distribution of the input, on which case this becomes the subject of our analysis. On others, computer architecture has a huge impact on the running time. Even initial values for a variable can induce different results which can benefit or hinder our processes. \\
+But in practice, when it comes to implementing these algorithms, there are many factors that can hinder the development process. The same algorithm can perform better depending on the distribution of the input, on which case this becomes the subject of our analysis. On others, computer architecture has a huge impact on the running time. Even initial values for a variable ---regardless if it is being assigned during compile time or run time--- can induce different results which usually lead into false and misleading outputs. \\
 
 In order to close the gap generated between theory and practice, the concept of \emph{Experimental Algoritmics} is born. Extrapolating \emph{Design of Experiments} practices to algorithm design and engineering, this approach targets to ease the development of new programs by taking a ``nuts and bolts'' approach complementing theoretical analysis with practical results. \\
 
-There are many algorithms developed using this process, and one of those is an incremental sorting algorithm known as \emph{Introspective Incremental Quick Select}. This is a extension of an incremental sorting algorithm called \emph{Incremental Quick Select}, intended to overcome their worst-case scenario by using the concept of \emph{algorithm introspection} used on \emph{IntroSort}\cite{10.5555/261387.261395}.\\
+There are many algorithms developed using this process, and one of those is an incremental sorting algorithm known as \emph{Introspective Incremental Quick Sort}. This is a extension of an incremental sorting algorithm called \emph{Incremental Quick Sort}, intended to overcome their worst-case scenario by using the concept of \emph{algorithm introspection} used on \emph{IntroSort}\cite{10.5555/261387.261395}.\\
 
 \section{Application areas}
 
-In contrast to the most common sorting algorithms like \emph{QuickSort}, incremental sorting algorithms are intended to retrieve elements from a sequence without completely sorting it. This kind of behaviour is exploited on structures like the optimal minimum heaps used to implement priority queues. \\
+In contrast to the most common sorting algorithms like \emph{QuickSort}, incremental sorting algorithms are designed to retrieve elements from a sequence in an ordered fashion, without sorting the entire array. This kind of behaviour is exploited on structures like the optimal minimum binary heaps used to implement priority queues. \\
 
-On the other hand, as a continuous extraction of elements via incremental sorting can be seen as a sorting process, incremental sorting is by extension a resumeable sorting. This is useful in process which rely on heavy sorting processes that demand constant updates to the user. This is the example of \emph{Haplotype Plots} generation in programs like \emph{SLiM}~\cite{10.1093/molbev/msw211}, on which incremental sorting provides a way to constantly inform the user in cases on which the sorting process can take hours to complete.\\
+Thus, as a continuous extraction of all elements via incremental sorting ends with a completely sorted dataset, incremental sorting is by extension a \emph{resumeable} sorting.
+
+This is useful in process which rely on heavy sorting processes that demand constant updates to the user. This is the example of \emph{Haplotype Plots} generation in programs like \emph{SLiM}~\cite{10.1093/molbev/msw211}, on which incremental sorting provides a way to constantly inform the user in cases on which the sorting process can take hours to complete.\\
 
 \section{Problem description}
-Both Incremental Quick Select and its introspective version as they were presented do not present any choices for the subroutines used. As such, their behaviour changes depending on which subroutines are used. This leads to problems like being unable to sort sequences when repeated elements are present, due to the implementation of the partition subroutine.\\
+Both Incremental Quick Sort and Introspective Incremental Quick Sort as defined in their original papers \cite{7416566} do not enforce any particular subroutines to be used to fill in the gaps of the procedures to follow. As such, the behaviour of both algorithms are subjected to change in function on which subroutines are used to implement it as an actual program. This leads to problems like being unable to sort sequences when repeated elements are present, due to the implementation of the partition subroutine.\\
 
-Additionally, the original work on which IIQS were presented has a rough theoretical analysis for its worst-case performance and a simple execution analysis. While most of the time this information is enough to present an algorithm and validate it, it does present some difficulties to developers as they try to test them into actual applications.\\
+The original work for IIQS contains a rough theoretical analysis for its worst-case performance, and a rather simple execution analysis used it to compare it with other state-of-the-art algorithms. While most of the time this information is enough to introduce an algorithm and validate their theoretical constraints, developers may struggle as they try to reproduce the reference implementation and test them in order to make use of them into actual applications\footnote{For Introspective Incremental Quick Select, there is a reference implementation available on one of the author's GitHub page (\url{https://github.com/idlechara/research/iiqs}), but in order to comply with the conference standards at the moment of publishing, such data were not included in the paper but mentioned its presentation.}.\\ 
 
 \section{Goals}
 The objective of this document is to compile the efforts behind the use of an experimental algorithmics approach to develop an improved version of Introspective Incremental Quick Select. This implementation aims to maintain its properties for the standard case of sorting sequences with no repeated elements, but than it is also capable of managing repeated elements without changing its complexity.\\
