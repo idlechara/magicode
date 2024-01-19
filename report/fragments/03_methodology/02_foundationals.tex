@@ -2,30 +2,30 @@
 \label{SECTION:METHODOLOGY_FOUNDATIONALS}
 
 \subsection{Algorithm instantiation hierarchy}
-The main goal of this work is to devise if we can design version of both IQS and IIQS which can avoid the worst case when dealing with sequences that hold repeated elements. Once this goal is accomplished, then we need to study its behavior in order to check ways to deliver the same performance for both repeating and non repeating sequences. Thus, our instantiation hierarchy is as follows:\\
+The main goal of this work is to devise if we can design a version of both IQS and IIQS which can avoid the worst case when dealing with sequences that hold repeated elements. Once this goal is accomplished, then we need to study its behavior in order to check ways to deliver the same performance for both repeating and non repeating sequences. Thus, our instantiation hierarchy is as follows:\\
 
 \subsubsection{Metaheuristics and algorithm paradigms}
-IncrementalQuickSort and IntrospectiveIncrementalQuickSort are algorithms used for partial sorting, belonging to the \textit{partition-based adaptive sorting} family which are our optimization target using repeated elements on a sequence.\\
+IQS and IIQS are algorithms used for partial sorting, belonging to the \textit{partition-based adaptive sorting} family, which are our optimization target using repeated elements on a sequence.\\
 
 \subsubsection{Algorithms}
 As both IQS and IIQS are partition-based algorithms, they both share common elements and routines, namely:\\
 
 \begin{itemize}
     \item \textbf{Next}:This is the main process on both IQS and IIQS. It performs a minima extraction. It expected average running time is $O(n + log_2{n})$ on which $n$ is the size of the sequence being passed as input.
-    \item \textbf{Partition}: Partitions a given sequence into three subsequences $p_1$, $p_2$ and $p_3$ which follows that $\forall~p_i \in p_1,~\forall~p_j \in p_2:~ p_i < p_j$ and $\forall~p_i \in p_3,~\forall~p_j \in p_2:~p_i < p_j$. It expected average running time is $O(m)$ on which $m$ is the size of the sequence being passed as input following $m \leq n$ on which $n$ is the total sequence length.
+    \item \textbf{Partition}: Partitions a given sequence into three subsequences $p_1$, $p_2$, and $p_3$ which follows that $\forall~p_i \in p_1,~\forall~p_j \in p_2~:~ p_i < p_j$ and $\forall~p_i \in p_3,~\forall~p_j \in p_2:~p_j < p_i$. Its expected average running time is $O(m)$ on which $m$ is the size of the sequence being passed as input following $m \leq n$ on which $n$ is the total sequence length.
     \item \textbf{Swap}: Swaps two elements in the sequence in-place. It expected average running time is $O(1)$.
     \item \textbf{PushStack}: Pushes an element into the stack. It expected average running time is $O(1)$.
     \item \textbf{PullStack}: Pulls an element from the stack. It expected average running time is $O(1)$.
 \end{itemize}
 
-As for IIQS exclusive use routines we can mention:
+As for IIQS exclusive use routines, we can mention:
 \begin{itemize}
     \item \textbf{BFPRT:} Implementation of median of medians algorithm~\cite{Blum_Floyd_Pratt_Rivest_Tarjan_1973}. This algorithm is used as a fallback option for the random selection pivot selection performed during each iteration of IQS. It expected average running time is $O(m)$ on which $m \leq n$ is the size of the sequence being passed as input.
     \item \textbf{Median:} Sorts in-place an array of fixed size\footnote{Whilst on literature a median of medians of five elements is suggested, we do not want to tie the implementation of the algorithm to a fixed value, but rather become this size a parameter of our algorithm.} and then retrieves the element in the middle position. It expected average running time is $O(1)$, despite the complexity of the sorting mechanism used as the time used is constant and is not in function of the sequence length.
 \end{itemize}
 
 \subsubsection{Source program}
-As for the implementation, our language of choice was C++ in conjunction with Boost libraries for argument parsing. \\
+As for the implementation, our language of choice is C++ in conjunction with Boost libraries for argument parsing. \\
 
 \subsubsection{Object code}
 Object code is obtained via direct compilation of the main source file. Due to portability concerns, this process is triggered via Makefiles but no special or separate treatment is done for the compilation artifacts.\\
@@ -36,17 +36,17 @@ All experiments are executed on userspace without any extra execution privileges
 \subsection{Algorithm design hierarchy}
 
 \subsubsection{System structure}
-Experiments are structured in a way that prioritizes execution flexibility over convention. Initial versions of the implemented algorithm were developed using C, but this language as is having some problems when it comes to understanding from the developer's standpoint. In this aspect, C++ (which can be seen as a class-oriented version of C) helps to perform an easier modularization of the code, while maintaining the macro flexibility of C. Apart from the main algorithm implementations, we can identify the following structures:\\
+Experiments are structured in a way that prioritizes execution flexibility over convention. Initial versions of the implemented algorithm were developed using C. Yet, one of the concerns during this research was the cognitive strain for future developers that desire to implement the results of this work. In this aspect, C++ (which can be seen as a class-oriented version of C) helps to perform an easier modularization of the code, while maintaining the macro flexibility of C. Apart from the main algorithm implementations, we can identify the following structures:\\
 
 \subsubsection{Main driver}
-The entry point of our compilation unit is our daily driver, which takes charge of argument parsing, main execution and high-level operations as snapshot dumping.  Runtime options are parsed with the help of Boost's \texttt{boost::program\_options} library, which takes charge of parsing and converting arguments to their corresponding types. \\
+The entry point of our compilation unit is our daily driver, which takes charge of argument parsing, main execution, and high-level operations as snapshot dumping.  Runtime options are parsed with the help of Boost's \texttt{boost::program\_options} library, which takes charge of parsing and converting arguments to their corresponding types. \\
 
 The list of available arguments to pass to the main driver are shown in the table shown in Table~\ref{TABLE:ARGUMENTS}:\\
 
 
 \begin{table}[!ht]
     \centering
-
+    \caption{Arguments for main driver program}
     \begin{tabularx}{\linewidth}{|r|r|X|}
         \hline
         STD type & CLI option & Description \\
@@ -84,19 +84,19 @@ The list of available arguments to pass to the main driver are shown in the tabl
         \texttt{std::string} & \texttt{--output\_file\_value} & Output file path \\
         \hline    
     \end{tabularx}
-    \caption{Arguments for main driver program}
     \label{TABLE:ARGUMENTS}
 \end{table}
 
-\subsubsection{Snapshot spec}
+\subsubsection{Snapshot specification}
 The information about the program execution is stored on \textit{snapshots}, which are inspired on Valgrind profiler stats. Snapshot contains a rather large amount of information, from program configurations, options, and current state. In order to capture snapshots, a set of precompiled macros has been defined to enable timing of whole routines, partial sections, and conditional values. \\
 
-In order to minimize the performance hit, there is only one instance of \texttt{snapshot\_t} being kept on memory at all times which is passed as reference to the instances of IQS and IIQS. This snapshot is only saved on the record array log on RAM at certain key points. This record array log is initialized before the execution in order to avoid allocation calls during the execution phase. Currently, the time unit used for benchmarking is \texttt{std::chrono::nanoseconds}, defined on the \texttt{TIME\_UNIT} macro.\\
+In order to minimize the performance hit, there is only one instance of \texttt{snapshot\_t} being kept on memory at all, which is passed as reference to the instances of IQS and IIQS. This snapshot is only saved on the record array log on RAM at certain key points. This record array log is initialized before the execution in order to avoid allocation calls during the execution phase. Currently, the time unit used for benchmarking is \texttt{std::chrono::nanoseconds}, defined on the \texttt{TIME\_UNIT} macro.\\
 
-The table on Table~\ref{TABLE:SNAPSHOT_STRUCTURE} shows the logged metrics described on the \texttt{snapshot\_t} structure:\\
+Table~\ref{TABLE:SNAPSHOT_STRUCTURE} shows the logged metrics described on the \texttt{snapshot\_t} structure:\\
 
 \begin{table}[!ht]
     \centering
+    \caption{Snapshot structure}
     \begin{tabularx}{\linewidth}{|r|X|}%|X|}
     \hline
     STD type & logged variable \\ % & Description \\ %& \\
@@ -160,7 +160,6 @@ The table on Table~\ref{TABLE:SNAPSHOT_STRUCTURE} shows the logged metrics descr
     \texttt{char} & \texttt{snapshot\_point} \\ %& \\
     \hline
 \end{tabularx}
-\caption{Snapshot structure}
 \label{TABLE:SNAPSHOT_STRUCTURE}
 \end{table}
 
@@ -184,7 +183,7 @@ Test bench implementation is divided into four major components:\\
 \end{itemize}
 
 \subsubsection{Implementation and algorithm tuning}
-On the original IIQS analysis, randomized sequences and sorted sequences were used as tests. The original problem constrained all worst case input instances to be ordered sequences in order to ease understanding. On ordered sequences is easier to see when a pivot selection fails by misusing the stack, thus not reducing the problem size. But since we now are dealing with repeated elements, new sequences for input are needed to test such cases.\\
+On the original IIQS analysis, randomized sequences and sorted sequences were used as tests. The original problem constrained all worst case input instances to be ordered sequences in order to ease understanding. On ordered sequences is easier to see when a pivot selection fails by misusing the stack, thus not reducing the problem size. But, since we now are dealing with repeated elements, new sequences for input are needed to test such cases.\\
 
 \begin{itemize}
         
@@ -192,19 +191,19 @@ On the original IIQS analysis, randomized sequences and sorted sequences were us
     This is our classical test case, on which all the elements are shuffled without any special criteria.}
 
     \item{\textbf{Ascending sequences}: 
-    Used to generate a synthetic worst-case instance for IQS, this sequence is ordered in ascending order.}
+    Used to generate a synthetic worst-case instance for IQS. This sequence is ordered in ascending order.}
 
     \item{\textbf{Descending sequences}: 
-    Used to generate a synthetic worst-case instance for IQS, this sequence is ordered in descending order.}
+    Used to generate a synthetic worst-case instance for IQS. This sequence is ordered in descending order.}
 
-    \item{\textbf{Constrained classes}: 
+    \item{\textbf{Constrained classes\footnote{In this context, we use the term \textit{class} as in statistic to refer to a set of elements which are equal to each other.}}: 
     Given $m < n$ the number of classes on the sequence, we want to test the effect of the ratio $\frac{m}{n}$ for a fixed number classes to devise if there is a relationship between the number of classes and the running time of the algorithm. This input is shuffled after its generation.}
 
     \item{\textbf{Constrained classes with random noise}: 
     In addition to the previous instance, we also add a random number of elements which do not belong to any instances of $m$ to induce random noise on the sample. This input is shuffled after its generation.}
 
     \item{\textbf{Shuffled sequences with sorted segments}: 
-    Based on a mix of \textit{Runs}, \textit{SUS} and \textit{SMS.SUS} metrics for adaptive sorting, this input attempts to test the effect of \textit{presortedness} on the execution of IQS and IIQS. To generate this input we first generate a shuffled input and then for each subsegment of the shuffled sequence we execute a partial sorting.}
+    Based on a mix of \textit{Runs}, \textit{SUS} and \textit{SMS.SUS} metrics for adaptive sorting, this input attempts to test the effect of \textit{presortedness} on the execution of IQS and IIQS. To generate this input, we first generate a shuffled input and then for each subsegment of the shuffled sequence, we execute a partial sorting.}
 
     \item{\textbf{Randomized sequence with ignored noise}: 
     This input is intended to test if discontinuities on the sorting process can affect the performance by ignoring certain swaps. To accomplish this, we take a randomized sequence and then for a given amount of elements on the sequence we put the value that belong to their position.}
@@ -213,10 +212,10 @@ On the original IIQS analysis, randomized sequences and sorted sequences were us
 Additionally, due to the nature of the problem, we have decided to constrain the following two aspects of the implementation in order to ensure performance and replication of results. So, they can be peer-validated at a later stage. Replication is achieved by taking a Monte-Carlo simulation~\cite{10.5555/1614191} approach using the following means:\\
 
 \begin{itemize}
-    \item{\textbf{Fixed seeding}
+    \item{\textbf{Fixed seeding}:
     For all experiments, all inputs are generated beforehand on the same instance of the machine in sequential order and providing the same seed for all random number generators.}
     
-    \item{\textbf{Systematic randomization}
+    \item{\textbf{Systematic randomization}:
     For all processes that require randomization, the random values provided are extracted from a separate file beforehand, this ensures that all extractions of random numbers for the use of the algorithm are delivered in the same order across executions.}
 \end{itemize}
 
@@ -225,7 +224,7 @@ Additionally, due to the nature of the problem, we have decided to constrain the
 %preinstanciation before clocking
 \begin{itemize}
     \item{\textbf{Unique snapshot instance}: 
-    In order to minimize memory consumption and allocation operations only one snapshot instance is initialized for a whole experiment, and it is passed as reference along the whole program.}
+    In order to minimize memory consumption and allocation operations, only one snapshot instance is initialized for a whole experiment, and it is passed as reference along the whole program.}
     \item{\textbf{Memory pre-allocation}: 
     All test cases, files, snapshot space, and random generated number are computed by an external process, and they are fed into the program via file inputs which are read using STL \texttt{std::ifstream} and initialized before all tests start, so memory is allocated already at this point in order to prevent reallocation operations.}
     \item{\textbf{Unique source of truth}:
@@ -235,10 +234,11 @@ Additionally, due to the nature of the problem, we have decided to constrain the
 \subsubsection{System software}
 Our compiler is GNU GCC 9.3.0 configured for a x86\_64-linux-gnu target with POSIX thread modeling. All compiler optimizations are disabled in order to track time more accurately.
 \subsubsection{Platform and hardware}
-The specs of the machine used are shown in the table on Table~\ref{TABLE:SPECS}:\\
+The specs of the machine used are shown in Table~\ref{TABLE:SPECS}:\\
 
 \begin{table}[!ht]
     \centering
+    \caption{Test machine specifications}
     \begin{tabularx}{\linewidth}{|l|X|}
         \hline
         Item & Product ID \\
@@ -262,7 +262,6 @@ The specs of the machine used are shown in the table on Table~\ref{TABLE:SPECS}:
         Linux Version  & Linux version 5.4.0-7629-generic (buildd@lcy01-amd64-013) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) \#33\~{}1589834512\~{}20.04\~{}ff6e79e-Ubuntu SMP Mon May 18 23:29:32 UTC \\ 
         \hline
     \end{tabularx}    
-    \caption{Test machine specs}
     \label{TABLE:SPECS}
 \end{table}
 \FloatBarrier

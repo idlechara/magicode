@@ -2,21 +2,21 @@
 \label{SECTION:PARTITIONING_SCHEMES}
 
 \subsection{Rationale}
-Before diving into the results for this experiment, we now explain two partition strategies to take into consideration before designing our first experiment and our second algorithm modification in order to understand the modifications made to IQS.\\
+Before diving into the results for this experiment, we now explain two partition strategies to take into consideration before designing our first experiment and our second algorithm modification, in order to understand the changes introduced to IQS.\\
 
 \subsection{Partition schemes}
-As explained before in~\ref{SEC:INCREMENTAL_SORTING}, partition algorithms play a fundamental role on sorting algorithms like QuickSort. But partition algorithms can use different schemes in order to partition the array into two sections, depending on which properties of the process we want to optimize.\\
+As explained before in Section~\ref{SEC:INCREMENTAL_SORTING}, partition algorithms play a fundamental role on sorting algorithms like QuickSort. However, partition algorithms can use different schemes in order to partition the array into two sections, depending on which properties of the process we want to optimize.\\
 
 \subsection{Lomuto's partition scheme}
 
-The most noticeable feature of this algorithm is that it uses the last element as the pivot for partitioning the array, which makes suitable for shuffled sequences but when the sequence follows some of the first disorder metrics seen in~\ref{SEC:MEASURING_DISORDER} it tends to bias the performance of this partition scheme.\\
+The most noticeable feature of this algorithm is that it uses the last element as the pivot for partitioning the array, which makes suitable for shuffled sequences but when the sequence follows some of the first disorder metrics seen in Section~\ref{SEC:MEASURING_DISORDER} it tends to bias the performance of this partition scheme.\\
 
 This algorithm is commonly referenced as the easiest way to partition an array, given it is low complexity.\\
 
 \begin{algorithm}
 \caption{Lomuto Partition}\label{ALG:LOMUTO_PARTITION}
 \begin{algorithmic}[1]
-    \Procedure{$lomuto$}{$A, p, r$}
+    \Procedure{$lomuto$}{$A, p, r$} \Comment{$p$ and $r$ are indices of $A$}
     \State $x \gets A_r$
     \State $i \gets p-1$
     \For{$j \in [p, r - 1]$}
@@ -33,12 +33,12 @@ This algorithm is commonly referenced as the easiest way to partition an array, 
 
 \subsection{Hoare's partition scheme}
 
-Hoare's partition scheme takes another approach at partitioning elements by using two indices which converge into the position of the pivot chosen at the beginning. When it comes to sort a set of elements it works faster than Lomuto's implementation, and it's more stable. And given that the pivot can be chosen randomly, the introduction of randomness helps to ease biased pivot selections.\\
+Hoare's partition scheme takes another approach at partitioning elements by using two indices which converge into the position of the pivot chosen at the beginning. When it comes to sort a set of elements, it works faster than Lomuto's implementation, and it is more stable. Given that the pivot can be chosen randomly, the introduction of randomness helps to ease biased pivot selections.\\
 
 \begin{algorithm}
 \caption{Hoare's Partition}\label{ALG:HOARE_PARTITION}
 \begin{algorithmic}[1]
-    \Procedure{$hoare$}{$A, p, r$}
+    \Procedure{$hoare$}{$A, p, r$} \Comment{$p$ and $r$ are indices of $A$}
     \State $x \gets A_p$
     \State $i \gets p-1$
     \State $j \gets r+1$
@@ -75,14 +75,14 @@ $$ S_1={1,2,3,4,5,6,7,8,9} $$
 and
 $$S_2={1,2,5,5,5,5,5,8,9}$$
 
-It is clear that if we chose $p$ equal to $5$, the element in the fifth position of $S_1$ is the pivot on its correct place. But it is not the case for $S_2$ as we can get a pivot from the third up to the seventh position on the sequence. In this case, as all the positions are valid pivots as they are following the definition of partitioning. There is no safety guarantee that the resulting pivot  partitions the array in half in order to ensure an $log_2$ decay on the problem space. Situation worsens if all the elements are repeated, as it defeats the purpose of partitioning the sequence~\cite{7416566}.\\
+It is clear that if we chose $p$ equal to $5$, the element in the fifth position of $S_1$ is the pivot on its correct place. But it is not the case for $S_2$ as we can get a pivot from the third up to the seventh position on the sequence. In this case, all the positions are valid pivots as they are following the definition of partitioning. However, is no safety guarantee that the resulting pivot  partitions the array in half in order to ensure a logarithmic decay on the problem space. The situation worsens if all the elements are repeated, as it defeats the purpose of partitioning the sequence~\cite{7416566}.\\
 
-This problem is also known as the Dutch Flag problem~\cite{10.5555/550359}, which for given a sequence it partitions in-place the elements lower than the pivot value, the elements equal to the pivot value and the elements greater than the pivot value, and it returns the indices of the beginning and the end of the middle portion.\\
+This problem is also known as the Dutch Flag problem~\cite{10.5555/550359}, whose solution is implemented as a \emph{Three-way Partition}. For a given sequence, it partitions in-place the elements lower than the pivot value, the elements equal to the pivot value and the elements greater than the pivot value, and it returns the indices of the beginning and the end of the middle portion.\\
 
 \begin{algorithm}
 \caption{Three-way Partition}\label{ALG:DUTCH_FLAG_PARTITION}
 \begin{algorithmic}[1]
-    \Procedure{$threewaypartition$}{$A, p$}
+    \Procedure{$threewaypartition$}{$A, p$} \Comment{$p$ is the pivot value}
     \State $k \gets \norm{A}$
     \State $i \gets 0$
     \State $j \gets 0$
@@ -93,7 +93,7 @@ This problem is also known as the Dutch Flag problem~\cite{10.5555/550359}, whic
             \State $j \gets j+1$
         \ElsIf{$A_j > p$}
             \State $k \gets k-1$
-            \State $swap(A_i, A_k)$
+            \State $swap(A_j, A_k)$
         \Else
             \State $j \gets j+1$
         \EndIf
@@ -141,7 +141,7 @@ It makes no sense to check our base partition implementation against repeated el
 \end{figure}
 
 
-As depicted in Figure~\ref{FIG:PARTITION_SCHEME_01_SHUFFLED}, there is no noticeable change in terms of complexity for both implementations of the partitioning algorithm when dealing with shuffled sequences. As such, it does result interesting how for IIQS both implementations of partition break up the array at the same index, which confirms that both implementations perform the same operations in the same order. On the other hand, it does look that for IQS there is a scalar overhead which seems to be reduced over time. \\
+As depicted in Figure~\ref{FIG:PARTITION_SCHEME_01_SHUFFLED}, there is no noticeable change in terms of complexity for both implementations of the partitioning algorithm when dealing with shuffled sequences. As such, it does result interesting how for IIQS, both implementations of partition break up the array at the same index, which confirms that both implementations perform the same operations in the same order. On the other hand, it does look that for IQS there is a scalar overhead which seems to be reduced over time. \\
 
 
 

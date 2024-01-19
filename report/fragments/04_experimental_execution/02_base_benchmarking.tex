@@ -1,6 +1,6 @@
 \section{Base benchmarking}
 \label{SUBSECTION:BASE_BENCHMARK}
-In experimental algorithms, the first step before engaging into an optimization job is to benchmark our current solutions in order to formulate our hypothesis and expectations. In this case we check the behavior of base implementations IQS and IIQS to understand better what IQS and IIQS is, what is happening when the worst case arises and to devise the next steps of this experimental development.\\
+In experimental algorithms, the first step before engaging into an optimization job is to benchmark our current solutions in order to formulate our hypothesis and expectations. In this case, we check the behavior of base implementations IQS and IIQS to understand better what IQS and IIQS are, what is happening when the worst case arises and to devise the next steps of this experimental development.\\
 
 \subsection{Average and worst case}
 \label{SUBSECTION:BASE_BENCHMARK__AVERAGE_WORST}
@@ -39,7 +39,7 @@ We start by revisiting the results shown on \cite{7416566}, in order to understa
 
 As depicted in Figure \ref{FIG:BENCHMARK_01_RANDOM_CASE}, IIQS only shows a constant time added to IQS execution when solving a randomly ordered sequence. Despite forcing the pivot selection to the first element in the sequence, given that the sequence is randomly sorted, the first element on the sequence is randomly selected at all times. Random sequences transitively imply a random pivot selection case.\\
 
-Another interesting aspect of both algorithms is that the stack size remains stable among all performed extractions. This is proof that in average, the stack does not grow asymptotically than $log_2(n)$.\\
+Another interesting aspect of both algorithms is that the stack size remains stable among all performed extractions. This is proof that in average, the stack does not grow asymptotically beyond $log_2(n)$.\\
 
 \begin{figure}
     \centering
@@ -73,13 +73,13 @@ Another interesting aspect of both algorithms is that the stack size remains sta
 
 When fixing the pivot selection to the first element in the sequence, we are forcing a synthetic best case for the first extraction performed on IQS, as it is only required to run a partition which yields the element on the same position as it is being found. It is shown on Figure \ref{FIG:BENCHMARK_02_ASC_CASE}. 
 
-There is one noticeable difference between this experiment and the original study and is that the stack in our case grows, but barely reaching the minimum expected on the average case. This is caused by the implementation of the partition algorithm. Usually a partition algorithm uses two pivots which converge to the index of the expected pivot position, but for a repeated case scenario such implementation is not feasible, as when repeated elements are found such indices need to move segments of the sequence when displaced, and there is no guarantee on the repeated property the next element in the iteration.\\
+There is one noticeable difference between this experiment and the original study and is that the stack in our case grows, but barely reaching the minimum expected on the average case. This is caused by the implementation of the partition algorithm. Usually a partition algorithm uses two cursors which converge to the index of the expected pivot position. But for a repeated case scenario such implementation is not feasible, as when repeated elements are found such indices need to move segments of the sequence when displaced, and there is no guarantee of finding any repetitions for the next elements in the iteration.\\
 
 The purpose of this work is to study the behavior of our algorithms in scenarios which has a closer match to reality and under the same conditions. For such effects, a Dutch-Flag problem implementation is used as our partition algorithm. The implementation details of this algorithm can be found on Section \ref{SUBSEC:DUTCH_FLAG_PROBLEM}.\\
 
-On this implementation, since the partitioning swaps an element to the back of the to-be-partitioned segment, on the last step the last element alternates positions with the first on the partitioned sequence, as such, when the next element in the left-most position is selected, it ends being an element which belongs to the end of the array, instead of being the first on all cases.\\
+On this implementation, since the partitioning swaps an element to the back of the to-be-partitioned segment, during the last step the last element alternates positions with the first on the partitioned sequence. As such, when the next element in the left-most position is selected, it ends being an element which belongs to the end of the array, instead of being the first.\\
 
-Even on this scenario, there the stack size does not grow larger than the minimum expected size for a random case, which is an inefficient usage of the stack, causing the degradation of the algorithm. Even if some pivots are stored on them, as such pivots do not contribute to reduce the search space, there is no reduction on the execution time for subsequent calls.\\
+Even on this scenario, the stack size does not grow larger than the minimum expected size for a random case, which is an inefficient usage of the stack, causing the degradation of the algorithm. Even if some pivots are stored on them, as such pivots do not contribute to reduce the search space, there is no reduction on the execution time for subsequent calls.\\
 
 \begin{figure}
     \centering
@@ -111,7 +111,7 @@ Even on this scenario, there the stack size does not grow larger than the minimu
     \label{FIG:BENCHMARK_03_DESC_CASE}
 \end{figure}
 
-The most extreme case for IQS is when the pivot selection always yields an element which does not reduce the search space --not for a useful value at least-- and the stack gets populated with all the elements at the first call as it can be seen on Figure \ref{FIG:BENCHMARK_03_DESC_CASE}. We can achieve this case by forcing the pivot selection to the first element on a decreasing sorted sequence. Then all the extractions yield the last element in the sequence, causing it to be stored on the stack and reducing the next iteration length by just one element without swapping any element on it.\\
+The most extreme case for IQS is when the pivot selection always yields an element which does not reduce the search space --not for a useful value at least-- and the stack gets populated with all the elements at the first call as it can be seen on Figure \ref{FIG:BENCHMARK_03_DESC_CASE}. We can achieve this case by forcing the pivot selection to the first element on a decreasing sorted sequence. Then, all the extractions yield the last element in the sequence, causing it to be stored on the stack and reducing the next iteration length by just one element without swapping any element on it.\\
 
 As it can be seen, for the both three cases that can be found --synthetically-- on IQS, its introspective version performs with the same behavior on all of them, but it does cost a fixed constant time more than the original version. In this context it is useful to remember that the purpose of incremental sorting algorithms is to speed up the first calls under the premise that the number of minima extracted is unknown while preserving the optimal asymptotic complexity in case of sorting the entire sequence. In this regard, IIQS manages to perform just as expected.\\
 
@@ -125,7 +125,7 @@ The question at hand now is what happens when repeated elements are found on the
     \item \textbf{Redundant bias}: Bias of the partition algorithm to deliver the pivot in regard of the repeated sequence.
 \end{itemize}
 
-Whilst not notorious, we from now on consider any distribution of the repeated element classes an instance of a uniformly distributed sequence. We can make this assumption based on how IQS works, as it reduces in average case by half on each iteration. Thus, for any distribution, the complexity toll is paid by the largest class found on the sequence.\\
+Whilst not notorious, from now on consider any distribution of the repeated element classes an instance of a uniformly distributed sequence. We can make this assumption based on how IQS works, as it reduces in average case by half on each iteration. Thus, for any distribution, the complexity toll is paid by the largest class found on the sequence ---refer to \ref{FIG:BENCHMARK_05_CLASSES}.\\
 
 \begin{figure}
     %BENCHMARK_05_CLASSES
@@ -175,7 +175,7 @@ Whilst not notorious, we from now on consider any distribution of the repeated e
     \label{FIG:BENCHMARK_05_CLASSES_1}
 \end{figure}
 
-As for the random noise in the sequence\footnote{We define as the random noise as the number of elements which does not belong to any controlled classes for the experiment. In this case, how many random elements are introduced as fillers on the array.}, as by itself as it does not make any visible changes on the behavior of the algorithm in relation to its iterations. This is important, because the fact that a single class with low noise represents a case with the same behavior as found on the worst case of IQS for both algorithms, as it can be checked on Figure~\ref{FIG:BENCHMARK_04_SINGLE_CLASS}.\\
+Regarding the random noise in the sequence\footnote{We define as the random noise as the number of elements which does not belong to any controlled classes for the experiment. In this case, how many random elements are introduced as fillers on the array.}, it does not make any visible changes on the behavior of the algorithm. ---refer to \ref{FIG:BENCHMARK_05_CLASSES_1}---. This is important, because the fact that a single class with low noise represents a case with the same behavior as found on the worst case of IQS for both algorithms, as it can be checked on Figure~\ref{FIG:BENCHMARK_04_SINGLE_CLASS}.\\
 
 
 \begin{figure}

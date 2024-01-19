@@ -1,12 +1,10 @@
 \begin{thebibliography}{10}
 
-\bibitem{Cantoni_Creutzburg_Levialdi_Wolf_1989}
-{\em Recent Issues in Pattern Analysis and Recognition}.
-\newblock Springer Berlin Heidelberg, 1989.
-
 \bibitem{Baeza-Yates_Manber_1992}
-{\em Computer Science}.
-\newblock Springer US, 1992.
+Ricardo Baeza-Yates and Udi Manber, editors.
+\newblock {\em Computer Science: Research and Applications}.
+\newblock Springer Book Archive. Springer New York, NY, 1 edition, 1992.
+\newblock eBook ISBN: 978-1-4615-3422-8. Softcover ISBN: 978-1-4613-6513-6. Published: 30 October 2012. eBook published: 06 December 2012.
 
 \bibitem{Blum_Floyd_Pratt_Rivest_Tarjan_1973}
 Manuel Blum, Robert~W. Floyd, Vaughan Pratt, Ronald~L. Rivest, and Robert~E. Tarjan.
@@ -36,7 +34,7 @@ Edsger~Wybe Dijkstra.
 \bibitem{10.5555/150918}
 Vladimir Estivill-Castro.
 \newblock {\em Sorting and Measures of Disorder}.
-\newblock PhD thesis, CAN, 1992.
+\newblock PhD thesis, University of Waterloo, CAN, 1992.
 
 \bibitem{Estivill-Castro_Wood_1989}
 Vladimir Estivill-Castro and Derick Wood.
@@ -48,7 +46,7 @@ Vladmir Estivill-Castro and Derick Wood.
 \newblock A survey of adaptive sorting algorithms.
 \newblock {\em ACM Comput. Surv.}, 24(4):441–476, December 1992.
 
-\bibitem{10.1093/molbev/msw211}
+\bibitem{msw211}
 Benjamin~C. Haller and Philipp~W. Messer.
 \newblock {SLiM 2: Flexible, Interactive Forward Genetic Simulations}.
 \newblock {\em Molecular Biology and Evolution}, 34(1):230--240, 10 2016.
@@ -83,7 +81,7 @@ Kurt Mehlhorn.
 \newblock {\em Data Structures and Algorithms 1}.
 \newblock Springer Berlin Heidelberg, 1984.
 
-\bibitem{10.5555/261387.261395}
+\bibitem{MusserIntroSort}
 David~R. Musser.
 \newblock Introspective sorting and selection algorithms.
 \newblock {\em Softw. Pract. Exper.}, 27(8):983–993, August 1997.
@@ -97,6 +95,11 @@ Gonzalo Navarro.
 Gonzalo Navarro and Rodrigo Paredes.
 \newblock On sorting, heaps, and minimum spanning trees.
 \newblock {\em Algorithmica}, 57(4):585–620, Mar 2010.
+
+\bibitem{PETERSSON1995153}
+Ola Petersson and Alistair Moffat.
+\newblock A framework for adaptive sorting.
+\newblock {\em Discrete Applied Mathematics}, 59(2):153--179, 1995.
 
 \bibitem{7416566}
 E.~{Regla} and R.~{Paredes}.

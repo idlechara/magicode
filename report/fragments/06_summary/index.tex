@@ -2,22 +2,22 @@
 \chapterimage[height=3cm]{./fragments/memes/merlin}
 \label{CHAPTER:SUMMARY}
 
-In this work we have tackled the problem of extending IIQS, an algorithm designed to operate over sets of elements to support sequences of elements which can contain repeated elements. At first instance we present the execution of an experimental algorithmics methodology along with an in-depth overview of each foundation required to analyze and understand out problem. Then we propose a new variant of IIQS which is baptized as bIIQS which is an algorithm developed through the insight gained of those previous experiments.\\
+In this work we have presented the problem of extending Introspective Incremental QuickSort (IIQS) ---an algorithm designed to incrementally sort arrays composed of unique elements--- to support sequences with repeated elements regardless of their distribution in the array, preserving its original introspective mechanism to avoid worst-case execution performance penalties. At first instance we present the execution of  a methodology for experimental algorithmics, along with an in-depth overview of each foundation required to analyze and understand our problem. Then, we propose a new variant of IIQS which is baptized as bIIQS which is an algorithm developed through the insight gained of those previous experiments.\\
 
-As we already know, algorithm research is usually driven by formulating the problem and then analyzing its performance theoretically. However, most of those algorithms designed based on purely abstract foundations, most of specific-purpose algorithms lack on the implementation details which can cause confusion and misleading results.\\
+As we already know, algorithm research is usually driven by formulating the problem and then analyzing its performance theoretically. However, most of those algorithms are designed on purely abstract foundations, lacking on the implementation details that can cause confusion and misleading results.\\
 
-In this work we have applied an experimental approach for our algorithm design process. Using the book \emph{A Guide To Experimental Algorithmics}\cite{10.5555/2159557} as our base reference material, we have broken our lineal algorithm design process into a modular cycle. This cycle cam be summarized as understanding the problem at hand, designing experiments, analyze and interpret the results and formulate new questions.\\
+In this work, we have applied an experimental approach for our algorithm design process. Using the book \emph{A Guide To Experimental Algorithmics}\cite{10.5555/2159557} as our base reference material, we have broken our lineal algorithm design process into a modular cycle. This cycle can be summarized as understanding the problem at hand, designing experiments, analyze and interpret the results, and formulate new questions.\\
 
 As this process needs to be controlled, our goals are had been set to support a new input case for IIQS.\\
 
-In order to gain useful insight from experiments, both careful planning and rigorous implementation is due. We had chosen C++ as our language of choice, as it enables us to fine tune both structural and execution aspects directly on the code. As for our tool for examining our data and plan our experimental process we have used Jupyter due to the simplicity of its pipelining. A direct consequence of this is the ease replication of results and validations by third parties.\\
+In order to gain useful insight from experiments, both careful planning and rigorous implementation has to be followed. We had chosen C++ as our language of choice, as it enables us to fine tune both structural and execution aspects directly on the code. As for our tool for examining our data and plan our experimental process we have used Jupyter due to the simplicity of its pipelining. A direct consequence of this is the ease replication of results and validations by third parties.\\
 
-During our experimental process we have discovered some implementation caveats which were not described on the original paper. We can summarize them as follows:
+During our experimental process we have discovered some implementation concerns which were not described on the original paper. We can summarize them as follows:
 
 \begin{itemize}
     \item IIQS belongs to the \emph{adaptive sorting} algorithms family. This means that the algorithm performance is in function of its input. This allowed us to focus our efforts on later stages.
     \item Different partitioning schemes do not affect our algorithm complexity nor its running time as long as they divide the elements and provide a way to reduce our search space. But they do alter how the pivots are stored or retrieved.
-    \item The implementation of IIQS stated on the original paper~\cite{7416566} does not state clearly which inputs it does accept. This work corrects this lack of information.
+    \item The implementation of IIQS stated on the original paper~\cite{7416566} does not show clearly which inputs it does accept. This work corrects this lack of information.
     \item IIQS auxiliary process ---median-of-medians--- can be tuned to speed up certain portions of the index if desired and is not needed to be a fixed value.
     \item The elements stored on the stack follow a certain chainsaw pattern when both IQS and IIQS are executing under normal conditions. As the stack size over time is directly related to the overall performance of IIQS, we can use it as a performance metric.
     \item Experimentally, IIQS has on average a 3-fold overhead in comparison to IQS.
@@ -30,7 +30,7 @@ The main results and findings of this work can be summarized as follows:
 \begin{itemize}
     \item We presented bIIQS, which is a direct replacement of IIQS aimed to support a new input case not considered on the original work.
     \item We have corrected misleading information from the original paper, by gaining insight using an \emph{Experimental Algorithmics} methodology.
-    \item We have made available a portable and extensible implementations of IQS, IIQS, and bIIQS aimed for further experimentation using C++.
+    \item We have made available a portable and extensible implementations of IQS, IIQS, and bIIQS aimed for further experimentation using C++\footnote{The sources used, datasets, presentation, and this very same document are available at \href{https://github.com/idlechara/magicode/tree/master/presentation}{https://github.com/idlechara/magicode/tree/master/presentation} }.
 \end{itemize}
 
 \section{Future work}

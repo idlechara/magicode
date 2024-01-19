@@ -7,7 +7,7 @@
 \usepackage[noend]{algpseudocode}
 \usepackage{caption}
 \usepackage{subcaption}
-
+\usepackage{hyperref}
 \usepackage{graphicx,eso-pic}
 \hbadness=10000
 \algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
@@ -54,7 +54,11 @@
 
 %% resumen
 \begin{resumen}
-  We fixed IIQS and finished what the original work started.
+In this work, the authors address the challenge of extending the Introspective Incremental QuickSort (IIQS) algorithm to handle arrays with repeated elements while maintaining its introspective mechanism to avoid worst-case execution scenarios. Initially, the study implements a methodology for experimental algorithmics and provides a thorough foundation for understanding the problem.\\
+
+The authors introduce a new variant of IIQS, named bIIQS, developed through insights gained from previous experiments. Unlike traditional algorithm research that often relies on abstract theoretical analysis, this work employs an experimental approach. Guided by "A Guide To Experimental Algorithmics," the authors adopt a modular cycle in their algorithm design process, encompassing understanding the problem, designing experiments, analyzing results, and formulating new questions. This approach ensures controlled experimentation, aiming to adapt IIQS to new input cases.\\
+
+The study uses C++ for its flexibility in structural and execution tuning, and Jupyter for its straightforward data examination and experimental planning, facilitating result replication and validation. The experimental process reveals several implementation nuances not mentioned in the original paper. These include the adaptive nature of IIQS, the impact of different partitioning schemes, clarifications on accepted inputs, customizations of the median-of-medians process, the significance of the stack size pattern as a performance metric, and the observation that IIQS has a threefold overhead compared to IQS.
 \end{resumen}
 
 %% abstract

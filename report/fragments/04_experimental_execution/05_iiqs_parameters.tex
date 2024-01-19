@@ -89,16 +89,16 @@ There is no point on shrinking the \emph{valid area}\footnote{Our central 40\%.}
 
 
 
-There is an interesting effect resulting of the selection of $\alpha$ and $\beta$ parameters. By just examining the first and second extractions we can appreciate that if we tight the bounds to a point that median-of-medians is executed each time, for all instances we get that the first extraction is accelerated by a huge factor, but that comes at a cost of the second extraction being three orders of magnitude larger than the average execution. There is a ton of room for different behaviors on this implementation as we can check when comparing the execution for each dataset, the regions that seems to be best performing for one are the worst for another case.\\
+There is an interesting effect resulting of the selection of $\alpha$ and $\beta$ parameters which can be observed in Figures \ref{FIG:05_ALPHABETA_RELATIONSHIP_RANDOM}, \ref{FIG:05_ALPHABETA_RELATIONSHIP_ASC}, and \ref{FIG:05_ALPHABETA_RELATIONSHIP_DESC}. By just examining the first and second extractions we can appreciate that if we tight the bounds to a point that median-of-medians is executed each time, for all instances we get that the first extraction is accelerated by a huge factor, but that comes at a cost of the second extraction being three orders of magnitude larger than the average execution. There is a ton of room for different behaviors on this implementation as we can check when comparing the execution for each dataset, the regions that seems to be best performing for one are the worst for another case.\\
 
 But something that it is common is that closing the bound too tight affects negatively the running time as well as to completely ignore the value of $\alpha$ parameter, at least when fixing all constraints to force a worst-case running time. That is, by fixing the pivot-bias to select the leftmost element. By extension, this applies to the other possible values for the pivot bias. \\
 
 
 \subsection{Relaxation of $\alpha$ and $\beta$ constraints}
 
-As stated by BFPRT definition, as the pivot returned belongs to the middle 40 percent of the array, there is no need to run IIQS if our pivot already belongs to this segment. But yet there is no insight on if relaxing the constraints for IIQS $\alpha$ and $\beta$ parameters does have any impact on its running time.\\
+As stated by BFPRT definition, as the pivot returned belongs to the middle 40 percent of the array, there is no need to run IIQS if our pivot already belongs to this segment. But yet there is no insight on whether relaxing the constraints for IIQS $\alpha$ and $\beta$ parameters does have any impact on its running time.\\
 
-As seen on figures there are some configurations which favor certain scenarios. On this first analysis presented on Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC}~and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC} we can appreciate that further relaxation of $\alpha$ and $\beta$ parameters contribute to noticeable improvements over running time without affecting in most cases the quality of the stack in certain cases. Furthermore, as there is no combination which gets closer to an all-cases resistant implementation, we conclude that relaxation of such parameters outside their guaranteed bounds does not contribute to the development of a general usage version of IIQS.\\
+As seen previously, there are some configurations which favor certain scenarios. On this first analysis presented on Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC}~and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC} we can appreciate that further relaxation of $\alpha$ and $\beta$ parameters contribute to noticeable improvements over running time without affecting ---in most cases--- the quality of the stack ---in certain cases. Furthermore, as there is no combination which gets closer to an all-cases resistant implementation, we conclude that relaxation of such parameters outside their guaranteed bounds does not contribute to the development of a general usage version of IIQS.\\
 
 
 
@@ -247,9 +247,9 @@ As seen on figures there are some configurations which favor certain scenarios. 
 
 \subsection{Tightening $\alpha$ and $\beta$ constraints for unique elements}
 
-As for independent tuning of $\alpha$ beta shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_LEFT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_LEFT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_LEFT} and $\beta$ parameter shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_RIGHT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_RIGHT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_RIGHT}, there is no relaxation available outside the expected bounds for BFPRT unless we are expecting to optimize the execution for certain distributions.\\
+As for independent tuning of $\alpha$ as shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_LEFT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_LEFT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_LEFT} and $\beta$ parameter shown in Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_RIGHT},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_RIGHT}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_RIGHT}, there is no relaxation available outside the expected bounds for BFPRT unless we are expecting to optimize the execution for certain distributions.\\
 
-A total opposite of the previous case, as it does seem that tightening BFPRT parameters does not contribute at lowering our current upper bound nor to changing it at all. But different to our initial expectations, it does seem that for certain combinations we obtain in average a better performance on all cases for non-repeated elements in the sequence. This is the case of $\alpha=0.5$ and $\beta=0.65$, which appears as the best performant combination of parameters on Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_INNER},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_INNER}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_INNER}. \\
+A total opposite of the previous case, as it does seem that tightening BFPRT parameters does not contribute at lowering our current upper bound nor to changing it at all. But different to our initial expectations, it does seem that for certain combinations we obtain in average a better performance on all cases for non-repeated elements in the sequence. This is the case of $\alpha=0.5$ and $\beta=0.65$, which appears as the best performing combination of parameters on Figures~\ref{FIG:05_ALPHABETA_BENCHMARK_RANDOM_INNER},~\ref{FIG:05_ALPHABETA_BENCHMARK_ASC_INNER}, and~\ref{FIG:05_ALPHABETA_BENCHMARK_DESC_INNER}. \\
 
 
 
@@ -507,7 +507,7 @@ Further, testing against the more aggressive situation for IIQS reveals that the
 
 
 
-As by examining the results depicted in Figures and~\ref{FIG:05_ALPHABETA_RELATIONSHIP_SINGLECLASS_STACK}, we can conclude that changing IIQS parameters does not affect the performance when dealing with repeated elements, as the bias for returning a position on the BFPRT result as pivot is the one directly impacting the performance and not the bounds for BFPRT execution itself.\\
+As by examining the results depicted in Figure~\ref{FIG:05_ALPHABETA_RELATIONSHIP_SINGLECLASS}  and Figure~\ref{FIG:05_ALPHABETA_RELATIONSHIP_SINGLECLASS_STACK}, we can conclude that changing IIQS parameters does not affect the performance when dealing with repeated elements, as the bias for returning a position on the BFPRT result is the one directly impacting the performance, and not the bounds for BFPRT execution itself.\\
 % \begin{itemize}
 %     %% list the configurations
 % \end{itemize}
@@ -519,8 +519,8 @@ As by examining the results depicted in Figures and~\ref{FIG:05_ALPHABETA_RELATI
 
 As our attention is now focused on BFPRT, it is worth questioning if the side effects of sorting the small segments used on BFPRT does affect IIQS behavior. While this does hold for elements with repeated elements, as the scope of this work is to support the worst possible case for repeating elements in a sequence, experiments related to this parameter are not covered in this document.\\
 
-In order to understand why BFPRT modifications are our of our interest, let us consider the size of BFPRT segments as a parameter for IIQS execution. This is important as for each execution of BFPRT the elements on each index moves to their corresponding position in their local segment. Let us denote as $k$ the size of the median used on BFPRT, for now we fix this value for all our examples as $k=5$ unless stated otherwise.\\
+In order to understand why BFPRT modifications are of our interest, let us consider the size of BFPRT segments as a parameter for IIQS execution. This is important as for each execution of BFPRT, the elements on each index moves to their corresponding position in their local segment. Let us denote as $k$ the size of the median used on BFPRT, for now we fix this value for all our examples as $k=5$, unless stated otherwise.\\
 
-Then, when a sequence $S$ is composed of $\norm{S}$ elements which follows $\forall~S_i, S_j~\in~S,~\forall i \neq j : S_i=S_j$, as $S_i=S_j$ holds for all cases, any permutation $\sigma$ and $\tau$ of size $k$ is bound to $\sigma = \tau$. Hence, sorting any portion of any size in the sequence does not change the running time as the elements value remains the same along the sequence. The only way to make a change is by controlling how stack is allocated on the execution, which is shown at the beginning of this section.\\
+Then, when a sequence $S$ is composed of $\norm{S}$ elements which follows $\forall~S_i, S_j~\in~S,~\forall~ i \neq j : S_i=S_j$, as $S_i=S_j$ holds for all cases, any permutation $\sigma$ and $\tau$ of size $k$ is bound to $\sigma = \tau$. Hence, sorting any portion of any size in the sequence does not change the running time as the elements value remains the same along the sequence. The only way to make a change is by controlling how the stack is allocated on the execution, which is shown at the beginning of this section.\\
 
 \FloatBarrier
